@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | MoveEase</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --orange: #f36b21;
+            --navy: #092638;
+            --light-orange: #fff2e9;
+            --white: #ffffff;
+            --text: #64717a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--navy);
+            background: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* HEADER */
+
+        .service-header {
+            height: 76px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid #eeeeee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .service-logo {
+            color: var(--navy);
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .service-logo span {
+            color: var(--orange);
+        }
+
+        .service-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .service-nav a {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .service-nav a:hover,
+        .service-nav a.active {
+            color: var(--orange);
+        }
+
+        .service-nav .nav-cta {
+            color: white;
+            background: var(--orange);
+            padding: 12px 21px;
+            border-radius: 8px;
+        }
+
+        .service-nav .nav-cta:hover {
+            color: white;
+            background: var(--navy);
+        }
+
+        /* HERO */
+
+        .services-hero {
+            background: var(--light-orange);
+            padding: 90px 7% 85px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero::after {
+            content: "";
+            position: absolute;
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            background: rgba(243,107,33,.08);
+            right: -100px;
+            top: -100px;
+        }
+
+        .services-hero-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 9px 18px;
+            background: white;
+            color: var(--orange);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+        }
+
+        .services-hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .services-hero h1 span {
+            color: var(--orange);
+        }
+
+        .services-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 14px 23px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: .3s;
+        }
+
+        .primary-btn {
+            background: var(--orange);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            background: white;
+            color: var(--navy);
+            border: 1px solid #e8e8e8;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        /* INTRO */
+
+        .services-intro {
+            text-align: center;
+            padding: 85px 7% 45px;
+        }
+
+        .section-tag {
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 13px;
+            display: inline-block;
+        }
+
+        .services-intro h2,
+        .process-heading h2 {
+            font-size: clamp(29px, 4vw, 40px);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .services-intro p,
+        .process-heading p {
+            color: var(--text);
+            line-height: 1.8;
+            max-width: 650px;
+            margin: auto;
+            font-size: 15px;
+        }
+
+        /* SERVICE CARDS */
+
+        .services-list {
+            padding: 25px 7% 90px;
+        }
+
+        .services-grid {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #eeeeee;
+            border-radius: 17px;
+            overflow: hidden;
+            transition: .35s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-9px);
+            box-shadow: 0 18px 40px rgba(9,38,56,.10);
+            border-color: #f9c5a8;
+        }
+
+        .service-card-top {
+            height: 165px;
+            background: var(--light-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card-top::before {
+            content: "";
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(243,107,33,.10);
+        }
+
+        .service-card-top i {
+            font-size: 65px;
+            color: var(--orange);
+            position: relative;
+            transition: .3s;
+        }
+
+        .service-card:hover .service-card-top i {
+            transform: scale(1.12) rotate(-5deg);
+        }
+
+        .service-card-body {
+            padding: 27px;
+        }
+
+        .service-number {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--orange);
+            letter-spacing: 1px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin: 10px 0 12px;
+            font-weight: 800;
+        }
+
+        .service-card p {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+            min-height: 75px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 20px 0;
+            display: grid;
+            gap: 11px;
+        }
+
+        .service-features li {
+            color: #53636d;
+            font-size: 13px;
+            display: flex;
+            gap: 9px;
+            align-items: center;
+        }
+
+        .service-features i {
+            color: var(--orange);
+            font-size: 15px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--orange);
+            font-size: 14px;
+            font-weight: 800;
+            transition: .3s;
+        }
+
+        .service-link:hover {
+            gap: 15px;
+            color: var(--navy);
+        }
+
+        /* FEATURE BANNER */
+
+        .service-feature-banner {
+            margin: 0 7% 90px;
+            padding: 55px;
+            border-radius: 20px;
+            background: var(--navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            overflow: hidden;
+        }
+
+        .feature-banner-content {
+            max-width: 650px;
+        }
+
+        .feature-banner-content span {
+            color: #ffad7c;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .feature-banner-content h2 {
+            color: white;
+            font-size: clamp(27px, 3vw, 37px);
+            margin: 13px 0;
+            line-height: 1.3;
+        }
+
+        .feature-banner-content p {
+            color: #c3d0d7;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .feature-banner-icon {
+            font-size: 110px;
+            color: var(--orange);
+            opacity: .9;
+        }
+
+        /* PROCESS */
+
+        .services-process {
+            background: #f8fafb;
+            padding: 85px 7%;
+        }
+
+        .process-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .process-grid {
+            max-width: 1150px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .process-card {
+            text-align: center;
+            padding: 25px 18px;
+        }
+
+        .process-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--light-orange);
+            color: var(--orange);
+            font-size: 29px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .process-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .process-card p {
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* WHY MOVE WITH US */
+
+        .service-benefits {
+            padding: 85px 7%;
+        }
+
+        .benefits-container {
+            max-width: 1150px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .benefits-content h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.25;
+            margin: 12px 0 18px;
+        }
+
+        .benefits-content h2 span {
+            color: var(--orange);
+        }
+
+        .benefits-content > p {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            align-items: flex-start;
+        }
+
+        .benefit-item i {
+            width: 43px;
+            height: 43px;
+            background: var(--light-orange);
+            color: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .benefit-item h4 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .benefit-item p {
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .benefits-visual {
+            min-height: 400px;
+            border-radius: 22px;
+            background: var(--light-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-visual > i {
+            font-size: 150px;
+            color: var(--orange);
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefits-circle {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(243,107,33,.10);
+        }
+
+        /* CTA */
+
+        .services-cta {
+            margin: 0 7% 85px;
+            padding: 65px 25px;
+            border-radius: 20px;
+            background: var(--light-orange);
+            text-align: center;
+        }
+
+        .services-cta h2 {
+            font-size: clamp(27px, 4vw, 39px);
+            margin-bottom: 15px;
+        }
+
+        .services-cta h2 span {
+            color: var(--orange);
+        }
+
+        .services-cta p {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        .service-footer {
+            background: var(--navy);
+            color: white;
+            padding: 55px 7% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 45px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .footer-brand h2 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand h2 span {
+            color: var(--orange);
+        }
+
+        .footer-brand p {
+            color: #c2cdd3;
+            font-size: 13px;
+            line-height: 1.9;
+            max-width: 350px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c2cdd3;
+            font-size: 13px;
+            margin: 12px 0;
+            transition: .3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            max-width: 1250px;
+            margin: 35px auto 0;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255,255,255,.15);
+            text-align: center;
+            color: #aab8c0;
+            font-size: 12px;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .services-hero-content,
+        .service-card,
+        .process-card {
+            animation: fadeUp .7s ease both;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 950px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-container {
+                gap: 30px;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+            .service-header {
+                height: auto;
+                padding: 20px 5%;
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .service-nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .service-nav a {
+                font-size: 12px;
+            }
+
+            .service-nav .nav-cta {
+                padding: 9px 13px;
+            }
+
+            .services-hero {
+                padding: 65px 6%;
+            }
+
+            .services-intro {
+                padding: 65px 6% 35px;
+            }
+
+            .services-list {
+                padding: 20px 6% 65px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card p {
+                min-height: auto;
+            }
+
+            .service-feature-banner {
+                margin: 0 6% 65px;
+                padding: 35px 25px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .feature-banner-icon {
+                font-size: 75px;
+            }
+
+            .services-process {
+                padding: 65px 6%;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .service-benefits {
+                padding: 65px 6%;
+            }
+
+            .benefits-container {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-visual {
+                min-height: 280px;
+            }
+
+            .benefits-visual > i {
+                font-size: 110px;
+            }
+
+            .services-cta {
+                margin: 0 6% 65px;
+                padding: 45px 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media(max-width: 380px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="service-header">
+    <a href="index.html" class="service-logo">Move<span>Ease</span>.</a>
+
+    <nav class="service-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="index.html#moving-tips">Moving Tips</a>
+        <a href="index.html#why-choose-us" class="nav-cta">Why Move With Us?</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="services-hero">
+    <div class="services-hero-content">
+
+        <span class="hero-label">OUR MOVING SOLUTIONS</span>
+
+        <h1>Everything You Need for a <span>Smooth Move.</span></h1>
+
+        <p>
+            From carefully packing your belongings to safely delivering
+            them to your new destination, MoveEase makes every step
+            of relocation simple and convenient.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#all-services" class="primary-btn">
+                Explore Services <i class="bi bi-arrow-down"></i>
+            </a>
+
+            <a href="index.html" class="secondary-btn">
+                Back to Home <i class="bi bi-house"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="services-intro" id="all-services">
+
+    <span class="section-tag">WHAT WE OFFER</span>
+
+    <h2>Our Complete Moving Services</h2>
+
+    <p>
+        Whether you're moving your home, office or valuable belongings,
+        discover the moving solutions designed to make your relocation easier.
+    </p>
+
+</section>
+
+<!-- SERVICES GRID -->
+<section class="services-list">
+
+    <div class="services-grid">
+
+        <!-- SERVICE 1 -->
+        <article class="service-card">
+            <div class="service-card-top">
+                <i class="bi bi-house-door"></i>
+            </div>
+
+            <div class="service-card-body">
+                <span class="service-number">SERVICE 01</span>
+                <h3>Home Relocation</h3>
+
+                <p>
+                    Move to your new home without unnecessary stress.
+                    We help organize the packing, handling and transportation
+                    of your household belongings.
+                </p>
+
+                <ul class="service-features">
+                    <li><i class="bi bi-check-circle-fill"></i> Household item handling</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Furniture transportation</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Organized moving support</li>
+                </ul>
+
+                <a href="index.html#services" class="service-link">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- SERVICE 2 -->
+        <article class="service-card">
+            <div class="service-card-top">
+                <i class="bi bi-building"></i>
+            </div>
+
+            <div class="service-card-body">
+                <span class="service-number">SERVICE 02</span>
+                <h3>Office Relocation</h3>
+
+                <p>
+                    Relocate your office with a well-organized moving plan.
+                    We help move workplace furniture, equipment and
+                    office essentials.
+                </p>
+
+                <ul class="service-features">
+                    <li><i class="bi bi-check-circle-fill"></i> Office furniture handling</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Equipment transportation</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Organized office shifting</li>
+                </ul>
+
+                <a href="index.html#services" class="service-link">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- SERVICE 3 -->
+        <article class="service-card">
+            <div class="service-card-top">
+                <i class="bi bi-box-seam"></i>
+            </div>
+
+            <div class="service-card-body">
+                <span class="service-number">SERVICE 03</span>
+                <h3>Packing & Unpacking</h3>
+
+                <p>
+                    Keep your belongings organized with suitable packing
+                    materials and careful handling of delicate items.
+                </p>
+
+                <ul class="service-features">
+                    <li><i class="bi bi-check-circle-fill"></i> Organized box packing</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Fragile item protection</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Unpacking assistance</li>
+                </ul>
+
+                <a href="index.html#services" class="service-link">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- SERVICE 4 -->
+        <article class="service-card">
+            <div class="service-card-top">
+                <i class="bi bi-truck"></i>
+            </div>
+
+            <div class="service-card-body">
+                <span class="service-number">SERVICE 04</span>
+                <h3>Loading & Transportation</h3>
+
+                <p>
+                    Transport your belongings from your current location
+                    to your destination with organized loading and delivery.
+                </p>
+
+                <ul class="service-features">
+                    <li><i class="bi bi-check-circle-fill"></i> Careful loading support</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Moving vehicle coordination</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Delivery assistance</li>
+                </ul>
+
+                <a href="index.html#services" class="service-link">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- SERVICE 5 -->
+        <article class="service-card">
+            <div class="service-card-top">
+                <i class="bi bi-car-front"></i>
+            </div>
+
+            <div class="service-card-body">
+                <span class="service-number">SERVICE 05</span>
+                <h3>Vehicle Transportation</h3>
+
+                <p>
+                    Arrange transportation for your car or two-wheeler
+                    when relocating to another city or location.
+                </p>
+
+                <ul class="service-features">
+                    <li><i class="bi bi-check-circle-fill"></i> Vehicle moving coordination</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Transportation planning</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Delivery coordination</li>
+                </ul>
+
+                <a href="index.html#services" class="service-link">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <!-- SERVICE 6 -->
+        <article class="service-card">
+            <div class="service-card-top">
+                <i class="bi bi-boxes"></i>
+            </div>
+
+            <div class="service-card-body">
+                <span class="service-number">SERVICE 06</span>
+                <h3>Storage Solutions</h3>
+
+                <p>
+                    Need extra space during your move? Explore storage
+                    arrangements for belongings that you cannot move
+                    immediately.
+                </p>
+
+                <ul class="service-features">
+                    <li><i class="bi bi-check-circle-fill"></i> Storage arrangement support</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Organized item storage</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Flexible storage planning</li>
+                </ul>
+
+                <a href="index.html#services" class="service-link">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<!-- FEATURE BANNER -->
+<section class="service-feature-banner">
+
+    <div class="feature-banner-content">
+        <span>ONE TEAM. COMPLETE SUPPORT.</span>
+
+        <h2>Your Move Deserves More Than Just a Moving Truck.</h2>
+
+        <p>
+            From the first packing box to the final delivery,
+            MoveEase helps you plan your relocation with convenience,
+            care and a clear process.
+        </p>
+    </div>
+
+    <div class="feature-banner-icon">
+        <i class="bi bi-truck"></i>
+    </div>
+
+</section>
+
+<!-- PROCESS -->
+<section class="services-process">
+
+    <div class="process-heading">
+        <span class="section-tag">SIMPLE & ORGANIZED</span>
+        <h2>How Our Moving Process Works</h2>
+
+        <p>
+            Four simple steps to help you plan and complete your relocation.
+        </p>
+    </div>
+
+    <div class="process-grid">
+
+        <div class="process-card">
+            <div class="process-icon">
+                <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>01. Share Your Needs</h3>
+            <p>
+                Tell us about your moving requirements,
+                locations and preferred date.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="process-icon">
+                <i class="bi bi-clipboard-check"></i>
+            </div>
+            <h3>02. Plan Your Move</h3>
+            <p>
+                Review the moving requirements and organize
+                the services needed.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="process-icon">
+                <i class="bi bi-box-seam"></i>
+            </div>
+            <h3>03. Pack & Move</h3>
+            <p>
+                Prepare your belongings and coordinate
+                the transportation process.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="process-icon">
+                <i class="bi bi-house-check"></i>
+            </div>
+            <h3>04. Settle In</h3>
+            <p>
+                Receive your belongings at your destination
+                and get ready for your new beginning.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BENEFITS -->
+<section class="service-benefits">
+
+    <div class="benefits-container">
+
+        <div class="benefits-content">
+
+            <span class="section-tag">THE MOVEEASE DIFFERENCE</span>
+
+            <h2>We Make Moving <span>Feel Easier.</span></h2>
+
+            <p>
+                Relocation involves many details. Our goal is to make
+                the process easier to understand, organize and manage.
+            </p>
+
+            <div class="benefit-item">
+                <i class="bi bi-shield-check"></i>
+                <div>
+                    <h4>Careful Handling</h4>
+                    <p>Your belongings deserve attention at every stage.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="bi bi-calendar-check"></i>
+                <div>
+                    <h4>Better Planning</h4>
+                    <p>Keep your moving tasks and schedule organized.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="bi bi-person-check"></i>
+                <div>
+                    <h4>Customer-Focused Support</h4>
+                    <p>Get help understanding your moving requirements.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="bi bi-box2-heart"></i>
+                <div>
+                    <h4>Complete Moving Solutions</h4>
+                    <p>Explore different services based on your needs.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="benefits-visual">
+            <div class="benefits-circle"></div>
+            <i class="bi bi-house-heart"></i>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="services-cta">
+
+    <span class="section-tag">YOUR NEXT CHAPTER STARTS HERE</span>
+
+    <h2>Planning a Move? <span>Let's Make It Easy.</span></h2>
+
+    <p>
+        Explore the right moving solutions for your home or business
+        and start planning your relocation.
+    </p>
+
+    <a href="index.html#why-choose-us" class="primary-btn">
+        Back to MoveEase <i class="bi bi-arrow-right"></i>
+    </a>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="service-footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+            <h2>Move<span>Ease.</span></h2>
+
+            <p>
+                Making every move simpler. Discover convenient
+                relocation solutions for your home and business.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About Us</a>
+            <a href="services.html">Our Services</a>
+            <a href="index.html#moving-tips">Moving Tips</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Our Services</h4>
+            <a href="#all-services">Home Relocation</a>
+            <a href="#all-services">Office Relocation</a>
+            <a href="#all-services">Packing & Unpacking</a>
+            <a href="#all-services">Vehicle Transportation</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 MoveEase. All Rights Reserved.
+    </div>
+
+</footer>
+
+</body>
+</html>

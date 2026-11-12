@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveEase Elite | Premium Home Shifting Services</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           MOVEEASE ELITE - all styles inline
+        ========================================================= */
+        :root {
+            --primary: #f36b21;
+            --gold: #e8b878;
+            --ink: #07131d;
+            --bg: #faf6f1;
+            --surface: #ffffff;
+            --text: #2a3a47;
+            --muted: #5d6d7a;
+            --heading: #07131d;
+            --border: #e8dfd4;
+            --shadow: rgba(7, 19, 29, 0.14);
+        }
+        body.dark-mode {
+            --bg: #0a141c;
+            --surface: #12202b;
+            --text: #e5eaf0;
+            --muted: #a9b6c1;
+            --heading: #ffffff;
+            --border: #25353f;
+            --shadow: rgba(0, 0, 0, 0.55);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: "DM Sans", Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; transition: background .3s, color .3s; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        section[id] { scroll-margin-top: 90px; }
+        :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+        .wrap { max-width: 1200px; margin: auto; padding: 0 25px; }
+        .serif { font-family: "Playfair Display", Georgia, serif; }
+        .kicker { display: inline-block; color: var(--primary); font-size: 13px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px; }
+        h2.big { font-family: "Playfair Display", Georgia, serif; font-size: clamp(32px, 4.4vw, 52px); line-height: 1.15; color: var(--heading); }
+        h2.big em { color: var(--primary); }
+
+        /* ---------- Header ---------- */
+        .header { position: sticky; top: 0; z-index: 1000; background: var(--surface); border-bottom: 1px solid var(--border); }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 25px; min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+        .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .brand img { width:70px; height:70px; object-fit:contain; }
+        body.dark-mode .brand img { filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 6px rgba(255,255,255,.25)); }
+        .brand-text h2 { font-family: "Playfair Display", Georgia, serif; font-size: 22px; color: var(--heading); letter-spacing: .5px; }
+        .brand-text h2 span { color: var(--primary); }
+        .brand-text small { display: block; font-size: 9.5px; letter-spacing: 1.5px; color: var(--muted); }
+        .navbar { display: flex; align-items: center; gap: 26px; }
+        .nav-link { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; transition: .3s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+        .nav-link i { font-size: 9px; }
+
+        .dropdown { position: relative; padding: 10px 0; }
+        .dropdown-toggle { display: inline-flex; align-items: center; gap: 5px; }
+        .dropdown-toggle i { transition: transform .25s; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; inset-inline-start: 0; min-width: 190px; flex-direction: column; gap: 4px; padding: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 14px 30px var(--shadow); }
+        .dropdown-menu a { padding: 9px 12px; border-radius: 8px; font-size: 13px; }
+        .dropdown-menu a:hover, .dropdown-menu a.active { background: var(--bg); color: var(--primary); }
+        .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu, .dropdown.open .dropdown-menu { display: flex; }
+        .dropdown:hover .dropdown-toggle i, .dropdown.open .dropdown-toggle i { transform: rotate(180deg); }
+
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .icon-btn { min-width: 42px; height: 42px; padding: 0 10px; border: 1px solid var(--border); border-radius: 50px; background: var(--surface); color: var(--heading); font: 700 13px "DM Sans", Arial, sans-serif; cursor: pointer; transition: .3s; }
+        .icon-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .book-btn { padding: 13px 24px; background: var(--primary); color: #fff; border-radius: 50px; font-size: 14px; font-weight: 700; white-space: nowrap; transition: .3s; }
+        .book-btn:hover { background: var(--ink); }
+        body.dark-mode .book-btn:hover { background: #fff; color: var(--ink); }
+        .menu-toggle { display: none; border: none; background: transparent; font-size: 28px; color: var(--heading); cursor: pointer; }
+
+        /* ---------- Buttons ---------- */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 28px; border-radius: 50px; font: 700 15px "DM Sans", Arial, sans-serif; border: 2px solid var(--primary); cursor: pointer; transition: .3s; }
+        .btn-fill { background: var(--primary); color: #fff; }
+        .btn-fill:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(243,107,33,.35); }
+        .btn-line { color: #fff; border-color: rgba(255,255,255,.4); }
+        .btn-line:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ---------- 1. Hero ---------- */
+        .hero { position: relative; display: flex; align-items: center; min-height: 88vh; color: #fff; padding: 90px 0 170px; overflow: hidden;
+            background: linear-gradient(90deg, rgba(7,19,29,.94) 0%, rgba(7,19,29,.78) 45%, rgba(7,19,29,.3) 100%),
+                        url("images/hero1.jpg") center / cover no-repeat, var(--ink); }
+        html[dir="rtl"] 
+        .hero { background: linear-gradient(270deg, rgba(7,19,29,.94) 0%, rgba(7,19,29,.78) 45%, rgba(7,19,29,.3) 100%),
+                        url("images/hero1.jpg") center / cover no-repeat, var(--ink); }
+        .hero .wrap { width: 100%; }
+        .eyebrow { display:inline-flex; align-items:center; gap:10px; margin-bottom:16px; color:var(--primary); font-size:13px; font-weight:800; letter-spacing:2px; text-transform:uppercase; }
+        .eyebrow::before { content:""; width:30px; height:2px; background:var(--primary); }
+        .hero::before { content: ""; position: absolute; width: 520px; height: 520px; border: 1px solid rgba(232,184,120,.25); border-radius: 50%; top: -160px; inset-inline-start: -160px; }
+        .hero-grid { position: relative; max-width: 680px; }
+        .hero .kicker { color: var(--gold); animation: up .8s both; }
+        .hero h1 { font-family: "Playfair Display", Georgia, serif; font-size: clamp(40px, 6vw, 74px); line-height: 1.06; margin-bottom: 24px; animation: up .8s .1s both; }
+        .hero h1 em { color: var(--primary); display: block; }
+        .hero p { font-size: 18px; color: #dbe3ea; max-width: 520px; margin-bottom: 34px; animation: up .8s .2s both; }
+        .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; animation: up .8s .3s both; }
+        .arch-tag { position: absolute; bottom: 130px; inset-inline-end: 40px; display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--surface); color: var(--heading); border-radius: 14px; box-shadow: 0 14px 34px rgba(0,0,0,.35); animation: bob 4s ease-in-out infinite; }
+        .arch-tag i { font-size: 26px; color: var(--primary); }
+        .arch-tag b { display: block; font-size: 14px; }
+        .arch-tag span { font-size: 12px; color: var(--muted); }
+
+        .quote-bar { position: relative; margin-top: -70px; z-index: 5; }
+        .quote-card { display: grid; grid-template-columns: repeat(3, 1fr) auto; align-items: center; gap: 22px; padding: 26px 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 24px 50px var(--shadow); }
+        .qi { display: flex; align-items: center; gap: 14px; }
+        .qi i { width: 48px; height: 48px; display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; background: var(--bg); color: var(--primary); font-size: 22px; }
+        .qi b { display: block; color: var(--heading); font-size: 15px; }
+        .qi span { font-size: 13px; color: var(--muted); }
+
+        /* ---------- 2. Marquee ---------- */
+        .marquee { margin-top: 80px; background: var(--primary); color: #fff; overflow: hidden; padding: 18px 0; white-space: nowrap; }
+        .marquee div { display: inline-flex; gap: 40px; padding-inline-end: 40px; animation: slide 28s linear infinite; font-family: "Playfair Display", Georgia, serif; font-size: 24px; font-style: italic; }
+        .marquee i { font-size: 14px; align-self: center; }
+
+        /* ---------- 3. About ---------- */
+        .section { padding: 100px 0; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: start; }
+        .about-grid .lead { margin-top: 20px; font-size: 17px; color: var(--muted); max-width: 460px; }
+        .promises { display: grid; gap: 0; }
+        .promise { display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+        .promise:first-child { padding-top: 0; }
+        .promise .n { font-family: "Playfair Display", Georgia, serif; font-size: 44px; line-height: 1; color: var(--primary); opacity: .85; }
+        .promise h3 { color: var(--heading); font-size: 20px; margin-bottom: 6px; }
+        .promise p { color: var(--muted); font-size: 15px; }
+
+        /* ---------- 4. Services ---------- */
+        .services { background: var(--surface); border-block: 1px solid var(--border); }
+        .head { max-width: 640px; margin-bottom: 50px; }
+        .svc-list { border-top: 1px solid var(--border); }
+        .svc { display: grid; grid-template-columns: 70px 1fr 1.4fr 50px; gap: 24px; align-items: center; padding: 28px 16px; border-bottom: 1px solid var(--border); transition: .35s; }
+        .svc .n { font-family: "Playfair Display", Georgia, serif; font-size: 22px; color: var(--muted); transition: .35s; }
+        .svc h3 { font-size: 24px; color: var(--heading); font-family: "Playfair Display", Georgia, serif; transition: .35s; }
+        .svc p { font-size: 15px; color: var(--muted); }
+        .svc .go { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--heading); transition: .35s; }
+        .svc:hover { background: var(--ink); padding-inline: 28px; }
+        .svc:hover h3, .svc:hover .go { color: #fff; }
+        .svc:hover .n { color: var(--gold); }
+        .svc:hover p { color: #c4d0da; }
+        .svc:hover .go { background: var(--primary); border-color: var(--primary); transform: rotate(-45deg); }
+
+        /* ---------- 5. Process ---------- */
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; counter-reset: st; }
+        .steps::before { content: ""; position: absolute; top: 32px; inset-inline: 8%; border-top: 2px dashed var(--gold); }
+        .step { position: relative; text-align: center; }
+        .step::before { counter-increment: st; content: counter(st); display: grid; place-items: center; width: 66px; height: 66px; margin: 0 auto 22px; border-radius: 50%; background: var(--ink); color: var(--gold); border: 2px solid var(--gold); font-family: "Playfair Display", Georgia, serif; font-size: 26px; position: relative; z-index: 1; transition: .35s; }
+        .step:hover::before { background: var(--primary); color: #fff; border-color: var(--primary); transform: scale(1.1); }
+        .step h3 { color: var(--heading); margin-bottom: 8px; font-size: 19px; }
+        .step p { color: var(--muted); font-size: 15px; max-width: 230px; margin: auto; }
+
+        /* ---------- 6. Pricing ---------- */
+        .pricing { background: var(--ink); color: #fff; }
+        .pricing .head { margin-inline: auto; text-align: center; }
+        .pricing h2.big { color: #fff; }
+        .pricing .head p { color: #a9b6c1; margin-top: 14px; }
+        .price-panel { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(232,184,120,.35); border-radius: 24px; overflow: hidden; }
+        .plan { padding: 44px 36px; display: flex; flex-direction: column; gap: 16px; border-inline-end: 1px solid rgba(232,184,120,.2); position: relative; transition: .35s; }
+        .plan:last-child { border-inline-end: none; }
+        .plan:hover { background: rgba(255,255,255,.04); }
+        .plan.star { background: linear-gradient(180deg, rgba(243,107,33,.2), rgba(243,107,33,.04)); }
+        .plan h3 { font-family: "Playfair Display", Georgia, serif; font-size: 28px; }
+        .plan .for { color: #a9b6c1; font-size: 14px; }
+        .plan .amt { font-size: 14px; color: #a9b6c1; }
+        .plan .amt b { display: block; font-family: "Playfair Display", Georgia, serif; font-size: 44px; color: var(--gold); line-height: 1.1; }
+        .plan ul { display: grid; gap: 11px; flex: 1; margin: 10px 0 18px; }
+        .plan li { display: flex; gap: 10px; font-size: 15px; color: #dbe3ea; }
+        .plan li i { color: var(--primary); }
+        .badge { position: absolute; top: 18px; inset-inline-end: 18px; background: var(--primary); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 30px; }
+        .note { text-align: center; margin-top: 26px; color: #a9b6c1; font-size: 14px; }
+        .note a { color: var(--gold); text-decoration: underline; }
+
+        /* ---------- 7. FAQ ---------- */
+        .faq-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 70px; align-items: start; }
+        details { border-bottom: 1px solid var(--border); padding: 22px 0; }
+        summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; font-size: 18px; font-weight: 600; color: var(--heading); }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; font-size: 26px; line-height: 1; color: var(--primary); transition: transform .3s; }
+        details[open] summary::after { transform: rotate(45deg); }
+        details p { margin-top: 12px; color: var(--muted); max-width: 520px; }
+
+        /* ---------- 8. Contact ---------- */
+        .contact { padding: 0 0 100px; }
+        .contact-card { display: grid; grid-template-columns: 1fr 1.15fr; background: var(--ink); color: #fff; border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px var(--shadow); }
+        .c-info { padding: 56px 46px; background: linear-gradient(160deg, #0d2a3d, var(--ink)); display: flex; flex-direction: column; gap: 22px; }
+        .c-info .kicker { color: var(--gold); margin: 0; }
+        .c-info h2 { font-family: "Playfair Display", Georgia, serif; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.15; }
+        .c-info h2 em { color: var(--primary); }
+        .c-info > p { color: #b8c4cf; }
+        .c-list { display: grid; gap: 14px; margin-top: 6px; }
+        .c-item { display: flex; align-items: center; gap: 16px; padding: 16px 18px; border: 1px solid rgba(232,184,120,.25); border-radius: 14px; transition: .3s; }
+        a.c-item:hover { border-color: var(--primary); background: rgba(243,107,33,.1); }
+        .c-item i { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: rgba(243,107,33,.18); color: var(--primary); font-size: 20px; flex-shrink: 0; }
+        .c-item small { display: block; font-size: 11px; letter-spacing: 1.5px; color: var(--gold); }
+        .c-item strong { font-size: 16px; }
+        .c-form { padding: 56px 46px; background: var(--surface); color: var(--text); }
+        .c-form h3 { font-family: "Playfair Display", Georgia, serif; font-size: 30px; color: var(--heading); }
+        .c-form > p { color: var(--muted); margin-bottom: 24px; }
+        form { display: grid; gap: 16px; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .field { display: grid; gap: 6px; }
+        .field label { font-size: 13px; font-weight: 600; color: var(--heading); }
+        .field input, .field select, .field textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); color: var(--text); font: 15px "DM Sans", Arial, sans-serif; transition: .3s; }
+        .field select option { color: #17243a; }
+        .field textarea { resize: vertical; min-height: 100px; }
+        .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(243,107,33,.15); }
+        .submit { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 17px 26px; border: none; border-radius: 50px; background: var(--primary); color: #fff; font: 800 15px "DM Sans", Arial, sans-serif; cursor: pointer; transition: .3s; }
+        .submit:hover { background: var(--ink); }
+        body.dark-mode .submit:hover { background: #fff; color: var(--ink); }
+        .fnote { font-size: 13px; color: var(--muted); }
+        .ok { font-size: 14px; font-weight: 700; color: #26945b; }
+
+        /* ---------- Footer ---------- */
+        .footer { background: var(--surface); border-top: 1px solid var(--border); }
+        .footer-container { max-width: 1200px; margin: auto; padding: 50px 25px 36px; display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 40px; }
+        .footer-brand p { margin: 18px 0; max-width: 300px; color: var(--muted); font-size: 15px; }
+        .social { display: flex; gap: 12px; }
+        .social a { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--heading); transition: .3s; }
+        .social a:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: translateY(-3px); }
+        .footer h3 { font-family: "Playfair Display", Georgia, serif; color: var(--heading); font-size: 20px; margin-bottom: 16px; }
+        .footer li { margin-bottom: 10px; font-size: 14px; color: var(--text); }
+        .footer li a:hover { color: var(--primary); }
+        .footer .ci li { display: flex; gap: 10px; align-items: flex-start; overflow-wrap: anywhere; }
+        .footer .ci i { color: var(--primary); margin-top: 3px; }
+        .copyright { max-width: 1200px; margin: auto; padding: 18px 25px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+
+        /* ---------- Animations ---------- */
+        @keyframes up { from { opacity: 0; transform: translateY(34px); } to { opacity: 1; transform: none; } }
+        @keyframes bob { 50% { transform: translateY(-10px); } }
+        @keyframes slide { to { transform: translateX(-100%); } }
+        @supports (animation-timeline: view()) {
+            .rv { animation: up linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+        }
+
+        /* ---------- RTL (dir="rtl" on html does the layout; only icons flip) ---------- */
+        html[dir="rtl"] .bi-arrow-right, html[dir="rtl"] .submit span { display: inline-block; transform: scaleX(-1); }
+        html[dir="rtl"] .marquee div { animation-name: slide-rtl; }
+        @keyframes slide-rtl { to { transform: translateX(100%); } }
+        html[dir="rtl"] .svc:hover .go { transform: rotate(45deg); }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1000px) {
+            .about-grid, .faq-grid, .contact-card { grid-template-columns: 1fr; }
+            .arch-tag { display: none; }
+            .quote-card { grid-template-columns: 1fr; }
+            .svc { grid-template-columns: 50px 1fr 46px; }
+            .svc p { display: none; }
+            .price-panel { grid-template-columns: 1fr; }
+            .plan { border-inline-end: none; border-bottom: 1px solid rgba(232,184,120,.2); }
+            .steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+            .steps::before { display: none; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 850px) {
+            .header-container { min-height: 76px; gap: 12px; }
+            .menu-toggle { display: block; }
+            .header-actions { margin-inline-start: auto; }
+            .navbar { display: none; position: absolute; top: 100%; inset-inline: 0; flex-direction: column; align-items: flex-start; gap: 18px; padding: 20px 25px; background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: 0 10px 20px var(--shadow); }
+            .navbar.active { display: flex; }
+            .dropdown { width: 100%; padding: 0; }
+            .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display: none; }
+            .dropdown.open .dropdown-menu { display: flex; }
+            .dropdown-menu { position: static; margin-top: 12px; box-shadow: none; width: 100%; }
+        }
+        @media (max-width: 600px) {
+            .section { padding: 70px 0; }
+            .hero { padding: 60px 0 130px; min-height: 80vh; }
+            .brand img { width: 46px; height: 46px; }
+            .brand-text h2 { font-size: 17px; }
+            .brand-text small { font-size: 7px; }
+            .icon-btn { min-width: 34px; height: 36px; font-size: 11px; }
+            .book-btn { padding: 10px 14px; font-size: 12px; }
+            .hero-btns .btn { width: 100%; }
+            .steps, .row, .footer-container { grid-template-columns: 1fr; }
+            .c-info, .c-form { padding: 36px 24px; }
+            .quote-card { padding: 22px; }
+            .marquee div { font-size: 19px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+    
+/* ===== HEADER LIKE STITCHCRAFT: underline nav links, round buttons ===== */
+.nav-link { position: relative; padding: 8px 0; font-weight: 600; }
+.nav-link::after {
+    content: ""; position: absolute; inset-inline: 0; bottom: -3px; height: 3px;
+    border-radius: 3px; background: var(--primary);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+}
+html[dir="rtl"] .nav-link::after { transform-origin: right; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+.dropdown-menu .nav-link::after { display: none; }
+
+.icon-btn { min-width: 46px; height: 46px; border: none; border-radius: 50px; background: #efefef; color: var(--heading); }
+.icon-btn:hover { background: var(--primary-soft); color: var(--primary); }
+body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
+.book-btn { border-radius: 50px; padding: 14px 28px; }
+
+@media (max-width: 850px) { .nav-link::after { display: none; } }
+@media (max-width: 600px) { .icon-btn { min-width: 34px; height: 36px; } .book-btn { padding: 10px 14px; } }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="#home" class="brand">
+                <img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase Logo">
+                <div class="brand-text">
+                    <h2><span>MOVE</span>EASE</h2>
+                    <small>ELITE MOVING SERVICES</small>
+                </div>
+            </a>
+
+            <nav class="navbar" id="navbar">
+                <div class="dropdown" id="homeDropdown">
+                    <a href="eindex.html" class="nav-link active dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Home <i class="bi bi-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Home – Premium</a>
+                        <a href="eindex.html" class="active">Home – Elite</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link">Dashboard</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" id="rtlMode" class="icon-btn" aria-label="Toggle text direction" title="Switch to RTL">RTL</button>
+                <button type="button" class="icon-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle dark mode"><i class="bi bi-moon"></i></button>
+                <a href="login.html" class="book-btn">Login</a>
+            </div>
+
+            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HERO -->
+        <section class="hero" id="home">
+            <div class="wrap hero-grid">
+                <div style="margin-left: -250px;">
+                    <span class="eyebrow">Elite relocation service</span>
+                    <h1>Move like it's already <em>home.</em></h1>
+                    <p>White-glove packing, careful transport and a dedicated move manager, from your first call to your last box.</p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn btn-fill">Request a quote <i class="bi bi-arrow-right"></i></a>
+                        <a href="tel:+919876543210" class="btn btn-line"><i class="bi bi-telephone"></i> +91 98765 43210</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="arch-tag">
+                <i class="bi bi-shield-check"></i>
+                <div><b>Safe, on time, tracked</b><span>Care from door to door</span></div>
+            </div> -->
+        </section>
+
+        <div class="wrap quote-bar">
+            <div class="quote-card rv">
+                <div class="qi"><i class="bi bi-house-check"></i><div><b>Free home survey</b><span>We plan before we pack</span></div></div>
+                <div class="qi"><i class="bi bi-receipt"></i><div><b>Clear quotes</b><span>No hidden charges</span></div></div>
+                <div class="qi"><i class="bi bi-person-badge"></i><div><b>Move manager</b><span>One contact for everything</span></div></div>
+                <a href="#contact" class="btn btn-fill">Free quote</a>
+            </div>
+        </div>
+
+        <!-- 2. MARQUEE -->
+        <div class="marquee" aria-hidden="true">
+            <div>
+                <span>Packing</span><i class="bi bi-circle-fill"></i><span>Loading</span><i class="bi bi-circle-fill"></i><span>Transport</span><i class="bi bi-circle-fill"></i><span>Unpacking</span><i class="bi bi-circle-fill"></i><span>Storage</span><i class="bi bi-circle-fill"></i>
+                <span>Packing</span><i class="bi bi-circle-fill"></i><span>Loading</span><i class="bi bi-circle-fill"></i><span>Transport</span><i class="bi bi-circle-fill"></i><span>Unpacking</span><i class="bi bi-circle-fill"></i><span>Storage</span><i class="bi bi-circle-fill"></i>
+            </div>
+        </div>
+
+        <!-- 3. ABOUT -->
+        <section class="section" id="about">
+            <div class="wrap about-grid">
+                <div class="rv">
+                    <span class="eyebrow">The Elite standard</span>
+                    <h2 class="big">Your move, handled <em>personally.</em></h2>
+                    <p class="lead">Moving is more than shifting boxes.
+                         It is the start of a new chapter, and we treat it that way.
+                         save time and protect your belongings during a move by bringing all necessary materials
+                         The crew packs your entire house room by room, including fragile goods, kitchenware, electronics, and wardrobe items.
+                        
+                        </p>
+                </div>
+                <div class="promises">
+                    <div class="promise rv"><span class="n">01</span><div><h3>Careful by default</h3><p>Quality materials, trained packers and a labelled box for every room.</p></div></div>
+                    <div class="promise rv"><span class="n">02</span><div><h3>On your schedule</h3><p>Pick the date and time that suits you, including weekends and short-notice moves.</p></div></div>
+                    <div class="promise rv"><span class="n">03</span><div><h3>Support to the last box</h3><p>A friendly team before, during and after your move to answer every question.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SERVICES -->
+        <section class="section services" id="services">
+            <div class="wrap">
+                <div class="head rv">
+                    <span class="eyebrow">What we do</span>
+                    <h2 class="big">Services built around <em>you</em></h2>
+                </div>
+                <div class="svc-list">
+                    <a href="#contact" class="svc rv"><span class="n">01</span><h3>Home Shifting</h3><p>Complete household relocation for apartments and independent homes.</p><span class="go"><i class="bi bi-arrow-right"></i></span></a>
+                    <a href="#contact" class="svc rv"><span class="n">02</span><h3>Office Relocation</h3><p>Desks, systems and files moved with minimal downtime.</p><span class="go"><i class="bi bi-arrow-right"></i></span></a>
+                    <a href="#contact" class="svc rv"><span class="n">03</span><h3>Packing Services</h3><p>Quality materials and trained packers for fragile and valuable items.</p><span class="go"><i class="bi bi-arrow-right"></i></span></a>
+                    <a href="#contact" class="svc rv"><span class="n">04</span><h3>Loading &amp; Unloading</h3><p>A skilled crew to load, secure and unload safely at both ends.</p><span class="go"><i class="bi bi-arrow-right"></i></span></a>
+                    <a href="#contact" class="svc rv"><span class="n">05</span><h3>Vehicle Transport</h3><p>Safe transport for your car or bike to your new city.</p><span class="go"><i class="bi bi-arrow-right"></i></span></a>
+                    <a href="#contact" class="svc rv"><span class="n">06</span><h3>Storage Services</h3><p>Secure short and long term storage when your new place isn't ready.</p><span class="go"><i class="bi bi-arrow-right"></i></span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PROCESS -->
+        <section class="section" id="process">
+            <div class="wrap">
+                <div class="head rv" style="margin-inline:auto;text-align:center">
+                    <span class="eyebrow">Simple process</span>
+                    <h2 class="big">Four steps to a <em>calm</em> move</h2>
+                </div>
+                <div class="steps">
+                    <div class="step rv"><h3>Request a quote</h3><p>Tell us about your move and get a free estimate.</p></div>
+                    <div class="step rv"><h3>Schedule your move</h3><p>Choose a date and time and confirm your booking.</p></div>
+                    <div class="step rv"><h3>Pack &amp; transport</h3><p>Our team packs, loads and safely transports everything.</p></div>
+                    <div class="step rv"><h3>Deliver &amp; settle in</h3><p>We unload and arrange so you can start fresh.</p></div>
+                </div>
+            </div>
+        </section>
+
+        
+<!-- WHY CHOOSE US SECTION -->
+<section class="me-why" id="why-choose-us">
+    <div class="me-why-container">
+
+        <div class="me-why-heading">
+            <span class="eyebrow">WHY MOVE WITH US</span>
+            <h2>Moving Made Easy, <span>Every Step of the Way.</span></h2>
+            <p>
+                We make relocation simple, safe and stress-free.
+                Here's why families and businesses trust MoveEase.
+            </p>
+        </div>
+
+        <div class="me-why-grid">
+
+            <div class="me-why-card">
+                <div class="me-why-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h3>Safe & Secure Moving</h3>
+                <p>
+                    Your belongings are handled with care and protected
+                    throughout the entire moving journey.
+                </p>
+            </div>
+
+            <div class="me-why-card">
+                <div class="me-why-icon">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <h3>On-Time Delivery</h3>
+                <p>
+                    We value your time and work hard to ensure your
+                    move happens according to the planned schedule.
+                </p>
+            </div>
+
+            <div class="me-why-card">
+                <div class="me-why-icon">
+                    <i class="bi bi-wallet2"></i>
+                </div>
+                <h3>Transparent Pricing</h3>
+                <p>
+                    Clear estimates with no hidden surprises.
+                    Know what you're paying for before your move begins.
+                </p>
+            </div>
+
+            <div class="me-why-card">
+                <div class="me-why-icon">
+                    <i class="bi bi-people"></i>
+                </div>
+                <h3>Professional Team</h3>
+                <p>
+                    Our trained moving professionals take care of
+                    packing, loading, transportation and unloading.
+                </p>
+            </div>
+
+            <div class="me-why-card">
+                <div class="me-why-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <h3>Quality Packing</h3>
+                <p>
+                    We use suitable packing materials to help protect
+                    furniture, electronics and fragile items.
+                </p>
+            </div>
+
+            <div class="me-why-card">
+                <div class="me-why-icon">
+                    <i class="bi bi-headset"></i>
+                </div>
+                <h3>Dedicated Support</h3>
+                <p>
+                    Get assistance and updates whenever you need help
+                    before, during or after your relocation.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="me-why-bottom">
+            <div>
+                <h3>Ready for a smoother move?</h3>
+                <p>Let MoveEase take the stress out of your next relocation.</p>
+            </div>
+            <a href="services.html" class="me-why-btn">
+                Explore Our Services
+                <i class="bi bi-arrow-up-right"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<style>
+/* WHY CHOOSE US */
+.me-why {
+    width: 100%;
+    padding: 90px 6%;
+    background: #fff2e9;
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+}
+
+.me-why-container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.me-why-heading {
+    max-width: 680px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.me-why-tag {
+    display: inline-block;
+    color: #f36b21;
+    background: rgba(243, 107, 33, 0.10);
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+}
+
+.me-why-heading h2 {
+    color: #092638;
+    font-size: clamp(30px, 4vw, 45px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 18px;
+}
+
+.me-why-heading h2 span {
+    color: #f36b21;
+}
+
+.me-why-heading p {
+    color: #64717a;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.me-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.me-why-card {
+    position: relative;
+    background: #ffffff;
+    padding: 32px 28px;
+    border-radius: 18px;
+    border: 1px solid rgba(9, 38, 56, 0.07);
+    min-height: 245px;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.me-why-card::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 0;
+    background: #f36b21;
+    left: 0;
+    top: 0;
+    transition: height 0.35s ease;
+}
+
+.me-why-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(9, 38, 56, 0.10);
+    border-color: rgba(243, 107, 33, 0.25);
+}
+
+.me-why-card:hover::before {
+    height: 100%;
+}
+
+.me-why-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff2e9;
+    color: #f36b21;
+    border-radius: 15px;
+    font-size: 27px;
+    margin-bottom: 22px;
+    transition: all 0.3s ease;
+}
+
+.me-why-card:hover .me-why-icon {
+    background: #f36b21;
+    color: #ffffff;
+    transform: rotate(-5deg);
+}
+
+.me-why-card h3 {
+    color: #092638;
+    font-size: 19px;
+    font-weight: 750;
+    margin: 0 0 12px;
+}
+
+.me-why-card p {
+    color: #697780;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+    max-width: 310px;
+}
+
+.me-why-number {
+    position: absolute;
+    right: 22px;
+    bottom: 12px;
+    color: rgba(9, 38, 56, 0.06);
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.me-why-bottom {
+    margin-top: 45px;
+    padding: 30px 35px;
+    background: #092638;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.me-why-bottom h3 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 750;
+    margin: 0 0 8px;
+}
+
+.me-why-bottom p {
+    color: #c4d0d6;
+    font-size: 14px;
+    margin: 0;
+}
+
+.me-why-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #f36b21;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.me-why-btn:hover {
+    background: #ffffff;
+    color: #092638;
+    transform: translateY(-3px);
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+    .me-why {
+        padding: 70px 5%;
+    }
+
+    .me-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .me-why {
+        padding: 60px 5%;
+    }
+
+    .me-why-heading {
+        margin-bottom: 35px;
+    }
+
+    .me-why-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .me-why-card {
+        min-height: 215px;
+        padding: 25px;
+    }
+
+    .me-why-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+    }
+
+    .me-why-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
+
+
+        <!-- 7. FAQ -->
+        <section class="section" id="faq">
+            <div class="wrap faq-grid">
+                <div class="rv">
+                    <span class="eyebrow">Good to know</span>
+                    <h2 class="big">Questions we hear <em>often</em></h2>
+                    <img src="images/question.jpg" alt="Any question" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;">
+                </div>
+                <div class="rv">
+                    <details open><summary>How do I book a move?</summary><p>Send the quote form below or call us. We confirm your date, plan the move and share a clear price before anything is packed.</p></details>
+                    <details><summary>How early should I book?</summary><p>A week ahead gives you the most choice of dates, but we also handle short-notice and weekend moves when our crews are free.</p></details>
+                    <details><summary>Do you move offices and vehicles too?</summary><p>Yes. We handle office relocations and car or bike transport along with home shifting.</p></details>
+                    <details><summary>What if something gets damaged?</summary><p>Tell your move manager at delivery. We will review it with you and work out the next step.</p></details>
+                </div>
+            </div>
+        </section>
+
+        
+<!-- MOVEEASE HOME CTA SECTION -->
+<section class="me-home-cta" id="home-cta">
+
+    <div class="me-cta-decoration me-cta-decoration-one"></div>
+    <div class="me-cta-decoration me-cta-decoration-two"></div>
+
+    <div class="me-cta-container">
+
+        <div class="me-cta-content">
+
+            <span class="eyebrow">
+
+                YOUR NEW BEGINNING STARTS HERE
+            </span>
+
+            <h2>
+                Ready to Move?
+                <span>Let's Make It Easy.</span>
+            </h2>
+
+            <p>
+                A new home, a new office or a fresh start.
+                Whatever your next move looks like, MoveEase
+                is here to make your relocation simple and stress-free.
+            </p>
+
+            <div class="me-cta-buttons">
+                <a href="services.html" class="me-cta-primary">
+                    Explore Our Services
+                    <i class="bi bi-arrow-up-right"></i>
+                </a>
+
+                <a href="tel:+910000000000" class="me-cta-secondary">
+                    <i class="bi bi-telephone"></i>
+                    Talk to Our Team
+                </a>
+            </div>
+
+            <div class="me-cta-trust">
+                <span><i class="bi bi-check-circle-fill"></i> Easy Planning</span>
+                <span><i class="bi bi-check-circle-fill"></i> Careful Handling</span>
+                <span><i class="bi bi-check-circle-fill"></i> Moving Support</span>
+            </div>
+
+        </div>
+
+        <div class="me-cta-visual">
+            <div class="me-cta-circle">
+                <i class="bi bi-house-heart-fill"></i>
+            </div>
+
+            <div class="me-cta-floating-card">
+                <i class="bi bi-box-seam"></i>
+                <div>
+                    <strong>New Destination</strong>
+                    <small>New memories begin here</small>
+                </div>
+            </div>
+
+            <div class="me-cta-small-card">
+                <i class="bi bi-truck"></i>
+                <span>Let's get moving!</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+/* HOME CTA SECTION */
+
+.me-home-cta {
+    position: relative;
+    overflow: hidden;
+    padding: 85px 7%;
+    background: #092638;
+    font-family: 'DM Sans', sans-serif;
+    isolation: isolate;
+}
+
+.me-cta-container {
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.me-cta-decoration {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.me-cta-decoration-one {
+    width: 450px;
+    height: 450px;
+    background: rgba(243,107,33,.08);
+    top: -220px;
+    left: -150px;
+}
+
+.me-cta-decoration-two {
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(255,255,255,.08);
+    right: -100px;
+    bottom: -180px;
+}
+
+.me-cta-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #ffad7c;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    margin-bottom: 22px;
+}
+
+.me-cta-label i {
+    font-size: 17px;
+}
+
+.me-cta-content h2 {
+    color: #ffffff;
+    font-size: clamp(35px, 4.5vw, 55px);
+    line-height: 1.17;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.me-cta-content h2 span {
+    display: block;
+    color: #f36b21;
+}
+
+.me-cta-content > p {
+    color: #c1cdd4;
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 570px;
+    margin-bottom: 30px;
+}
+
+.me-cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.me-cta-primary,
+.me-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 23px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: .3s ease;
+}
+
+.me-cta-primary {
+    background: #f36b21;
+    color: #ffffff;
+}
+
+.me-cta-primary:hover {
+    background: #ffffff;
+    color: #092638;
+    transform: translateY(-4px);
+}
+
+.me-cta-secondary {
+    border: 1px solid rgba(255,255,255,.25);
+    color: #ffffff;
+}
+
+.me-cta-secondary:hover {
+    background: #ffffff;
+    color: #092638;
+    transform: translateY(-4px);
+}
+
+.me-cta-trust {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.me-cta-trust span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #cbd6dc;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.me-cta-trust i {
+    color: #f36b21;
+}
+
+/* CTA VISUAL */
+
+.me-cta-visual {
+    min-height: 350px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.me-cta-circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: #fff2e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: meCtaFloat 4s ease-in-out infinite;
+}
+
+.me-cta-circle::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px dashed rgba(255,255,255,.35);
+    border-radius: 50%;
+}
+
+.me-cta-circle i {
+    color: #f36b21;
+    font-size: 115px;
+}
+
+.me-cta-floating-card {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    background: #ffffff;
+    padding: 15px 18px;
+    border-radius: 12px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.15);
+    animation: meCtaFloat 4s ease-in-out infinite;
+    animation-delay: .5s;
+}
+
+.me-cta-floating-card > i {
+    background: #fff2e9;
+    color: #f36b21;
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    font-size: 21px;
+}
+
+.me-cta-floating-card strong,
+.me-cta-floating-card small {
+    display: block;
+}
+
+.me-cta-floating-card strong {
+    color: #092638;
+    font-size: 13px;
+}
+
+.me-cta-floating-card small {
+    color: #75818a;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.me-cta-small-card {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f36b21;
+    color: #ffffff;
+    padding: 14px 19px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(0,0,0,.15);
+}
+
+.me-cta-small-card i {
+    font-size: 23px;
+}
+
+@keyframes meCtaFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* TABLET */
+
+@media(max-width: 900px) {
+    .me-home-cta {
+        padding: 70px 6%;
+    }
+
+    .me-cta-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .me-cta-content {
+        text-align: center;
+    }
+
+    .me-cta-content > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .me-cta-buttons,
+    .me-cta-trust {
+        justify-content: center;
+    }
+
+    .me-cta-visual {
+        min-height: 310px;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width: 600px) {
+    .me-home-cta {
+        padding: 60px 5%;
+    }
+
+    .me-cta-content h2 {
+        font-size: 36px;
+    }
+
+    .me-cta-content > p {
+        font-size: 14px;
+    }
+
+    .me-cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .me-cta-primary,
+    .me-cta-secondary {
+        width: 100%;
+    }
+
+    .me-cta-trust {
+        gap: 13px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .me-cta-visual {
+        min-height: 270px;
+    }
+
+    .me-cta-circle {
+        width: 190px;
+        height: 190px;
+    }
+
+    .me-cta-circle::before {
+        width: 220px;
+        height: 220px;
+    }
+
+    .me-cta-circle i {
+        font-size: 85px;
+    }
+
+    .me-cta-floating-card {
+        top: 10px;
+        right: -5px;
+        padding: 10px;
+    }
+
+    .me-cta-small-card {
+        bottom: 5px;
+        left: -5px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    .me-cta-circle,
+    .me-cta-floating-card {
+        animation: none;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="brand">
+                    <img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase Logo">
+                    <div class="brand-text">
+                        <h2><span>MOVE</span>EASE</h2>
+                        <small>ELITE MOVING SERVICES</small>
+                    </div>
+                </a>
+                <p>We provide safe, reliable and cost-effective home shifting and packing solutions at your fingertips.</p>
+                <div class="social">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Home Shifting</a></li>
+                    <li><a href="#services">Office Relocation</a></li>
+                    <li><a href="#services">Packing Services</a></li>
+                    <li><a href="#services">Loading &amp; Unloading</a></li>
+                    <li><a href="#services">Vehicle Transport</a></li>
+                    <li><a href="#services">Storage Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <ul class="ci">
+                    <li><i class="bi bi-telephone-fill"></i><span>+91 98765 43210</span></li>
+                    <li><i class="bi bi-envelope-fill"></i><span>support@moveease.com</span></li>
+                    <li><i class="bi bi-geo-alt-fill"></i><span>Bengaluru, Karnataka</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 MoveEase. All rights reserved.</p>
+            <p>Terms and Conditions</p>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | MoveEase Home Shifting Services</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="images/Dynamic Moving Truck Emblem1.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* MOVEEASE ABOUT PAGE - same colors and style as index.html (Premium home) */
+        :root { --primary:#f36b21; --primary-soft:#fff2e9; --heading:#092638; --text:#263746; --muted:#536575; --btn-bg:#092638; --btn-text:#fff; --bg:#fff; --surface:#fff; --alt:#f7f9fb; --border:#e1e1e1; --shadow:rgba(0,0,0,.16); }
+        body.dark-mode { --primary-soft:#263746; --heading:#e5eaf0; --text:#e5eaf0; --muted:#b8c4cf; --btn-bg:#f36b21; --bg:#101820; --surface:#17232d; --alt:#13202a; --border:#34424d; --shadow:rgba(0,0,0,.5); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:"DM Sans",Arial,sans-serif; background:var(--bg); color:var(--text); transition:background .3s,color .3s; }
+        a { text-decoration:none; color:inherit; } ul { list-style:none; } img { max-width:100%; display:block; }
+        :focus-visible { outline:3px solid var(--primary); outline-offset:3px; }
+        .wrap { max-width:1200px; margin:auto; padding:0 25px; }
+        .section { padding:90px 0; } .section.alt { background:var(--alt); }
+
+        /* Header */
+        .header { position:sticky; top:0; z-index:1000; background:var(--surface); box-shadow:0 3px 8px var(--shadow); }
+        .header-container { max-width:1200px; min-height:100px; margin:auto; padding:15px 25px; display:flex; align-items:center; justify-content:space-between; gap:25px; }
+        .brand { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+        .brand-icon { display:flex; align-items:center; justify-content:center; }
+        .brand-icon img { width:70px; height:70px; object-fit:contain; }
+        body.dark-mode .brand-icon img { filter:drop-shadow(0 0 1px #fff) drop-shadow(0 0 6px rgba(255,255,255,.25)); }
+        .brand-text h2 { font-size:21px; color:var(--heading); font-weight:800; } .brand-text h2 span { color:var(--primary); }
+        .brand-text small { display:block; margin-top:4px; font-size:10px; letter-spacing:.3px; color:var(--muted); }
+        .navbar { display:flex; align-items:center; gap:25px; }
+        .nav-link { font-size:14px; white-space:nowrap; transition:.3s; } .nav-link i { font-size:10px; }
+        .nav-link:hover, .nav-link.active { color:var(--primary); }
+        .dropdown { position:relative; padding:10px 0; } .dropdown-toggle { display:inline-flex; align-items:center; gap:5px; }
+        .dropdown-menu { display:none; position:absolute; top:100%; inset-inline-start:0; min-width:180px; flex-direction:column; gap:4px; padding:10px; background:var(--surface); border:1.5px solid var(--primary); border-radius:12px; box-shadow:0 12px 28px var(--shadow); }
+        .dropdown-menu a { padding:9px 12px; border-radius:8px; font-size:13px; } .dropdown-menu a:hover, .dropdown-menu a.active { background:var(--primary-soft); color:var(--primary); }
+        .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu, .dropdown.open .dropdown-menu { display:flex; }
+        .header-actions { display:flex; align-items:center; gap:10px; }
+        .icon-btn { min-width:42px; height:42px; padding:0 10px; border:1px solid var(--primary); border-radius:10px; background:var(--surface); color:var(--heading); font:700 13px "DM Sans",Arial,sans-serif; cursor:pointer; transition:.3s; }
+        .icon-btn:hover { background:var(--primary-soft); }
+        .book-btn { padding:14px 24px; background:var(--primary); color:var(--btn-text); border-radius:10px; font-size:14px; font-weight:700; white-space:nowrap; transition:.3s; } .book-btn:hover { background:var(--primary); color:#fff; }
+        .menu-toggle { display:none; border:none; background:transparent; font-size:28px; color:var(--heading); cursor:pointer; }
+
+        /* Buttons + labels */
+        .hero-btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:15px 24px; border-radius:10px; font-size:14px; font-weight:700; transition:.3s; }
+        .primary-btn { background:var(--primary); color:#fff; box-shadow:0 8px 20px rgba(243,107,33,.2); } .primary-btn:hover { background:#d95612; transform:translateY(-3px); }
+        .secondary-btn { border:1px solid var(--heading); color:var(--heading); background:var(--surface); } .secondary-btn:hover { background:var(--heading); color:var(--surface); transform:translateY(-3px); }
+        .eyebrow { display:inline-flex; align-items:center; gap:10px; margin-bottom:16px; color:var(--primary); font-size:13px; font-weight:800; letter-spacing:2px; text-transform:uppercase; }
+        .eyebrow::before { content:""; width:30px; height:2px; background:var(--primary); }
+        .head { max-width:640px; margin:0 auto 55px; text-align:center; } .head .eyebrow { justify-content:center; }
+        h2.title { font-size:clamp(32px,4vw,48px); line-height:1.15; font-weight:800; letter-spacing:-1.2px; color:var(--heading); margin-bottom:16px; } h2.title span { color:var(--primary); }
+        .head p, .lead { color:var(--muted); font-size:16px; line-height:1.8; }
+
+        /* 1. Hero with full background image */
+        .hero { position:relative; padding:120px 0 110px; color:#fff; overflow:hidden;
+                background:linear-gradient(90deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638; }
+        html[dir="rtl"] .hero { background:linear-gradient(270deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638; }
+        .ring { position:absolute; border:1px dashed rgba(255,154,92,.45); border-radius:50%; animation:spin 30s linear infinite; }
+        .r1 { width:420px; height:420px; top:-150px; inset-inline-end:-100px; } .r2 { width:220px; height:220px; bottom:-80px; inset-inline-start:6%; animation-direction:reverse; }
+        .hero .wrap { position:relative; }
+        .crumbs { display:flex; gap:10px; font-size:14px; color:#c4d0da; margin-bottom:18px; } .crumbs a:hover { color:#ff9a5c; } .crumbs b { color:#ff9a5c; }
+        .hero .eyebrow { color:#ff9a5c; } .hero .eyebrow::before { background:#ff9a5c; }
+        .hero h1 { font-size:clamp(36px,5.6vw,64px); line-height:1.1; font-weight:800; letter-spacing:-1.5px; max-width:780px; margin-bottom:20px; } .hero h1 span { color:#ff9a5c; }
+        .hero .lead { max-width:580px; margin-bottom:30px; font-size:17px; color:#dbe3ea; }
+        .hero-buttons { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:34px; }
+        .hero .secondary-btn { background:transparent; color:#fff; border-color:rgba(255,255,255,.55); } .hero .secondary-btn:hover { background:#fff; color:var(--heading); }
+        .hero-trust { display:flex; flex-wrap:wrap; gap:12px 26px; } .trust-item { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; } .trust-item i { color:#ff9a5c; font-size:19px; }
+
+        /* 2. Services grid */
+        .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+        .svc { display:flex; flex-direction:column; padding:34px 30px; background:var(--surface); border:1px solid var(--border); border-radius:14px; transition:.35s; position:relative; overflow:hidden; }
+        .svc::before { content:""; position:absolute; top:0; inset-inline:0; height:4px; background:var(--primary); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
+        .svc:hover { transform:translateY(-10px); border-color:var(--primary); box-shadow:0 20px 44px var(--shadow); } .svc:hover::before { transform:scaleX(1); }
+        .svc > i { display:grid; place-items:center; width:62px; height:62px; margin-bottom:20px; border-radius:16px; background:var(--primary-soft); color:var(--primary); font-size:30px; transition:.35s; }
+        .svc:hover > i { background:var(--primary); color:#fff; transform:rotate(-8deg) scale(1.1); }
+        .svc h3 { font-size:22px; color:var(--heading); margin-bottom:10px; } .svc > p { font-size:15px; line-height:1.7; color:var(--muted); margin-bottom:16px; }
+        .svc ul { display:grid; gap:9px; margin-bottom:22px; flex:1; } .svc li { display:flex; gap:9px; font-size:14px; } .svc li i { color:var(--primary); }
+        .svc .more { display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:14px; color:var(--primary); } .svc .more i { transition:.3s; } .svc .more:hover i { transform:translateX(5px); }
+        html[dir="rtl"] .svc .more:hover i { transform:scaleX(-1) translateX(5px); }
+
+        /* 3. Included */
+        .inc-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:60px; align-items:center; }
+        .inc-img { position:relative; } .inc-img img { width:100%; aspect-ratio:4/4.6; object-fit:cover; border-radius:18px; box-shadow:0 20px 45px var(--shadow); background:var(--border); }
+        .inc-img::before { content:""; position:absolute; inset:22px -22px -22px 22px; background:var(--primary-soft); border-radius:18px; z-index:-1; } html[dir="rtl"] .inc-img::before { inset:22px 22px -22px -22px; }
+        .badge { position:absolute; bottom:24px; inset-inline-start:-18px; display:flex; align-items:center; gap:12px; padding:14px 20px; background:var(--surface); border-radius:12px; box-shadow:0 14px 34px var(--shadow); animation:bob 4s ease-in-out infinite; }
+        .badge i { font-size:28px; color:var(--primary); } .badge b { display:block; color:var(--heading); } .badge span { font-size:12px; color:var(--muted); }
+        .inc-list { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+        .inc { display:flex; gap:14px; padding:18px; background:var(--surface); border:1px solid var(--border); border-radius:12px; transition:.3s; } .inc:hover { border-color:var(--primary); transform:translateY(-4px); }
+        .inc i { flex-shrink:0; width:42px; height:42px; display:grid; place-items:center; border-radius:10px; background:var(--primary-soft); color:var(--primary); font-size:20px; }
+        .inc b { display:block; color:var(--heading); font-size:15px; } .inc span { font-size:13px; color:var(--muted); line-height:1.5; display:block; }
+
+        /* 4. Special handling (dark panel) */
+        .dark-panel { background:#092638; color:#fff; } body.dark-mode .dark-panel { background:#0b141b; }
+        .dark-panel .title { color:#fff; } .dark-panel .title span { color:#ff9a5c; } .dark-panel .head p { color:#b8c4cf; }
+        .sp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+        .sp { padding:30px 24px; border:1px solid rgba(255,255,255,.14); border-radius:14px; background:rgba(255,255,255,.04); transition:.35s; }
+        .sp:hover { background:rgba(243,107,33,.14); border-color:var(--primary); transform:translateY(-8px); }
+        .sp i { display:block; font-size:34px; color:#ff9a5c; margin-bottom:16px; transition:.35s; } .sp:hover i { transform:scale(1.2) rotate(-6deg); }
+        .sp h3 { font-size:19px; margin-bottom:8px; } .sp p { font-size:14px; line-height:1.7; color:#c4d0da; }
+
+        /* 5. Process + coverage */
+        .steps { display:grid; grid-template-columns:repeat(5,1fr); gap:22px; position:relative; counter-reset:st; }
+        .steps::before { content:""; position:absolute; top:30px; inset-inline:9%; border-top:2px dashed var(--primary); opacity:.4; }
+        .step { text-align:center; } .step::before { counter-increment:st; content:counter(st); display:grid; place-items:center; position:relative; z-index:1; width:60px; height:60px; margin:0 auto 18px; border-radius:50%; background:var(--primary); color:#fff; font-size:22px; font-weight:800; box-shadow:0 0 0 8px var(--primary-soft); transition:.3s; }
+        .step:hover::before { transform:scale(1.12); background:var(--heading); color:var(--surface); }
+        .step h3 { font-size:18px; color:var(--heading); margin-bottom:6px; } .step p { font-size:14px; line-height:1.7; color:var(--muted); }
+        .cover { margin-top:70px; padding:40px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:0 15px 45px var(--shadow); }
+        .cover h3 { font-size:24px; color:var(--heading); margin-bottom:8px; } .cover h3 span { color:var(--primary); } .cover > p { color:var(--muted); margin-bottom:22px; }
+        .chips { display:flex; flex-wrap:wrap; gap:10px; } .chips span { display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:50px; background:var(--primary-soft); color:var(--heading); font-size:14px; font-weight:600; transition:.3s; }
+        .chips span:hover { background:var(--primary); color:#fff; transform:translateY(-3px); } .chips i { color:var(--primary); } .chips span:hover i { color:#fff; }
+
+        /* 6. FAQ + CTA */
+        .faq-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:60px; align-items:start; margin-bottom:80px; }
+        details { border-bottom:1px solid var(--border); padding:20px 0; } summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; gap:16px; font-size:17px; font-weight:700; color:var(--heading); }
+        summary::-webkit-details-marker { display:none; } summary::after { content:"+"; font-size:26px; line-height:1; color:var(--primary); transition:transform .3s; } details[open] summary::after { transform:rotate(45deg); }
+        details p { margin-top:10px; color:var(--muted); line-height:1.8; max-width:540px; }
+        .cta-card { position:relative; overflow:hidden; display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center; padding:56px 50px; background:var(--btn-bg); color:#fff; border-radius:18px; box-shadow:0 24px 50px var(--shadow); } body.dark-mode .cta-card { background:var(--surface); border:1px solid var(--border); }
+        .cta-card::after { content:""; position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(243,107,33,.18); inset-inline-end:-90px; top:-110px; animation:pulse 5s ease-in-out infinite; }
+        .cta-card h2 { font-size:clamp(28px,3.6vw,42px); line-height:1.15; font-weight:800; letter-spacing:-1px; color:#fff; } .cta-card h2 span { color:#ff9a5c; }
+        .cta-card p { color:#c4d0da; margin:14px 0 26px; line-height:1.8; } .cta-btns { display:flex; flex-wrap:wrap; gap:14px; }
+        .cta-btns .secondary-btn { background:transparent; color:#fff; border-color:rgba(255,255,255,.5); } .cta-btns .secondary-btn:hover { background:#fff; color:var(--heading); }
+        .c-list { display:grid; gap:14px; position:relative; z-index:1; }
+        .c-item { display:flex; align-items:center; gap:16px; padding:16px 18px; border:1px solid rgba(255,255,255,.18); border-radius:12px; transition:.3s; } a.c-item:hover { border-color:var(--primary); background:rgba(243,107,33,.12); }
+        .c-item i { width:46px; height:46px; display:grid; place-items:center; flex-shrink:0; border-radius:12px; background:rgba(243,107,33,.2); color:#ff9a5c; font-size:20px; }
+        .c-item small { display:block; font-size:11px; letter-spacing:1.5px; color:#ff9a5c; } .c-item strong { font-size:16px; overflow-wrap:anywhere; }
+
+        /* Floating contact buttons */
+        .fab-wrap { position:fixed; bottom:22px; inset-inline-end:22px; display:grid; gap:12px; z-index:900; }
+        .fab { width:54px; height:54px; border-radius:50%; display:grid; place-items:center; color:#fff; font-size:24px; box-shadow:0 6px 16px rgba(0,0,0,.3); transition:.3s; } .fab:hover { transform:scale(1.12); }
+        .fab-wa { background:#25d366; animation:ring 2.4s infinite; } .fab-call { background:var(--primary); }
+        @keyframes ring { 0% { box-shadow:0 0 0 0 rgba(37,211,102,.6); } 70%,100% { box-shadow:0 0 0 18px rgba(37,211,102,0); } }
+        @keyframes spin { to { transform:rotate(360deg); } }
+
+        /* Footer */
+        .footer { background:var(--surface); border-top:1px solid var(--border); margin-top:90px; }
+        .footer-container { max-width:1200px; margin:auto; padding:35px 25px 30px; display:grid; grid-template-columns:1.5fr .8fr 1fr 1.2fr 1.2fr; gap:35px; }
+        .footer-column h3 { color:var(--primary); font-size:20px; margin-bottom:15px; }
+        .footer-brand p { margin:20px 0 16px; max-width:260px; color:var(--muted); font-size:15px; line-height:1.8; }
+        .footer-column li { margin-bottom:9px; font-size:14px; } .footer-column li a:hover { color:var(--primary); }
+        .contact-list li { display:flex; gap:9px; overflow-wrap:anywhere; } .contact-list i { color:var(--heading); margin-top:3px; }
+        .social-links { display:flex; gap:20px; } .social-links a { font-size:19px; color:var(--heading); transition:.3s; } .social-links a:hover { color:var(--primary); transform:translateY(-2px); }
+        .copyright { max-width:1200px; margin:auto; padding:16px 25px; border-top:1px solid var(--border); display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; font-size:14px; }
+
+        /* Animation */
+        @keyframes up { from { opacity:0; transform:translateY(34px); } to { opacity:1; transform:none; } }
+        @keyframes bob { 50% { transform:translateY(-10px); } }
+        @keyframes morph { 50% { border-radius:55% 45% 52% 48%; transform:rotate(4deg); } }
+        @keyframes pulse { 50% { transform:scale(1.15); } }
+        .hero .crumbs, .hero h1, .hero .lead, .hero-buttons, .hero-trust { animation:up .8s both; } .hero h1 { animation-delay:.1s; } .hero .lead { animation-delay:.2s; } .hero-buttons { animation-delay:.3s; } .hero-trust { animation-delay:.4s; }
+        @supports (animation-timeline:view()) { .rv { animation:up linear both; animation-timeline:view(); animation-range:entry 0% entry 35%; } }
+        html[dir="rtl"] .bi-arrow-right { transform:scaleX(-1); } html[dir="rtl"] .footer-column li a i { transform:scaleX(-1); }
+
+        @media (max-width:1100px) { .footer-container { grid-template-columns:repeat(3,1fr); } .crew { grid-template-columns:1fr 1fr; } }
+        @media (max-width:1000px) {
+            .hero-grid, .story-grid, .cta-card { grid-template-columns:1fr; } .hero-visual { min-height:340px; max-width:440px; margin:auto; } .story-img { max-width:460px; margin:0 20px; }
+            .cards { grid-template-columns:1fr 1fr; } .steps { grid-template-columns:repeat(2,1fr); row-gap:36px; } .steps::before { display:none; }
+            .stats { grid-template-columns:1fr 1fr; } .stat:nth-child(2) { border:none; }
+        }
+        @media (max-width:850px) {
+            .header-container { min-height:85px; gap:12px; } .menu-toggle { display:block; } .header-actions { margin-inline-start:auto; }
+            .navbar { display:none; position:absolute; top:100%; inset-inline:0; flex-direction:column; align-items:flex-start; gap:18px; padding:20px 25px; background:var(--surface); box-shadow:0 5px 8px var(--shadow); }
+            .navbar.active { display:flex; } .dropdown { width:100%; padding:0; }
+            .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display:none; } .dropdown.open .dropdown-menu { display:flex; }
+            .dropdown-menu { position:static; margin-top:12px; box-shadow:none; width:100%; }
+            .footer-container { grid-template-columns:1fr 1fr; gap:30px; }
+        }
+        @media (max-width:600px) {
+            .section { padding:60px 0; } .hero { padding:50px 0; }
+            .brand-icon img { width:46px; height:46px; } .brand-text h2 { font-size:15px; } .brand-text small { font-size:7px; }
+            .icon-btn { min-width:32px; height:34px; padding:0 5px; font-size:11px; } .book-btn { padding:10px 11px; font-size:11px; }
+            .cards, .crew, .steps, .footer-container { grid-template-columns:1fr; } .hero-btn { width:100%; } .cta-card { padding:34px 24px; } .stats { padding:24px 18px; }
+            .badge { inset-inline-end:8px; } .label { inset-inline-start:8px; }
+        }
+        
+
+        /* ===== LOGIN PAGE ===== */
+        .auth { padding:70px 0 90px; background:var(--alt); position:relative; overflow:hidden; }
+        .auth::before, .auth::after { content:""; position:absolute; border-radius:50%; background:var(--primary-soft); z-index:0; }
+        .auth::before { width:420px; height:420px; top:-160px; inset-inline-start:-120px; animation:pulse 8s ease-in-out infinite; } .auth::after { width:300px; height:300px; bottom:-120px; inset-inline-end:-80px; animation:pulse 10s ease-in-out infinite reverse; }
+        .auth-card { position:relative; z-index:1; max-width:1060px; margin:auto; display:grid; grid-template-columns:1fr 1.05fr; background:var(--surface); border:1px solid var(--border); border-radius:24px; overflow:hidden; box-shadow:0 30px 70px var(--shadow); animation:up .8s both; }
+
+        .auth-side { position:relative; display:flex; flex-direction:column; padding:48px 40px 150px; color:#fff; overflow:hidden; background:linear-gradient(160deg,#092638,#0f3550); }
+        .auth-side::before { content:""; position:absolute; width:300px; height:300px; border-radius:50%; background:rgba(243,107,33,.2); top:-110px; inset-inline-end:-90px; animation:pulse 6s ease-in-out infinite; }
+        .side-brand { position:relative; display:inline-flex; align-items:center; gap:8px; align-self:flex-start; padding:8px 16px; border:1px solid rgba(255,255,255,.25); border-radius:50px; font-size:13px; font-weight:700; letter-spacing:1px; } .side-brand i { color:#ff9a5c; }
+        .auth-side h2 { position:relative; margin:26px 0 12px; font-size:clamp(28px,3vw,38px); line-height:1.15; font-weight:800; letter-spacing:-1px; } .auth-side h2 span { color:#ff9a5c; }
+        .auth-side > p { position:relative; color:#c4d0da; line-height:1.8; font-size:15px; }
+        .perks { position:relative; display:grid; gap:14px; margin-top:26px; }
+        .perks li { display:flex; align-items:center; gap:14px; font-size:15px; } .perks i { flex-shrink:0; width:40px; height:40px; display:grid; place-items:center; border-radius:10px; background:rgba(243,107,33,.22); color:#ff9a5c; font-size:19px; }
+        [data-role="customer"] .for-owner, [data-role="owner"] .for-customer { display:none; }
+        .swap { animation:up .5s both; }
+
+        .scene { position:absolute; bottom:0; inset-inline:0; height:120px; }
+        .scene .road { position:absolute; bottom:0; inset-inline:0; height:46px; background:#061a28; }
+        .scene .road::before { content:""; position:absolute; top:50%; inset-inline:0; height:3px; background:repeating-linear-gradient(90deg,#fff 0 24px,transparent 24px 48px); animation:roadmove .8s linear infinite; }
+        .scene .lane { position:absolute; bottom:30px; inset-inline-start:0; animation:drive 8s ease-in-out infinite; } .scene .truck { display:block; font-size:78px; line-height:1; color:var(--primary); filter:drop-shadow(0 6px 5px rgba(0,0,0,.35)); animation:bump .5s ease-in-out infinite; }
+        @keyframes roadmove { to { background-position:-48px 0; } } @keyframes bump { 50% { transform:translateY(-2px); } }
+        @keyframes drive { 0% { transform:translateX(-130%); } 100% { transform:translateX(520%); } } @keyframes drive-rtl { 0% { transform:translateX(130%); } 100% { transform:translateX(-520%); } }
+        html[dir="rtl"] .scene .lane { animation-name:drive-rtl; } html[dir="rtl"] .scene .truck { transform:scaleX(-1); animation:none; }
+
+        .auth-main { padding:46px 44px; display:flex; flex-direction:column; justify-content:center; }
+        .seg { position:relative; display:grid; grid-template-columns:1fr 1fr; padding:4px; margin-bottom:28px; background:var(--alt); border:1px solid var(--border); border-radius:50px; }
+        .seg button { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 10px; border:none; background:transparent; color:var(--text); font:700 15px "DM Sans",Arial,sans-serif; cursor:pointer; border-radius:50px; transition:color .3s; } .seg button.on { color:#fff; }
+        .seg-ind { position:absolute; top:4px; bottom:4px; inset-inline-start:4px; width:calc(50% - 4px); border-radius:50px; background:var(--primary); box-shadow:0 8px 18px rgba(243,107,33,.35); transition:inset-inline-start .35s cubic-bezier(.6,.1,.2,1); }
+        .seg[data-role="owner"] .seg-ind { inset-inline-start:50%; }
+        .auth-main h1 { font-size:30px; font-weight:800; letter-spacing:-.8px; color:var(--heading); } .auth-main .sub { margin:6px 0 24px; color:var(--muted); }
+        .lf { display:grid; gap:18px; } .lf .field { display:grid; gap:7px; } .lf label { font-size:13px; font-weight:700; color:var(--heading); }
+        .inp { position:relative; } .inp > i.lead-i { position:absolute; top:50%; inset-inline-start:16px; transform:translateY(-50%); color:var(--muted); font-size:17px; pointer-events:none; }
+        .inp input { width:100%; padding:15px 16px 15px 46px; padding-inline:46px 16px; border:1.5px solid var(--border); border-radius:12px; background:var(--bg); color:var(--text); font:15px "DM Sans",Arial,sans-serif; transition:.3s; }
+        .inp input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-soft); } .inp input.bad { border-color:#d93025; box-shadow:0 0 0 4px rgba(217,48,37,.12); }
+        .inp .eye { position:absolute; top:50%; inset-inline-end:8px; transform:translateY(-50%); width:38px; height:38px; border:none; border-radius:50%; background:transparent; color:var(--muted); font-size:18px; cursor:pointer; } .inp .eye:hover { color:var(--primary); }
+        .inp.pw input { padding-inline:46px 50px; }
+        .err { min-height:16px; font-size:12.5px; font-weight:600; color:#d93025; }
+        .opts { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; font-size:14px; }
+        .chk { display:inline-flex; align-items:center; gap:9px; cursor:pointer; } .chk input { width:18px; height:18px; accent-color:var(--primary); }
+        .opts a, .alt-link a { color:var(--primary); font-weight:700; } .opts a:hover, .alt-link a:hover { text-decoration:underline; }
+        .go { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:16px; border:none; border-radius:12px; background:var(--primary); color:#fff; font:800 16px "DM Sans",Arial,sans-serif; cursor:pointer; transition:.3s; box-shadow:0 10px 24px rgba(243,107,33,.3); } .go:hover { background:#d95612; transform:translateY(-3px); } .go:disabled { opacity:.7; cursor:wait; transform:none; }
+        .alt-link { margin-top:22px; text-align:center; font-size:14px; color:var(--muted); }
+        .msg { padding:12px 16px; border-radius:10px; font-size:14px; font-weight:600; } .msg.ok { background:rgba(38,148,91,.14); color:#26945b; } .msg.info { background:var(--primary-soft); color:var(--heading); } .msg[hidden] { display:none; }
+        .secure { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:18px; font-size:12.5px; color:var(--muted); } .secure i { color:#26945b; }
+        html[dir="rtl"] .go i { transform:scaleX(-1); }
+        @media (max-width:900px) { .auth-card { grid-template-columns:1fr; } .auth-side { padding:36px 28px 130px; } .perks { display:none; } .auth-main { padding:34px 24px; } }
+        @media (max-width:600px) { .auth { padding:40px 0 60px; } .auth-card { border-radius:18px; } .auth-main h1 { font-size:26px; } }
+
+
+        /* ===== REGISTER PAGE ===== */
+        .auth-side.reg { background:linear-gradient(200deg,#0f3550,#092638 60%); }
+        .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+        .lf .field { min-width:0; align-content:start; }
+        .meter { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:2px; } .meter span { height:5px; border-radius:5px; background:var(--border); transition:background .3s; }
+        .meter.s1 span:nth-child(-n+1) { background:#d93025; } .meter.s2 span:nth-child(-n+2) { background:#f29900; } .meter.s3 span:nth-child(-n+3) { background:#7cb342; } .meter.s4 span { background:#26945b; }
+        .hint { font-size:12.5px; color:var(--muted); } .hint b { color:var(--heading); }
+        .terms { display:grid; gap:4px; } .terms .chk { align-items:flex-start; font-size:14px; line-height:1.5; } .terms .chk input { margin-top:3px; flex-shrink:0; }
+        .go-login { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:14px; border:2px solid var(--primary); border-radius:12px; color:var(--primary); font-weight:800; transition:.3s; } .go-login:hover { background:var(--primary); color:#fff; } .go-login[hidden] { display:none; }
+        @media (max-width:600px) { .two { grid-template-columns:1fr; } }
+
+        /* Services page responsive */
+        @media (max-width:1000px) {
+            .svc-grid { grid-template-columns:1fr 1fr; } .inc-grid, .faq-grid, .cta-card { grid-template-columns:1fr; } .inc-img { max-width:460px; margin:0 20px; }
+            .sp-grid { grid-template-columns:1fr 1fr; } .steps { grid-template-columns:repeat(2,1fr); row-gap:36px; } .steps::before { display:none; }
+        }
+        @media (max-width:600px) {
+            .hero { padding:80px 0 70px; } .svc-grid, .sp-grid, .steps, .inc-list { grid-template-columns:1fr; } .hero-buttons .hero-btn, .cta-btns .hero-btn { width:100%; }
+            .cover { padding:26px 20px; } .cta-card { padding:34px 24px; } .badge { inset-inline-start:8px; } .fab { width:48px; height:48px; font-size:21px; }
+        }
+        @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
+    
+/* ===== HEADER LIKE STITCHCRAFT: underline nav links, round buttons ===== */
+.nav-link { position: relative; padding: 8px 0; font-weight: 600; }
+.nav-link::after {
+    content: ""; position: absolute; inset-inline: 0; bottom: -3px; height: 3px;
+    border-radius: 3px; background: var(--primary);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+}
+html[dir="rtl"] .nav-link::after { transform-origin: right; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+.dropdown-menu .nav-link::after { display: none; }
+
+.icon-btn { min-width: 46px; height: 46px; border: none; border-radius: 50px; background: #efefef; color: var(--heading); }
+.icon-btn:hover { background: var(--primary-soft); color: var(--primary); }
+body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
+.book-btn { border-radius: 50px; padding: 14px 28px; }
+
+@media (max-width: 850px) { .nav-link::after { display: none; } }
+@media (max-width: 600px) { .icon-btn { min-width: 34px; height: 36px; } .book-btn { padding: 10px 14px; } }
+                </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon"><img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase Logo"></div>
+                <div class="brand-text"><h2><span>MOVE</span>EASE</h2><small>PACKING & MOVING SERVICES</small></div>
+            </a>
+            <nav class="navbar" id="navbar">
+                <div class="dropdown" id="homeDropdown">
+                    <a href="index.html" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Home <i class="bi bi-chevron-down"></i></a>
+                    <div class="dropdown-menu"><a href="index.html">Home – Premium</a><a href="eindex.html">Home – Elite</a></div>
+                </div>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link">Dashboard</a>
+            </nav>
+            <div class="header-actions">
+                <button type="button" id="rtlMode" class="icon-btn" aria-label="Toggle text direction" title="Switch to RTL">RTL</button>
+                <button type="button" class="icon-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle dark mode"><i class="bi bi-moon"></i></button>
+                <a href="login.html" class="book-btn">Login</a>
+            </div>
+            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar"><i class="bi bi-list"></i></button>
+        </div>
+    </header>
+
+    <main class="auth" id="top">
+        <div class="wrap">
+            <div class="auth-card" id="authCard" data-role="customer">
+                <aside class="auth-side reg">
+                    <span class="side-brand"><i class="bi bi-person-plus-fill"></i> CREATE ACCOUNT</span>
+                    <div class="for-customer swap">
+                        <h2>Start your move <span>the easy way.</span></h2>
+                        <p>Create a free MoveEase account and keep every detail of your move in one simple place.</p>
+                        <ul class="perks">
+                            <li><i class="bi bi-gift"></i> Free account, no fees</li>
+                            <li><i class="bi bi-geo-alt"></i> Save your pickup and drop addresses</li>
+                            <li><i class="bi bi-truck"></i> Track every booking and truck</li>
+                            <li><i class="bi bi-arrow-repeat"></i> Rebook your next move in a tap</li>
+                        </ul>
+                    </div>
+                    <div class="for-owner swap">
+                        <h2>Bring your moving business <span>online.</span></h2>
+                        <p>Register your business to receive bookings and manage crews, trucks and payments from one dashboard.</p>
+                        <ul class="perks">
+                            <li><i class="bi bi-inbox"></i> Receive customer bookings</li>
+                            <li><i class="bi bi-people"></i> Manage crews and trucks</li>
+                            <li><i class="bi bi-cash-stack"></i> Track payments and dues</li>
+                            <li><i class="bi bi-patch-check"></i> Verified owner access</li>
+                        </ul>
+                    </div>
+                    <div class="scene" aria-hidden="true"><div class="lane"><i class="bi bi-truck truck"></i></div><div class="road"></div></div>
+                </aside>
+
+                <div class="auth-main">
+                    <div class="seg" id="seg" data-role="customer" role="tablist" aria-label="Choose account type">
+                        <span class="seg-ind"></span>
+                        <button type="button" role="tab" class="on" data-role="customer" aria-selected="true"><i class="bi bi-person"></i> Customer</button>
+                        <button type="button" role="tab" data-role="owner" aria-selected="false"><i class="bi bi-briefcase"></i> Owner</button>
+                    </div>
+
+                    <h1 id="authTitle">Create customer account</h1>
+                    <p class="sub" id="authSub">Sign up to book and track your move.</p>
+
+                    <form class="lf" id="regForm" novalidate>
+                        <div class="two">
+                            <div class="field"><label for="regName">Full name</label><div class="inp"><i class="bi bi-person lead-i"></i><input type="text" id="regName" name="regName" autocomplete="name" placeholder="Enter your name"></div><span class="err" id="regNameErr"></span></div>
+                            <div class="field"><label for="regPhone">Phone number</label><div class="inp"><i class="bi bi-telephone lead-i"></i><input type="tel" id="regPhone" name="regPhone" autocomplete="tel" placeholder="98765 43210"></div><span class="err" id="regPhoneErr"></span></div>
+                        </div>
+                        <div class="field"><label for="regEmail">Email address</label><div class="inp"><i class="bi bi-envelope lead-i"></i><input type="email" id="regEmail" name="regEmail" autocomplete="email" placeholder="you@example.com"></div><span class="err" id="regEmailErr"></span></div>
+                        <div class="two for-owner">
+                            <div class="field"><label for="bizName">Business name</label><div class="inp"><i class="bi bi-building lead-i"></i><input type="text" id="bizName" name="bizName" autocomplete="organization" placeholder="Your moving company"></div><span class="err" id="bizNameErr"></span></div>
+                            <div class="field"><label for="bizLoc">Business location</label><div class="inp"><i class="bi bi-geo-alt lead-i"></i><input type="text" id="bizLoc" name="bizLoc" autocomplete="off" placeholder="City, State"></div><span class="err" id="bizLocErr"></span></div>
+                        </div>
+                        <div class="for-customer"><div class="field"><label for="regCity">City (optional)</label><div class="inp"><i class="bi bi-geo-alt lead-i"></i><input type="text" id="regCity" name="regCity" autocomplete="address-level2" placeholder="Bengaluru"></div><span class="err" id="regCityErr"></span></div></div>
+                        <div class="two">
+                            <div class="field"><label for="regPw">Password</label><div class="inp pw"><i class="bi bi-lock lead-i"></i><input type="password" id="regPw" name="regPw" autocomplete="new-password" placeholder="Create a password"><button type="button" class="eye" data-for="regPw" aria-label="Show password"><i class="bi bi-eye"></i></button></div><div class="meter" id="meter"><span></span><span></span><span></span><span></span></div><span class="hint" id="meterTxt">Use 8+ characters with letters and numbers.</span><span class="err" id="regPwErr"></span></div>
+                            <div class="field"><label for="regPw2">Confirm password</label><div class="inp pw"><i class="bi bi-lock lead-i"></i><input type="password" id="regPw2" name="regPw2" autocomplete="new-password" placeholder="Repeat password"><button type="button" class="eye" data-for="regPw2" aria-label="Show password"><i class="bi bi-eye"></i></button></div><span class="err" id="regPw2Err"></span></div>
+                        </div>
+                        <div class="terms">
+                            <label class="chk"><input type="checkbox" id="agree"> <span>I agree to the <b>Terms and Conditions</b> and <b>Privacy Policy</b> of MoveEase.</span></label>
+                            <span class="err" id="agreeErr"></span>
+                        </div>
+                        <p class="msg info" id="formMsg" role="status" aria-live="polite" hidden></p>
+                        <button type="submit" class="go" id="goBtn"><span id="goText">Create customer account</span> <i class="bi bi-arrow-right"></i></button>
+                        <a href="login.html" class="go-login" id="toLogin" hidden><i class="bi bi-box-arrow-in-right"></i> Go to login</a>
+                    </form>
+
+                    <p class="alt-link">Already have an account? <a href="login.html" id="loginLink">Login</a></p>
+                    <p class="secure"><i class="bi bi-shield-check"></i> Your details are kept private and secure</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-brand">
+                <a href="index.html" class="brand">
+                    <div class="brand-icon"><img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase Logo"></div>
+                    <div class="brand-text"><h2><span>MOVE</span>EASE</h2><small>PACKING & MOVING SERVICES</small></div>
+                </a>
+                <p>We provide safe, reliable and cost-effective home shifting and packing solutions at your fingertips.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="index.html#process">How It Works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="services.html">Home Shifting</a></li>
+                    <li><a href="services.html">Office Relocation</a></li>
+                    <li><a href="services.html">Packing Services</a></li>
+                    <li><a href="services.html">Loading &amp; Unloading</a></li>
+                    <li><a href="services.html">Vehicle Transport</a></li>
+                    <li><a href="services.html">Storage Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Support</h3>
+                <ul>
+                    <li><a href="contact.html">FAQs</a></li>
+                    <li><a href="contact.html">Booking Support</a></li>
+                    <li><a href="contact.html">Moving Tips</a></li>
+                    <li><a href="contact.html">Cancellation Policy</a></li>
+                    <li><a href="contact.html">Payment Information</a></li>
+                    <li><a href="contact.html">Book a Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-list">
+                    <li><i class="bi bi-telephone-fill"></i><span>+91 98765 43210</span></li>
+                    <li><i class="bi bi-envelope-fill"></i><span>support@moveease.com</span></li>
+                    <li><i class="bi bi-geo-alt-fill"></i><span>Bengaluru, Karnataka</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright"><p>© 2026 MoveEase. All rights reserved.</p><p>Terms and Conditions</p></div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script>
+        /* register: customer / owner on one page */
+        const card = document.getElementById("authCard"), seg = document.getElementById("seg");
+        const form = document.getElementById("regForm"), msg = document.getElementById("formMsg"), toLogin = document.getElementById("toLogin");
+        const $ = (id) => document.getElementById(id);
+        const T = {
+            customer: { title: "Create customer account", sub: "Sign up to book and track your move.", btn: "Create customer account", login: "login.html#customer" },
+            owner:    { title: "Register as owner", sub: "Register your moving business to manage bookings, crews and payments.", btn: "Register as owner", login: "login.html#owner" }
+        };
+        let role = "customer";
+
+        function setRole(r) {
+            role = r; card.dataset.role = r; seg.dataset.role = r;
+            seg.querySelectorAll("button").forEach((b) => { const on = b.dataset.role === r; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+            $("authTitle").textContent = T[r].title; $("authSub").textContent = T[r].sub; $("goText").textContent = T[r].btn;
+            $("loginLink").href = T[r].login; toLogin.href = T[r].login;
+            card.querySelectorAll(".swap").forEach((el) => { el.style.animation = "none"; el.offsetHeight; el.style.animation = ""; });
+            clearErrors(); msg.hidden = true; toLogin.hidden = true;
+            try { localStorage.setItem("loginRole", r); } catch (e) {}
+        }
+        seg.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => setRole(b.dataset.role)));
+
+        /* show / hide password */
+        document.querySelectorAll(".eye").forEach((btn) => btn.addEventListener("click", () => {
+            const input = $(btn.dataset.for), show = input.type === "password";
+            input.type = show ? "text" : "password";
+            btn.innerHTML = '<i class="bi bi-eye' + (show ? '-slash' : '') + '"></i>';
+            btn.setAttribute("aria-label", show ? "Hide password" : "Show password");
+        }));
+
+        /* password strength meter */
+        $("regPw").addEventListener("input", () => {
+            const p = $("regPw").value; let s = 0;
+            if (p.length >= 8) s++; if (/[a-z]/.test(p) && /[A-Z]/.test(p)) s++; if (/\d/.test(p)) s++; if (/[^A-Za-z0-9]/.test(p)) s++;
+            if (!p) s = 0;
+            $("meter").className = "meter" + (s ? " s" + s : "");
+            $("meterTxt").textContent = p ? ["Too weak", "Weak", "Fair", "Good", "Strong"][s] + " password" : "Use 8+ characters with letters and numbers.";
+        });
+
+        function clearErrors() { form.querySelectorAll(".err").forEach((s) => (s.textContent = "")); form.querySelectorAll("input").forEach((i) => i.classList.remove("bad")); }
+        function fail(id, text) { const el = $(id); if (el.type !== "checkbox") el.classList.add("bad"); $(id === "agree" ? "agreeErr" : id + "Err").textContent = text; return false; }
+
+        function validate() {
+            clearErrors(); let ok = true;
+            if ($("regName").value.trim().length < 2) ok = fail("regName", "Enter your full name.");
+            if (!/^(\+?91)?[\s-]?[6-9]\d{4}[\s-]?\d{5}$/.test($("regPhone").value.trim())) ok = fail("regPhone", "Enter a valid 10-digit phone number.");
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("regEmail").value.trim())) ok = fail("regEmail", "Enter a valid email address.");
+            if (role === "owner") {
+                if ($("bizName").value.trim().length < 2) ok = fail("bizName", "Enter your business name.");
+                if ($("bizLoc").value.trim().length < 2) ok = fail("bizLoc", "Enter your business location.");
+            }
+            const p = $("regPw").value;
+            if (p.length < 8 || !/[A-Za-z]/.test(p) || !/\d/.test(p)) ok = fail("regPw", "Use 8+ characters with a letter and a number.");
+            if ($("regPw2").value !== p || !$("regPw2").value) ok = fail("regPw2", "Passwords do not match.");
+            if (!$("agree").checked) ok = fail("agree", "Please accept the terms to continue.");
+            return ok;
+        }
+
+        /* creates the account through auth.js (saved in this browser until a backend is connected) */
+        form.addEventListener("submit", (e) => {
+            e.preventDefault(); msg.hidden = true; toLogin.hidden = true;
+            if (!validate()) return;
+            const btn = $("goBtn"); btn.disabled = true;
+            window.MoveEaseAuth.register({
+                role, name: $("regName").value, phone: $("regPhone").value, email: $("regEmail").value, password: $("regPw").value,
+                bizName: role === "owner" ? $("bizName").value : "", bizLoc: role === "owner" ? $("bizLoc").value : ""
+            }).then((res) => {
+                btn.disabled = false;
+                if (!res.ok) { fail(res.field, res.error); return; }
+                msg.className = "msg ok"; msg.hidden = false;
+                msg.textContent = role === "owner"
+                    ? "Your owner account is ready. Your business code is " + res.code + ". Save it, you need it with your email and password to login."
+                    : "Your account has been created. You can now login.";
+                toLogin.hidden = false; form.reset();
+                $("meter").className = "meter"; $("meterTxt").textContent = "Use 8+ characters with letters and numbers.";
+            }).catch(() => { btn.disabled = false; msg.className = "msg info"; msg.hidden = false; msg.textContent = "Something went wrong. Please try again."; });
+        });
+
+        /* already logged in? go straight to the dashboard */
+        const existing = window.MoveEaseAuth.current();
+        if (existing) location.replace(window.MoveEaseAuth.dashboardFor(existing.role));
+
+        /* open the right tab from the link (register.html#owner) or the last used one */
+        let start = "customer";
+        try { start = localStorage.getItem("loginRole") || "customer"; } catch (e) {}
+        if (location.hash === "#owner") start = "owner"; if (location.hash === "#customer") start = "customer";
+        setRole(start === "owner" ? "owner" : "customer");
+    </script>
+</body>
+</html>

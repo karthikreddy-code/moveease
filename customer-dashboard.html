@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | MoveEase</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="images/Dynamic Moving Truck Emblem1.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* MOVEEASE CUSTOMER DASHBOARD - booking, tracking, inventory, payments */
+        :root { --primary:#f36b21; --primary-soft:#fff2e9; --heading:#092638; --text:#263746; --muted:#5d6d7a; --bg:#f4f6f9; --surface:#fff; --border:#e6e9ee; --shadow:rgba(9,38,56,.08); --navy:#092638; --green:#26945b; --red:#d93025; --amber:#d98a00; --blue:#2a6fdb; }
+        body.dark-mode { --primary-soft:#2a3640; --heading:#fff; --text:#e5eaf0; --muted:#a9b6c1; --bg:#0c151c; --surface:#14212b; --border:#26353f; --shadow:rgba(0,0,0,.4); --navy:#0a1219; --green:#3fbf84; --red:#ff6b60; --amber:#f5b73d; --blue:#6aa2ff; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:"DM Sans",Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; transition:background .3s,color .3s; }
+        a { text-decoration:none; color:inherit; } ul { list-style:none; } button { font-family:inherit; }
+        :focus-visible { outline:3px solid var(--primary); outline-offset:2px; }
+
+        /* Layout */
+        .side { position:fixed; inset-block:0; inset-inline-start:0; width:264px; display:flex; flex-direction:column; gap:6px; padding:22px 16px; background:var(--navy); color:#fff; z-index:60; transition:transform .3s; overflow-y:auto; }
+        .main { margin-inline-start:264px; min-width:0; }
+        .brand { display:flex; align-items:center; gap:10px; padding:0 8px 22px; } .brand img { width:46px; height:46px; object-fit:contain; filter:drop-shadow(0 0 1px #fff) drop-shadow(0 0 5px rgba(255,255,255,.25)); }
+        .brand b { font-size:19px; font-weight:800; letter-spacing:.3px; } .brand b span { color:var(--primary); } .brand small { display:block; font-size:9px; letter-spacing:1.4px; color:#9db0bf; }
+        .nav-item { display:flex; align-items:center; gap:14px; width:100%; padding:13px 16px; border:none; border-radius:12px; background:transparent; color:#c4d0da; font-size:15px; font-weight:600; cursor:pointer; text-align:start; transition:.25s; position:relative; }
+        .nav-item i { font-size:19px; } .nav-item:hover { background:rgba(255,255,255,.08); color:#fff; }
+        .nav-item.on { background:var(--primary); color:#fff; box-shadow:0 8px 18px rgba(243,107,33,.35); }
+        .nav-item .dot { margin-inline-start:auto; min-width:22px; height:22px; padding:0 6px; border-radius:11px; background:#ff9a5c; color:#092638; font-size:12px; font-weight:800; display:grid; place-items:center; } .nav-item.on .dot { background:#fff; color:var(--primary); }
+        .help { margin-top:auto; padding:18px; border-radius:14px; background:rgba(255,255,255,.07); text-align:center; } .help i { font-size:26px; color:#ff9a5c; } .help b { display:block; margin:6px 0 2px; } .help p { font-size:13px; color:#9db0bf; margin-bottom:12px; }
+        .help a { display:block; padding:10px; border-radius:10px; background:var(--primary); color:#fff; font-weight:700; font-size:14px; } .out { margin-top:8px; color:#9db0bf; display:flex; justify-content:center; gap:8px; font-size:14px; padding:10px; border-radius:10px; } .out:hover { background:rgba(255,255,255,.08); color:#fff; }
+        .scrim { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:55; display:none; }
+
+        .top { position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:14px; padding:14px 28px; background:var(--surface); border-bottom:1px solid var(--border); }
+        .top h1 { font-size:22px; color:var(--heading); line-height:1.2; } .top p { font-size:13px; color:var(--muted); }
+        .burger { display:none; width:42px; height:42px; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--heading); font-size:22px; cursor:pointer; }
+        .tools { margin-inline-start:auto; display:flex; align-items:center; gap:10px; }
+        .ibtn { min-width:42px; height:42px; padding:0 12px; border:none; border-radius:50px; background:var(--bg); color:var(--heading); font:700 13px "DM Sans",Arial,sans-serif; cursor:pointer; transition:.25s; } .ibtn:hover { background:var(--primary-soft); color:var(--primary); }
+        .me { display:flex; align-items:center; gap:10px; padding:5px 14px 5px 5px; border:1px solid var(--border); border-radius:50px; } .me span { width:34px; height:34px; display:grid; place-items:center; border-radius:50%; background:var(--primary); color:#fff; font-weight:800; font-size:13px; } .me b { font-size:14px; color:var(--heading); }
+        .content { max-width:1260px; margin:auto; padding:28px; }
+        .view { display:none; } .view.on { display:block; animation:up .45s both; }
+        @keyframes up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+        /* Cards + shared bits */
+        .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:0 6px 20px var(--shadow); }
+        .card h2 { font-size:18px; color:var(--heading); margin-bottom:4px; } .card .sub { font-size:13px; color:var(--muted); margin-bottom:16px; }
+        .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:22px; }
+        .two { display:grid; grid-template-columns:1.4fr 1fr; gap:22px; align-items:start; } .two.even { grid-template-columns:1fr 1fr; }
+        .stat { display:flex; gap:14px; align-items:flex-start; transition:.3s; cursor:default; } .stat:hover { transform:translateY(-5px); }
+        .ico { flex-shrink:0; width:48px; height:48px; display:grid; place-items:center; border-radius:14px; background:var(--primary-soft); color:var(--primary); font-size:22px; }
+        .ico.g { background:rgba(38,148,91,.14); color:var(--green); } .ico.b { background:rgba(42,111,219,.14); color:var(--blue); } .ico.a { background:rgba(217,138,0,.16); color:var(--amber); }
+        .stat small { font-size:13px; color:var(--muted); } .stat strong { display:block; font-size:22px; color:var(--heading); line-height:1.25; } .stat span { font-size:12.5px; color:var(--muted); }
+        .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:30px; font-size:12px; font-weight:700; white-space:nowrap; background:var(--bg); color:var(--muted); }
+        .badge.green { background:rgba(38,148,91,.14); color:var(--green); } .badge.amber { background:rgba(217,138,0,.16); color:var(--amber); } .badge.red { background:rgba(217,48,37,.12); color:var(--red); } .badge.blue { background:rgba(42,111,219,.14); color:var(--blue); } .badge.orange { background:var(--primary-soft); color:var(--primary); }
+        .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 20px; border:2px solid var(--primary); border-radius:12px; background:var(--primary); color:#fff; font-size:14px; font-weight:700; cursor:pointer; transition:.25s; } .btn:hover { background:#d95612; border-color:#d95612; transform:translateY(-2px); }
+        .btn.line { background:transparent; color:var(--primary); } .btn.line:hover { background:var(--primary); color:#fff; } .btn.sm { padding:8px 14px; font-size:13px; border-radius:10px; } .btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+        .btn.ghost { background:var(--bg); border-color:var(--border); color:var(--text); } .btn.ghost:hover { background:var(--border); }
+        .bar { height:9px; border-radius:9px; background:var(--border); overflow:hidden; } .bar i { display:block; height:100%; width:0; border-radius:9px; background:linear-gradient(90deg,var(--primary),#ff9a5c); transition:width .8s ease; }
+        .rows { display:grid; gap:12px; } .kv { display:flex; justify-content:space-between; gap:14px; padding:11px 0; border-bottom:1px dashed var(--border); font-size:14px; } .kv:last-child { border:none; } .kv span { color:var(--muted); } .kv b { color:var(--heading); text-align:end; }
+        .empty { padding:26px; text-align:center; color:var(--muted); font-size:14px; }
+
+        /* Overview */
+        .welcome { display:grid; grid-template-columns:1.5fr 1fr; gap:24px; align-items:center; margin-bottom:22px; padding:30px; border:none; color:#fff; background:linear-gradient(135deg,#092638,#14486b); position:relative; overflow:hidden; }
+        .welcome::after { content:""; position:absolute; width:260px; height:260px; border-radius:50%; background:rgba(243,107,33,.25); inset-inline-end:-70px; top:-90px; animation:pulse 6s ease-in-out infinite; } @keyframes pulse { 50% { transform:scale(1.15); } }
+        .welcome h2 { color:#fff; font-size:28px; margin-bottom:6px; } .welcome p { color:#c4d0da; margin-bottom:18px; } .welcome .btns { display:flex; flex-wrap:wrap; gap:10px; position:relative; z-index:1; } .welcome .btn.line { color:#fff; border-color:rgba(255,255,255,.5); }
+        .countdown { position:relative; z-index:1; text-align:center; padding:20px; border:1px solid rgba(255,255,255,.22); border-radius:16px; background:rgba(255,255,255,.08); } .countdown b { display:block; font-size:54px; line-height:1; color:#ff9a5c; font-weight:800; } .countdown span { font-size:14px; color:#c4d0da; } .countdown small { display:block; margin-top:8px; font-size:13px; color:#fff; }
+        .actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; } .act { display:flex; align-items:center; gap:10px; padding:14px; border:1px solid var(--border); border-radius:12px; background:var(--bg); color:var(--heading); font-weight:700; font-size:14px; cursor:pointer; transition:.25s; text-align:start; } .act:hover { border-color:var(--primary); color:var(--primary); transform:translateY(-3px); } .act i { color:var(--primary); font-size:20px; }
+        .tl { display:grid; gap:14px; } .tl li { display:flex; gap:12px; font-size:14px; } .tl li::before { content:""; flex-shrink:0; width:10px; height:10px; margin-top:7px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 4px var(--primary-soft); } .tl small { display:block; color:var(--muted); font-size:12px; }
+
+        /* Booking */
+        .cal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; } .cal-head b { font-size:17px; color:var(--heading); }
+        .cal-head button { width:36px; height:36px; border:1px solid var(--border); border-radius:50%; background:var(--surface); color:var(--heading); cursor:pointer; } .cal-head button:disabled { opacity:.35; cursor:not-allowed; } .cal-head button:not(:disabled):hover { background:var(--primary); color:#fff; }
+        .cal { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; } .cal .wd { text-align:center; font-size:12px; font-weight:700; color:var(--muted); padding:4px 0; }
+        .day { aspect-ratio:1; min-height:38px; border:1px solid var(--border); border-radius:10px; background:var(--surface); color:var(--text); font:600 14px "DM Sans",Arial,sans-serif; cursor:pointer; transition:.2s; } .day:hover:not(:disabled) { border-color:var(--primary); background:var(--primary-soft); transform:scale(1.06); }
+        .day.sel { background:var(--primary); border-color:var(--primary); color:#fff; box-shadow:0 6px 14px rgba(243,107,33,.4); } .day.today { box-shadow:inset 0 0 0 2px var(--primary); } .day:disabled { background:var(--bg); color:var(--muted); opacity:.5; cursor:not-allowed; } .day.full:disabled { text-decoration:line-through; }
+        .legend { display:flex; flex-wrap:wrap; gap:16px; margin-top:14px; font-size:12.5px; color:var(--muted); } .legend i { display:inline-block; width:12px; height:12px; border-radius:4px; margin-inline-end:6px; vertical-align:-1px; }
+        .chips { display:flex; flex-wrap:wrap; gap:10px; } .chip { padding:10px 16px; border:1.5px solid var(--border); border-radius:50px; background:var(--surface); color:var(--text); font-size:14px; font-weight:600; cursor:pointer; transition:.2s; } .chip:hover { border-color:var(--primary); } .chip.on { background:var(--primary); border-color:var(--primary); color:#fff; }
+        .fgrid { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .field { display:grid; gap:6px; } .field.full { grid-column:1/-1; } .field label, .lbl { font-size:13px; font-weight:700; color:var(--heading); }
+        .field input, .field select, .field textarea { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; background:var(--bg); color:var(--text); font:15px "DM Sans",Arial,sans-serif; transition:.25s; } .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-soft); } .field select option { color:#17243a; }
+        .sect { margin:22px 0 10px; font-size:15px; font-weight:800; color:var(--heading); } .sect:first-child { margin-top:0; }
+        .sticky { position:sticky; top:96px; } .price { font-size:34px; font-weight:800; color:var(--primary); line-height:1.1; } .note { font-size:12.5px; color:var(--muted); margin-top:10px; }
+        .banner { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:16px; padding:12px 16px; border-radius:12px; background:var(--primary-soft); color:var(--heading); font-size:14px; font-weight:600; } .banner[hidden] { display:none; }
+        .bk { padding:16px; border:1px solid var(--border); border-radius:14px; background:var(--bg); } .bk + .bk { margin-top:12px; } .bk .h { display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:6px; } .bk .h b { color:var(--heading); } .bk p { font-size:13.5px; color:var(--muted); } .bk .acts { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+
+        /* Tracking */
+        .route { position:relative; height:110px; margin:10px 18px 8px; } .rline { position:absolute; top:62px; inset-inline:0; height:8px; border-radius:8px; background:var(--border); overflow:hidden; } .rfill { height:100%; width:0; background:linear-gradient(90deg,var(--primary),#ff9a5c); transition:width 1s linear; }
+        .pin { position:absolute; top:44px; width:44px; height:44px; margin-inline-start:-22px; display:grid; place-items:center; border-radius:50%; background:var(--surface); border:3px solid var(--primary); color:var(--primary); font-size:19px; z-index:2; } .pin.a { inset-inline-start:0; } .pin.b { inset-inline-start:100%; } .pin.done { background:var(--primary); color:#fff; }
+        .plab { position:absolute; top:96px; font-size:12px; font-weight:700; color:var(--muted); margin-inline-start:-34px; width:90px; text-align:center; } .plab.a { inset-inline-start:0; } .plab.b { inset-inline-start:100%; }
+        .rtruck { position:absolute; top:2px; inset-inline-start:0; transform:translateX(-50%); font-size:42px; line-height:1; color:var(--heading); transition:inset-inline-start 1s linear; z-index:3; filter:drop-shadow(0 6px 4px rgba(0,0,0,.2)); } .rtruck.move { animation:bump .5s ease-in-out infinite; } @keyframes bump { 50% { margin-top:-3px; } }
+        html[dir="rtl"] .rtruck { transform:translateX(50%) scaleX(-1); } html[dir="rtl"] .pin.a, html[dir="rtl"] .plab.a { inset-inline-start:0; }
+        .trk-head { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:6px; } .big { font-size:24px; font-weight:800; color:var(--heading); }
+        .steps { display:grid; gap:0; } .steps li { position:relative; display:flex; gap:14px; padding-bottom:20px; } .steps li:last-child { padding-bottom:0; }
+        .steps li::before { content:""; position:absolute; inset-inline-start:15px; top:32px; bottom:0; width:2px; background:var(--border); } .steps li:last-child::before { display:none; } .steps li.done::before { background:var(--primary); }
+        .steps .dt { flex-shrink:0; width:32px; height:32px; display:grid; place-items:center; border-radius:50%; background:var(--bg); border:2px solid var(--border); color:var(--muted); font-size:14px; z-index:1; } .steps li.done .dt { background:var(--primary); border-color:var(--primary); color:#fff; } .steps li.cur .dt { border-color:var(--primary); color:var(--primary); box-shadow:0 0 0 5px var(--primary-soft); animation:pulse2 1.8s infinite; } @keyframes pulse2 { 50% { box-shadow:0 0 0 9px var(--primary-soft); } }
+        .steps b { display:block; color:var(--heading); font-size:15px; } .steps span { font-size:13px; color:var(--muted); } .steps li:not(.done):not(.cur) b { color:var(--muted); }
+        .crew { display:grid; gap:12px; } .mem { display:flex; align-items:center; gap:12px; } .av { width:42px; height:42px; display:grid; place-items:center; border-radius:50%; background:var(--primary-soft); color:var(--primary); font-weight:800; } .mem b { display:block; color:var(--heading); font-size:15px; } .mem small { color:var(--muted); font-size:12.5px; } .mem .badge { margin-inline-start:auto; }
+        .demo { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:18px; padding:12px 14px; border:1px dashed var(--border); border-radius:12px; font-size:13px; color:var(--muted); }
+
+        /* Inventory */
+        .tools2 { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:18px; } .tools2 input[type=search], .tools2 select { padding:11px 14px; border:1.5px solid var(--border); border-radius:10px; background:var(--surface); color:var(--text); font:14px "DM Sans",Arial,sans-serif; } .tools2 input[type=search] { flex:1; min-width:180px; } .tools2 input:focus, .tools2 select:focus { outline:none; border-color:var(--primary); }
+        .room { margin-bottom:18px; } .room h3 { display:flex; align-items:center; gap:10px; font-size:16px; color:var(--heading); margin-bottom:10px; } .room h3 i { color:var(--primary); } .room h3 small { margin-inline-start:auto; font-size:12.5px; color:var(--muted); font-weight:600; }
+        .it { display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:var(--surface); transition:.2s; } .it + .it { margin-top:8px; } .it:hover { border-color:var(--primary); } .it input { width:20px; height:20px; accent-color:var(--primary); cursor:pointer; flex-shrink:0; }
+        .it .nm { flex:1; min-width:0; font-weight:600; color:var(--heading); font-size:15px; overflow-wrap:anywhere; } .it .nm small { display:block; font-weight:400; color:var(--muted); font-size:12.5px; } .it.ok .nm { text-decoration:line-through; opacity:.6; } .it .x { border:none; background:transparent; color:var(--muted); cursor:pointer; font-size:16px; padding:4px; } .it .x:hover { color:var(--red); }
+        .add { display:grid; grid-template-columns:2fr 1.2fr .7fr auto; gap:10px; margin-top:6px; } .add input, .add select { padding:11px 14px; border:1.5px solid var(--border); border-radius:10px; background:var(--bg); color:var(--text); font:14px "DM Sans",Arial,sans-serif; min-width:0; } .add input:focus, .add select:focus { outline:none; border-color:var(--primary); } .add select option { color:#17243a; }
+
+        /* Payments */
+        .tbl-wrap { overflow-x:auto; } table { width:100%; border-collapse:collapse; min-width:560px; } th, td { padding:14px 12px; text-align:start; border-bottom:1px solid var(--border); font-size:14px; } th { font-size:12.5px; text-transform:uppercase; letter-spacing:.8px; color:var(--muted); } td b { color:var(--heading); } tr:last-child td { border-bottom:none; }
+        .hist { display:grid; gap:12px; } .hi { display:flex; align-items:center; gap:12px; } .hi .ico { width:40px; height:40px; font-size:18px; } .hi b { display:block; color:var(--heading); font-size:14.5px; } .hi small { color:var(--muted); font-size:12.5px; } .hi em { margin-inline-start:auto; font-style:normal; font-weight:800; color:var(--green); }
+        .modal { position:fixed; inset:0; z-index:100; display:none; place-items:center; padding:20px; background:rgba(0,0,0,.55); } .modal.open { display:grid; } .mbox { width:100%; max-width:440px; padding:28px; border-radius:20px; background:var(--surface); box-shadow:0 30px 70px rgba(0,0,0,.4); animation:up .35s both; } .mbox h3 { font-size:22px; color:var(--heading); } .mbox .amt { margin:4px 0 18px; font-size:34px; font-weight:800; color:var(--primary); }
+        .pm { display:grid; gap:10px; margin-bottom:20px; } .pm label { display:flex; align-items:center; gap:12px; padding:13px 14px; border:1.5px solid var(--border); border-radius:12px; cursor:pointer; font-weight:600; color:var(--heading); transition:.2s; } .pm label:has(input:checked) { border-color:var(--primary); background:var(--primary-soft); } .pm i { color:var(--primary); font-size:20px; } .pm input { accent-color:var(--primary); margin-inline-start:auto; }
+        .mbtns { display:flex; gap:10px; } .mbtns .btn { flex:1; }
+        .toast { position:fixed; bottom:24px; inset-inline-start:50%; transform:translate(-50%,30px); opacity:0; padding:13px 22px; border-radius:50px; background:var(--navy); color:#fff; font-size:14px; font-weight:600; box-shadow:0 12px 30px rgba(0,0,0,.3); transition:.35s; z-index:200; pointer-events:none; } .toast.show { opacity:1; transform:translate(-50%,0); } html[dir="rtl"] .toast { transform:translate(50%,30px); } html[dir="rtl"] .toast.show { transform:translate(50%,0); }
+        .demo-tag { margin-top:26px; text-align:center; font-size:12.5px; color:var(--muted); }
+
+        @media (max-width:1100px) { .grid4 { grid-template-columns:1fr 1fr; } .two, .two.even, .welcome { grid-template-columns:1fr; } .sticky { position:static; } }
+        @media (max-width:900px) {
+            .side { transform:translateX(-100%); } html[dir="rtl"] .side { transform:translateX(100%); } .side.open { transform:none; } .scrim.open { display:block; }
+            .main { margin-inline-start:0; } .burger { display:grid; place-items:center; } .top { padding:12px 16px; } .content { padding:18px 16px; } .me b { display:none; } .me { padding:5px; }
+        }
+        @media (max-width:600px) { .grid4, .fgrid, .actions { grid-template-columns:1fr; } .add { grid-template-columns:1fr 1fr; } .add input:first-child { grid-column:1/-1; } .welcome { padding:22px; } .welcome h2 { font-size:23px; } .top h1 { font-size:18px; } .top p { display:none; } }
+        @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
+    
+        /* ===== FIXED SIDEBAR (no scroll) ===== */
+        @media (min-width:901px) {
+            .side { overflow:hidden; }
+            .side > * { flex-shrink:0; }
+        }
+        @media (min-width:901px) and (max-height:860px) {
+            .side { padding:14px 14px; gap:3px; }
+            .brand { padding-bottom:10px; } .brand img { width:38px; height:38px; }
+            .nav-item { padding:9px 14px; font-size:14px; } .nav-item i { font-size:17px; }
+            .help { padding:12px; } .help i { font-size:20px; } .help b { margin:3px 0 1px; }
+            .help p { font-size:12px; margin-bottom:8px; } .help a { padding:8px; font-size:13px; }
+            .out { margin-top:2px; padding:7px; }
+        }
+        @media (min-width:901px) and (max-height:680px) {
+            .help p { display:none; } .brand small { display:none; } .nav-item { padding:7px 14px; }
+        }
+    </style>
+    <script src="auth.js"></script>
+    <script>
+        document.documentElement.setAttribute("data-guard", "");
+        /* customers only; an owner may open this page to preview the customer view */
+        window.SESSION = MoveEaseAuth.guard("customer", { ownerPreview: true });
+        window.WHO = window.SESSION && window.SESSION.role === "customer" ? window.SESSION : { uid: "", name: "Customer" };
+    </script>
+</head>
+
+<body>
+        <aside class="side" id="side">
+        <a href="index.html" class="brand">
+            <img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase logo">
+            <div><b><span>MOVE</span>EASE</b><small>CUSTOMER PORTAL</small></div>
+        </a>
+        <button class="nav-item on" data-view="overview"><i class="bi bi-grid-1x2"></i> Overview</button>
+        <button class="nav-item" data-view="book"><i class="bi bi-calendar-check"></i> Book a Move</button>
+        <button class="nav-item" data-view="track"><i class="bi bi-geo-alt"></i> Track Move</button>
+        <button class="nav-item" data-view="inventory"><i class="bi bi-clipboard-check"></i> Inventory <span class="dot" id="navInv"></span></button>
+        <button class="nav-item" data-view="payments"><i class="bi bi-wallet2"></i> Payments <span class="dot" id="navPay"></span></button>
+        <div class="help">
+            <i class="bi bi-headset"></i><b>Need help?</b><p>Our team is available 7 days a week.</p>
+            <a href="tel:+919876543210">+91 98765 43210</a>
+        </div>
+        <a href="login.html" class="out" data-logout><i class="bi bi-box-arrow-left"></i> Logout</a>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="top">
+            <button class="burger" id="burger" aria-label="Open menu"><i class="bi bi-list"></i></button>
+            <div><h1 id="pgTitle">Overview</h1><p id="pgSub">Your move at a glance</p></div>
+            <div class="tools">
+                <button class="ibtn" id="rtlBtn" title="Switch to RTL">RTL</button>
+                <button class="ibtn" id="themeBtn" title="Toggle dark mode"><i class="bi bi-moon"></i></button>
+                <div class="me"><span id="meAv">C</span><b id="meName">Customer</b></div>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- OVERVIEW -->
+            <section class="view on" id="v-overview">
+                <div class="card welcome">
+                    <div style="position:relative;z-index:1"><h2 id="hello">Hello</h2><p id="helloSub"></p>
+                        <div class="btns"><button class="btn" data-go="track"><i class="bi bi-geo-alt"></i> Track my move</button><button class="btn line" data-go="book"><i class="bi bi-calendar-plus"></i> Book another move</button></div></div>
+                    <div class="countdown" id="countdown"></div>
+                </div>
+                <div class="grid4" id="ovStats"></div>
+                <div class="two">
+                    <div class="card"><h2>Your upcoming move</h2><p class="sub">Details of your confirmed booking</p><div id="ovMove"></div></div>
+                    <div>
+                        <div class="card" style="margin-bottom:22px"><h2>Quick actions</h2><p class="sub">Jump straight to what you need</p>
+                            <div class="actions">
+                                <button class="act" data-go="book"><i class="bi bi-calendar-check"></i> Book a date</button>
+                                <button class="act" data-go="track"><i class="bi bi-truck"></i> Truck status</button>
+                                <button class="act" data-go="inventory"><i class="bi bi-clipboard-check"></i> Inventory</button>
+                                <button class="act" data-go="payments"><i class="bi bi-credit-card"></i> Pay balance</button>
+                            </div>
+                        </div>
+                        <div class="card"><h2>Recent activity</h2><p class="sub">Latest updates on your move</p><ul class="tl" id="activity"></ul></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOOK -->
+            <section class="view" id="v-book">
+                <div class="two">
+                    <div class="card">
+                        <div class="banner" id="reBanner" hidden><span id="reTxt"></span><button class="btn sm ghost" data-act="cancelRe">Cancel</button></div>
+                        <div class="sect">1. Choose your moving date</div>
+                        <div class="cal-head"><button id="prevM" aria-label="Previous month"><i class="bi bi-chevron-left"></i></button><b id="calTitle"></b><button id="nextM" aria-label="Next month"><i class="bi bi-chevron-right"></i></button></div>
+                        <div class="cal" id="cal"></div>
+                        <div class="legend"><span><i style="background:var(--primary)"></i>Selected</span><span><i style="background:var(--border)"></i>Fully booked</span><span><i style="box-shadow:inset 0 0 0 2px var(--primary)"></i>Today</span></div>
+                        <div class="sect">2. Pick a time slot</div>
+                        <div class="chips" id="slots"></div>
+                        <div class="sect">3. Move details</div>
+                        <div class="fgrid">
+                            <div class="field"><label for="fFrom">Moving from</label><input id="fFrom" placeholder="Current address"></div>
+                            <div class="field"><label for="fTo">Moving to</label><input id="fTo" placeholder="New address"></div>
+                            <div class="field full"><label for="fSize">Home size</label>
+                                <select id="fSize"><option value="4999">Studio or 1 BHK</option><option value="8999" selected>2 BHK</option><option value="14999">3 BHK and larger</option></select></div>
+                            <div class="field full"><span class="lbl">Extra services</span><div class="chips" id="extras"></div></div>
+                            <div class="field full"><label for="fNote">Notes for our team</label><textarea id="fNote" rows="3" placeholder="Floor, lift availability, heavy or fragile items..."></textarea></div>
+                        </div>
+                    </div>
+                    <div class="sticky">
+                        <div class="card" style="margin-bottom:22px"><h2>Booking summary</h2><p class="sub">Check before you confirm</p><div id="summary"></div>
+                            <button class="btn" style="width:100%;margin-top:16px" id="confirmBtn" data-act="confirm"><i class="bi bi-check2-circle"></i> Confirm booking</button></div>
+                        <div class="card"><h2>Your bookings</h2><p class="sub">Reschedule or cancel anytime</p><div id="bookings"></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRACK -->
+            <section class="view" id="v-track">
+                <div class="two">
+                    <div>
+                        <div class="card" style="margin-bottom:22px">
+                            <div class="trk-head"><div><h2>Live move status</h2><p class="sub" id="trkSub" style="margin:0"></p></div><span id="trkBadge"></span></div>
+                            <div class="route" id="route"><div class="rline"><div class="rfill" id="rfill"></div></div><div class="pin a" id="pinA"><i class="bi bi-house"></i></div><div class="pin b" id="pinB"><i class="bi bi-house-heart"></i></div><span class="plab a" id="labA">Pickup</span><span class="plab b" id="labB">Drop</span><i class="bi bi-truck rtruck" id="rtruck"></i></div>
+                            <div class="grid4" style="grid-template-columns:repeat(3,1fr);margin:20px 0 0" id="trkStats"></div>
+                            <div class="demo"><i class="bi bi-play-circle"></i> Demo controls:
+                                <button class="btn sm" data-act="nextStage" id="nextBtn">Simulate next stage</button><button class="btn sm ghost" data-act="resetStage">Reset</button></div>
+                        </div>
+                        <div class="card"><h2>Move progress</h2><p class="sub">Every stage of your move</p><ul class="steps" id="steps"></ul></div>
+                    </div>
+                    <div>
+                        <div class="card" style="margin-bottom:22px"><h2>Truck details</h2><p class="sub">Vehicle assigned to your move</p><div id="truckInfo"></div></div>
+                        <div class="card"><h2>Your crew</h2><p class="sub">The team handling your move</p><div class="crew" id="crew"></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INVENTORY -->
+            <section class="view" id="v-inventory">
+                <div class="card" style="margin-bottom:22px">
+                    <div class="trk-head"><div><h2>Inventory checklist</h2><p class="sub" id="invSub" style="margin:0"></p></div><button class="btn line sm" data-act="exportCsv"><i class="bi bi-download"></i> Download list</button></div>
+                    <div class="bar" style="margin-top:14px"><i id="invBar"></i></div>
+                </div>
+                <div class="two">
+                    <div class="card"><div class="tools2"><input type="search" id="invSearch" placeholder="Search items..." aria-label="Search items"><select id="invFilter" aria-label="Filter items"><option value="all">All items</option><option value="todo">Not verified</option><option value="done">Verified</option></select></div><div id="invList"></div></div>
+                    <div class="card sticky"><h2>Add an item</h2><p class="sub">Forgot something? Add it to your list.</p>
+                        <div class="add"><input id="newName" placeholder="Item name" aria-label="Item name"><select id="newRoom" aria-label="Room"></select><input id="newQty" type="number" min="1" value="1" aria-label="Quantity"><button class="btn" data-act="addItem"><i class="bi bi-plus-lg"></i></button></div>
+                        <p class="note">Tick each item as your crew unloads it, so you know nothing is missing at your new home.</p>
+                        <div class="rows" style="margin-top:14px" id="stageSum"></div></div>
+                </div>
+            </section>
+
+            <!-- PAYMENTS -->
+            <section class="view" id="v-payments">
+                <div class="grid4" style="grid-template-columns:repeat(3,1fr)" id="payStats"></div>
+                <div class="two">
+                    <div class="card"><h2>Invoices</h2><p class="sub">Pay online or settle on moving day</p><div class="tbl-wrap"><table><thead><tr><th>Description</th><th>Due</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody id="invoices"></tbody></table></div></div>
+                    <div>
+                        <div class="card" style="margin-bottom:22px"><h2>Payment history</h2><p class="sub">Your completed payments</p><div class="hist" id="history"></div></div>
+                        <div class="card"><h2>We accept</h2><p class="sub">Choose what is easiest for you</p><div class="chips"><span class="badge orange"><i class="bi bi-phone"></i> UPI</span><span class="badge orange"><i class="bi bi-credit-card"></i> Cards</span><span class="badge orange"><i class="bi bi-bank"></i> Net banking</span><span class="badge orange"><i class="bi bi-cash-coin"></i> Cash</span></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <p class="demo-tag"><i class="bi bi-info-circle"></i> Bookings, checklist and payments are saved in this browser only until a backend is connected.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="payModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle"><div class="mbox" id="pmBox"></div></div>
+    <div class="toast" id="toast" role="status"></div>
+
+    <script>
+        const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+        const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const inr = (n) => "₹" + Number(n).toLocaleString("en-IN");
+        const iso = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+        const parse = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        const addDays = (n) => { const d = new Date(today); d.setDate(d.getDate() + n); return d; };
+        const fmt = (s, o) => parse(s).toLocaleDateString("en-IN", o || { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+        const KEY = "moveeaseCustomerDash" + (WHO.uid ? ":" + WHO.uid : "");
+        const STEPS = [["Booking confirmed", "Your move is booked"], ["Crew assigned", "Crew and truck are allocated"], ["Packing", "Items are packed and labelled"], ["Loaded", "Everything is loaded on the truck"], ["In transit", "The truck is on its way"], ["Delivered", "Items reached your new home"], ["Unpacked", "Boxes placed room by room"]];
+        const SLOTS = ["Morning (7 - 10 AM)", "Midday (10 AM - 1 PM)", "Afternoon (1 - 4 PM)", "Evening (4 - 7 PM)"];
+        const EXTRAS = ["Packing & unpacking", "Furniture dismantling", "Vehicle transport", "Storage"];
+        const ROOMS = ["Living room", "Bedroom", "Kitchen", "Fragile & boxes"];
+        const ROOM_ICON = { "Living room": "bi-tv", "Bedroom": "bi-lamp", "Kitchen": "bi-cup-hot", "Fragile & boxes": "bi-box-seam" };
+
+        function defaults() {
+            return { v: 2, step: 0, progress: 0, activeId: "", bookings: [], inventory: [], payments: [], log: [] };
+        }
+        let S; try { S = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        if (!S || S.v !== 2) S = defaults();
+        const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+        const log = (t) => { S.log.unshift({ t, ts: Date.now() }); S.log = S.log.slice(0, 8); };
+        const active = () => S.bookings.find((b) => b.id === S.activeId) || S.bookings.find((b) => b.status === "confirmed");
+        const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 2600); };
+        const badge = (cls, txt, ic) => `<span class="badge ${cls}">${ic ? `<i class="bi ${ic}"></i>` : ""}${txt}</span>`;
+        const daysLeft = (s) => Math.round((parse(s) - today) / 864e5);
+
+        /* ---------- navigation ---------- */
+        const TITLES = { overview: ["Overview", "Your move at a glance"], book: ["Book a Move", "Choose a date and confirm your booking"], track: ["Track Move", "Follow your crew and truck"], inventory: ["Inventory Checklist", "Make sure every item arrives"], payments: ["Payments", "Manage invoices and payments"] };
+        function go(v) {
+            if (!TITLES[v]) v = "overview";
+            $$(".view").forEach((s) => s.classList.toggle("on", s.id === "v-" + v));
+            $$(".nav-item").forEach((b) => b.classList.toggle("on", b.dataset.view === v));
+            $("#pgTitle").textContent = TITLES[v][0]; $("#pgSub").textContent = TITLES[v][1];
+            closeSide(); history.replaceState(null, "", "#" + v); window.scrollTo({ top: 0 });
+            if (v === "track") startTruck();
+        }
+        const openSide = () => { $("#side").classList.add("open"); $("#scrim").classList.add("open"); }, closeSide = () => { $("#side").classList.remove("open"); $("#scrim").classList.remove("open"); };
+        $("#burger").onclick = openSide; $("#scrim").onclick = closeSide;
+        document.addEventListener("click", (e) => {
+            const n = e.target.closest("[data-view],[data-go]"); if (n) return go(n.dataset.view || n.dataset.go);
+            const a = e.target.closest("[data-act]"); if (a) ACT[a.dataset.act] && ACT[a.dataset.act](a);
+        });
+
+        /* ---------- overview ---------- */
+        function renderOverview() {
+            const m = active(), h = new Date().getHours();
+            $("#hello").textContent = (h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening") + ", " + MoveEaseAuth.firstName(WHO.name);
+            const paid = S.payments.filter((p) => p.status === "paid").reduce((a, p) => a + p.amount, 0), due = S.payments.filter((p) => p.status !== "paid").reduce((a, p) => a + p.amount, 0);
+            const ver = S.inventory.filter((i) => i.ok).length, tot = S.inventory.length;
+            if (m) {
+                const d = daysLeft(m.date);
+                $("#helloSub").textContent = `Your move from ${m.from.split(",")[0]} to ${m.to.split(",")[0]} is booked for ${fmt(m.date)}.`;
+                $("#countdown").innerHTML = d > 0 ? `<b>${d}</b><span>${d === 1 ? "day" : "days"} to go</span><small>${fmt(m.date, { day: "numeric", month: "long" })} · ${esc(m.slot)}</small>` : d === 0 ? `<b><i class="bi bi-truck"></i></b><span>Moving day is today</span><small>${esc(m.slot)}</small>` : `<b><i class="bi bi-check2-circle"></i></b><span>Move completed</span><small>${fmt(m.date)}</small>`;
+                $("#ovMove").innerHTML = `<div class="kv"><span>Booking ID</span><b>${m.id}</b></div><div class="kv"><span>Date and slot</span><b>${fmt(m.date)}<br>${esc(m.slot)}</b></div><div class="kv"><span>From</span><b>${esc(m.from)}</b></div><div class="kv"><span>To</span><b>${esc(m.to)}</b></div><div class="kv"><span>Home size</span><b>${esc(m.size)}</b></div><div class="kv"><span>Services</span><b>${m.extras.length ? esc(m.extras.join(", ")) : "Standard move"}</b></div>`;
+            } else { $("#helloSub").textContent = "You have no confirmed move yet. Book a date to get started."; $("#countdown").innerHTML = `<b><i class="bi bi-calendar-plus"></i></b><span>No move booked</span>`; $("#ovMove").innerHTML = `<div class="empty">No confirmed booking.<br><br><button class="btn sm" data-go="book">Book a move</button></div>`; }
+            $("#ovStats").innerHTML = `
+                <div class="card stat"><div class="ico"><i class="bi bi-truck"></i></div><div><small>Move status</small><strong>${m ? STEPS[S.step][0] : "No active move"}</strong><span>${m ? "Stage " + (S.step + 1) + " of " + STEPS.length : "Book a move to get started"}</span></div></div>
+                <div class="card stat"><div class="ico g"><i class="bi bi-clipboard-check"></i></div><div><small>Inventory verified</small><strong>${ver} / ${tot}</strong><span>${tot ? Math.round(ver / tot * 100) : 0}% complete</span></div></div>
+                <div class="card stat"><div class="ico a"><i class="bi bi-wallet2"></i></div><div><small>Balance due</small><strong>${inr(due)}</strong><span>${due ? "Pay online or on moving day" : S.payments.length ? "All paid. Thank you!" : "No invoices yet"}</span></div></div>
+                <div class="card stat"><div class="ico b"><i class="bi bi-cash-coin"></i></div><div><small>Paid so far</small><strong>${inr(paid)}</strong><span>${S.payments.filter((p) => p.status === "paid").length} payment(s)</span></div></div>`;
+            $("#activity").innerHTML = S.log.slice(0, 5).map((l) => `<li><div>${esc(l.t)}<small>${new Date(l.ts).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}</small></div></li>`).join("");
+            $("#navInv").textContent = tot - ver || ""; $("#navInv").style.display = tot - ver ? "" : "none";
+            $("#navPay").textContent = S.payments.filter((p) => p.status !== "paid").length || ""; $("#navPay").style.display = due ? "" : "none";
+        }
+
+        /* ---------- booking ---------- */
+        let cal = { y: today.getFullYear(), m: today.getMonth() }, pick = { date: null, slot: SLOTS[0], extras: [] }, resched = null;
+        const isFull = (d) => d.getDate() % 7 === 0 || d.getDate() % 11 === 0;
+        function renderCal() {
+            const first = new Date(cal.y, cal.m, 1), n = new Date(cal.y, cal.m + 1, 0).getDate();
+            $("#calTitle").textContent = first.toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+            $("#prevM").disabled = cal.y === today.getFullYear() && cal.m === today.getMonth();
+            let h = ["S", "M", "T", "W", "T", "F", "S"].map((d) => `<div class="wd">${d}</div>`).join("") + "<div></div>".repeat(first.getDay());
+            for (let i = 1; i <= n; i++) {
+                const d = new Date(cal.y, cal.m, i), s = iso(d), off = d <= today || isFull(d);
+                h += `<button class="day${pick.date === s ? " sel" : ""}${+d === +today ? " today" : ""}${isFull(d) && d > today ? " full" : ""}" data-day="${s}" ${off ? "disabled" : ""} aria-label="${fmt(s)}">${i}</button>`;
+            }
+            $("#cal").innerHTML = h;
+        }
+        $("#prevM").onclick = () => { cal.m--; if (cal.m < 0) { cal.m = 11; cal.y--; } renderCal(); };
+        $("#nextM").onclick = () => { cal.m++; if (cal.m > 11) { cal.m = 0; cal.y++; } renderCal(); };
+        $("#cal").addEventListener("click", (e) => { const b = e.target.closest("[data-day]"); if (b) { pick.date = b.dataset.day; renderCal(); renderSummary(); } });
+        $("#slots").innerHTML = SLOTS.map((s, i) => `<button class="chip${i === 0 ? " on" : ""}" data-slot="${s}">${s}</button>`).join("");
+        $("#slots").addEventListener("click", (e) => { const b = e.target.closest("[data-slot]"); if (!b) return; pick.slot = b.dataset.slot; $$("#slots .chip").forEach((c) => c.classList.toggle("on", c === b)); renderSummary(); });
+        $("#extras").innerHTML = EXTRAS.map((x) => `<button class="chip" data-x="${x}">${x}</button>`).join("");
+        $("#extras").addEventListener("click", (e) => { const b = e.target.closest("[data-x]"); if (!b) return; b.classList.toggle("on"); pick.extras = $$("#extras .chip.on").map((c) => c.dataset.x); renderSummary(); });
+        ["fFrom", "fTo", "fSize"].forEach((id) => $("#" + id).addEventListener("input", renderSummary));
+        const sizeName = () => $("#fSize").selectedOptions[0].textContent;
+        function renderSummary() {
+            $("#summary").innerHTML = `<div class="kv"><span>Date</span><b>${pick.date ? fmt(pick.date) : "Not selected"}</b></div><div class="kv"><span>Time slot</span><b>${pick.slot}</b></div><div class="kv"><span>From</span><b>${esc($("#fFrom").value.trim() || "-")}</b></div><div class="kv"><span>To</span><b>${esc($("#fTo").value.trim() || "-")}</b></div><div class="kv"><span>Home size</span><b>${sizeName()}</b></div><div class="kv"><span>Extras</span><b>${pick.extras.length ? esc(pick.extras.join(", ")) : "None"}</b></div>
+                <div style="margin-top:14px"><small class="note" style="margin:0">Starting from</small><div class="price">${inr($("#fSize").value)}</div><p class="note">Final price is fixed after our free home survey. No hidden charges.</p></div>`;
+            $("#confirmBtn").innerHTML = resched ? '<i class="bi bi-calendar2-check"></i> Confirm new date' : '<i class="bi bi-check2-circle"></i> Confirm booking';
+        }
+        function renderBookings() {
+            const L = { pending: ["amber", "Pending confirmation"], confirmed: ["green", "Confirmed"], cancelled: ["red", "Cancelled"] };
+            $("#bookings").innerHTML = S.bookings.length ? S.bookings.map((b) => `<div class="bk"><div class="h"><b>${b.id}</b>${badge(L[b.status][0], L[b.status][1])}</div><p><i class="bi bi-calendar-event"></i> ${fmt(b.date)} · ${esc(b.slot)}</p><p><i class="bi bi-signpost-2"></i> ${esc(b.from)} → ${esc(b.to)}</p>${b.status !== "cancelled" ? `<div class="acts"><button class="btn sm line" data-act="resched" data-id="${b.id}">Reschedule</button><button class="btn sm ghost" data-act="cancelBk" data-id="${b.id}">Cancel</button></div>` : ""}</div>`).join("") : '<div class="empty">No bookings yet.</div>';
+        }
+        function setResched(id) {
+            resched = id; const b = S.bookings.find((x) => x.id === id);
+            $("#reBanner").hidden = !id;
+            if (b) { $("#reTxt").textContent = `Rescheduling ${b.id}. Pick a new date and slot.`; pick.date = null; $("#fFrom").value = b.from; $("#fTo").value = b.to; }
+            renderCal(); renderSummary();
+        }
+
+        /* ---------- tracking ---------- */
+        let truckTimer = null;
+        function renderTrack() {
+            const m = active(), st = S.step, prog = st < 4 ? 0 : st === 4 ? S.progress : 100;
+            const truckS = m && m.truck ? ["Not assigned", "Scheduled", "At pickup", "Loaded", "On the road", "Reached drop", "Completed"][st] : "Not assigned";
+            $("#trkSub").textContent = m ? `${m.id} · ${m.from.split(",")[0]} to ${m.to.split(",")[0]}` : "No active move";
+            $("#trkBadge").innerHTML = m ? badge(st >= 5 ? "green" : st === 4 ? "blue" : "orange", STEPS[st][0], st === 4 ? "bi-broadcast" : "bi-circle-fill") : badge("gray", "No active move");
+            $("#labA").textContent = m ? m.from.split(",")[0] : "Pickup"; $("#labB").textContent = m ? m.to.split(",")[0] : "Drop";
+            $("#rfill").style.width = prog + "%"; $("#rtruck").style.insetInlineStart = prog + "%"; $("#rtruck").classList.toggle("move", st === 4 && prog < 100);
+            $("#pinA").classList.toggle("done", st >= 2); $("#pinB").classList.toggle("done", st >= 5);
+            const mins = Math.max(0, Math.round((100 - prog) / 100 * 45));
+            $("#trkStats").innerHTML = `<div class="card stat" style="box-shadow:none"><div class="ico"><i class="bi bi-clock"></i></div><div><small>ETA</small><strong>${st === 4 ? mins + " min" : st >= 5 ? "Arrived" : "-"}</strong></div></div><div class="card stat" style="box-shadow:none"><div class="ico b"><i class="bi bi-signpost-split"></i></div><div><small>Distance left</small><strong>${st >= 5 ? "0 km" : st === 4 ? Math.round((100 - prog) / 100 * 22) + " km" : "22 km"}</strong></div></div><div class="card stat" style="box-shadow:none"><div class="ico g"><i class="bi bi-truck"></i></div><div><small>Truck</small><strong style="font-size:17px">${truckS}</strong></div></div>`;
+            $("#steps").innerHTML = STEPS.map((s, i) => `<li class="${!m ? "" : i < st ? "done" : i === st ? "cur" : ""}"><span class="dt">${i < st ? '<i class="bi bi-check-lg"></i>' : i + 1}</span><div><b>${s[0]}</b><span>${s[1]}</span></div></li>`).join("");
+            $("#truckInfo").innerHTML = m && m.truck ? `<div class="kv"><span>Vehicle number</span><b>${esc(m.truck)}</b></div><div class="kv"><span>Type</span><b>${esc(m.truckType || "-")}</b></div><div class="kv"><span>Driver</span><b>${esc(m.driver || "-")}</b></div><div class="kv"><span>Status</span><b>${truckS}</b></div>${m.driverPhone ? `<a href="tel:${esc(m.driverPhone)}" class="btn" style="width:100%;margin-top:14px"><i class="bi bi-telephone-fill"></i> Call driver</a>` : ""}` : '<div class="empty">No truck assigned yet.<br>You will see the vehicle and driver details here once your move is assigned.</div>';
+            const cs = st < 1 ? ["gray", "Not assigned"] : st === 1 ? ["orange", "Assigned"] : st <= 3 ? ["green", "On site"] : st === 4 ? ["blue", "On the way"] : ["green", "At new home"];
+            $("#crew").innerHTML = m && Array.isArray(m.crew) && m.crew.length ? m.crew.map((c) => `<div class="mem"><span class="av">${esc(MoveEaseAuth.initials(c.name))}</span><div><b>${esc(c.name)}</b><small>${esc(c.role || "")}</small></div>${badge(cs[0], cs[1])}</div>`).join("") : '<div class="empty">No crew assigned yet.</div>';
+            $("#nextBtn").disabled = !m || st >= STEPS.length - 1;
+        }
+        function startTruck() {
+            clearInterval(truckTimer);
+            if (S.step !== 4) return;
+            truckTimer = setInterval(() => { if (S.step !== 4 || S.progress >= 100) return clearInterval(truckTimer); S.progress = Math.min(100, S.progress + 4); save(); renderTrack(); }, 1000);
+        }
+
+        /* ---------- inventory ---------- */
+        const stageOf = () => ["Not packed", "Not packed", "Packed", "Loaded", "In transit", "Delivered", "Delivered"][S.step];
+        function renderInventory() {
+            const q = $("#invSearch").value.trim().toLowerCase(), f = $("#invFilter").value, ver = S.inventory.filter((i) => i.ok).length, tot = S.inventory.length;
+            $("#invSub").textContent = `${ver} of ${tot} items verified · current stage: ${stageOf()}`; $("#invBar").style.width = (tot ? ver / tot * 100 : 0) + "%";
+            const rooms = [...new Set([...ROOMS, ...S.inventory.map((i) => i.room)])]; let h = "";
+            rooms.forEach((r) => {
+                const all = S.inventory.filter((i) => i.room === r); if (!all.length) return;
+                const list = all.filter((i) => (!q || i.name.toLowerCase().includes(q)) && (f === "all" || (f === "done" ? i.ok : !i.ok))); if (!list.length) return;
+                h += `<div class="room"><h3><i class="bi ${ROOM_ICON[r] || "bi-box"}"></i>${esc(r)}<small>${all.filter((i) => i.ok).length}/${all.length} verified</small></h3>` + list.map((i) => `<div class="it${i.ok ? " ok" : ""}"><input type="checkbox" data-id="${i.id}" ${i.ok ? "checked" : ""} aria-label="Verify ${esc(i.name)}"><div class="nm">${esc(i.name)}<small>Qty ${i.qty} · ${stageOf()}</small></div><button class="x" data-act="delItem" data-id="${i.id}" aria-label="Remove ${esc(i.name)}"><i class="bi bi-x-lg"></i></button></div>`).join("") + "</div>";
+            });
+            $("#invList").innerHTML = h || '<div class="empty">No items match.</div>';
+            const cnt = (s) => S.inventory.filter((i) => stageOf() === s).length;
+            $("#stageSum").innerHTML = `<div class="kv"><span>Total items</span><b>${tot}</b></div><div class="kv"><span>Verified at delivery</span><b>${ver}</b></div><div class="kv"><span>Still to verify</span><b>${tot - ver}</b></div><div class="kv"><span>Current stage</span><b>${stageOf()}</b></div>`;
+        }
+        $("#newRoom").innerHTML = ROOMS.map((r) => `<option>${r}</option>`).join("");
+        $("#invList").addEventListener("change", (e) => { const c = e.target.closest("input[data-id]"); if (!c) return; const it = S.inventory.find((i) => i.id === c.dataset.id); it.ok = c.checked; if (S.inventory.every((i) => i.ok)) log("All inventory items verified"); save(); renderInventory(); renderOverview(); });
+        ["invSearch", "invFilter"].forEach((id) => $("#" + id).addEventListener("input", renderInventory));
+
+        /* ---------- payments ---------- */
+        function renderPay() {
+            const tot = S.payments.reduce((a, p) => a + p.amount, 0), paid = S.payments.filter((p) => p.status === "paid").reduce((a, p) => a + p.amount, 0);
+            $("#payStats").innerHTML = `<div class="card stat"><div class="ico"><i class="bi bi-receipt"></i></div><div><small>Total quote</small><strong>${inr(tot)}</strong><span>For your move</span></div></div><div class="card stat"><div class="ico g"><i class="bi bi-check2-circle"></i></div><div><small>Paid</small><strong>${inr(paid)}</strong><span>${Math.round(paid / (tot || 1) * 100)}% of total</span></div></div><div class="card stat"><div class="ico a"><i class="bi bi-hourglass-split"></i></div><div><small>Balance due</small><strong>${inr(tot - paid)}</strong><span>${tot - paid ? "Remaining to pay" : tot ? "Fully paid" : "No invoices yet"}</span></div></div>`;
+            $("#invoices").innerHTML = S.payments.map((p) => `<tr><td><b>${esc(p.label)}</b><br><small style="color:var(--muted)">${p.id}</small></td><td>${fmt(p.status === "paid" ? p.paidOn : p.due, { day: "numeric", month: "short" })}</td><td><b>${inr(p.amount)}</b></td><td>${p.status === "paid" ? badge("green", "Paid", "bi-check2") : daysLeft(p.due) < 0 ? badge("red", "Overdue") : badge("amber", "Due")}</td><td style="text-align:end">${p.status === "paid" ? `<button class="btn sm ghost" data-act="receipt" data-id="${p.id}"><i class="bi bi-download"></i> Receipt</button>` : `<button class="btn sm" data-act="pay" data-id="${p.id}">Pay now</button>`}</td></tr>`).join("");
+            const paidList = S.payments.filter((p) => p.status === "paid");
+            $("#history").innerHTML = paidList.length ? paidList.map((p) => `<div class="hi"><span class="ico g"><i class="bi bi-arrow-down-left"></i></span><div><b>${esc(p.label)}</b><small>${fmt(p.paidOn, { day: "numeric", month: "short", year: "numeric" })} · ${esc(p.method)}</small></div><em>${inr(p.amount)}</em></div>`).join("") : '<div class="empty">No payments yet.</div>';
+        }
+        const METHODS = [["UPI", "bi-phone"], ["Debit / credit card", "bi-credit-card"], ["Net banking", "bi-bank"], ["Cash on moving day", "bi-cash-coin"]];
+
+        /* ---------- actions ---------- */
+        const ACT = {
+            confirm() {
+                const from = $("#fFrom").value.trim(), to = $("#fTo").value.trim();
+                if (!pick.date) return toast("Please choose a moving date.");
+                if (resched) { const b = S.bookings.find((x) => x.id === resched); b.date = pick.date; b.slot = pick.slot; log(`${b.id} rescheduled to ${fmt(pick.date, { day: "numeric", month: "short" })}`); toast("Your move has been rescheduled."); setResched(null); }
+                else {
+                    if (from.length < 3 || to.length < 3) return toast("Please enter both addresses.");
+                    const id = "ME-" + (1043 + S.bookings.length); S.bookings.unshift({ id, date: pick.date, slot: pick.slot, from, to, size: sizeName(), price: +$("#fSize").value, extras: [...pick.extras], status: "pending" });
+                    log(`Booking ${id} received for ${fmt(pick.date, { day: "numeric", month: "short" })}`); toast("Booking received! We will confirm shortly.");
+                    pick.date = null; $("#fFrom").value = ""; $("#fTo").value = ""; $("#fNote").value = "";
+                }
+                save(); renderCal(); renderSummary(); renderBookings(); renderOverview();
+            },
+            resched(a) { setResched(a.dataset.id); window.scrollTo({ top: 0, behavior: "smooth" }); },
+            cancelRe() { setResched(null); },
+            cancelBk(a) { const b = S.bookings.find((x) => x.id === a.dataset.id); if (!confirm(`Cancel booking ${b.id}?`)) return; b.status = "cancelled"; if (S.activeId === b.id) { S.activeId = null; } log(`Booking ${b.id} cancelled`); save(); renderBookings(); renderOverview(); renderTrack(); toast("Booking cancelled."); },
+            nextStage() { if (S.step >= STEPS.length - 1) return; S.step++; S.progress = S.step === 4 ? 0 : S.progress; log(STEPS[S.step][0] + " - " + STEPS[S.step][1]); save(); renderTrack(); renderInventory(); renderOverview(); startTruck(); toast("Stage: " + STEPS[S.step][0]); },
+            resetStage() { clearInterval(truckTimer); S.step = 0; S.progress = 0; save(); renderTrack(); renderInventory(); renderOverview(); },
+            addItem() { const n = $("#newName").value.trim(); if (n.length < 2) return toast("Enter an item name."); S.inventory.push({ id: Math.random().toString(36).slice(2, 8), room: $("#newRoom").value, name: n, qty: Math.max(1, +$("#newQty").value || 1), ok: false }); $("#newName").value = ""; $("#newQty").value = 1; save(); renderInventory(); renderOverview(); toast("Item added."); },
+            delItem(a) { S.inventory = S.inventory.filter((i) => i.id !== a.dataset.id); save(); renderInventory(); renderOverview(); },
+            exportCsv() { const rows = [["Room", "Item", "Quantity", "Stage", "Verified"], ...S.inventory.map((i) => [i.room, i.name, i.qty, stageOf(), i.ok ? "Yes" : "No"])]; const csv = rows.map((r) => r.map((c) => '"' + String(c).replace(/"/g, '""') + '"').join(",")).join("\n"); const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "moveease-inventory.csv"; a.click(); URL.revokeObjectURL(a.href); },
+            pay(a) {
+                const p = S.payments.find((x) => x.id === a.dataset.id);
+                $("#pmBox").innerHTML = `<h3 id="pmTitle">Pay ${esc(p.label)}</h3><div class="amt">${inr(p.amount)}</div><div class="pm">${METHODS.map((m, i) => `<label><i class="bi ${m[1]}"></i>${m[0]}<input type="radio" name="pm" value="${m[0]}" ${i === 0 ? "checked" : ""}></label>`).join("")}</div><div class="mbtns"><button class="btn ghost" data-act="closePay">Cancel</button><button class="btn" id="payGo" data-act="doPay" data-id="${p.id}">Pay ${inr(p.amount)}</button></div>`;
+                $("#payModal").classList.add("open");
+            },
+            closePay() { $("#payModal").classList.remove("open"); },
+            doPay(a) {
+                const btn = $("#payGo"); btn.disabled = true; btn.textContent = "Processing...";
+                const method = $('input[name="pm"]:checked').value, p = S.payments.find((x) => x.id === a.dataset.id);
+                setTimeout(() => { p.status = "paid"; p.paidOn = iso(today); p.method = method; log(`${inr(p.amount)} paid for ${p.label} (${method})`); save(); ACT.closePay(); renderPay(); renderOverview(); toast("Payment successful. Thank you!"); }, 900);
+            },
+            receipt(a) { const p = S.payments.find((x) => x.id === a.dataset.id); const t = `MOVEEASE PAYMENT RECEIPT\n\nInvoice: ${p.id}\nDescription: ${p.label}\nAmount: ${inr(p.amount)}\nPaid on: ${fmt(p.paidOn)}\nMethod: ${p.method}\n\nThank you for choosing MoveEase.`; const l = document.createElement("a"); l.href = URL.createObjectURL(new Blob([t], { type: "text/plain" })); l.download = p.id + "-receipt.txt"; l.click(); URL.revokeObjectURL(l.href); }
+        };
+        $("#payModal").addEventListener("click", (e) => { if (e.target.id === "payModal") ACT.closePay(); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") { ACT.closePay(); closeSide(); } });
+
+        /* ---------- theme + direction (shared with the website) ---------- */
+        const root = document.documentElement;
+        function setDir(d) { root.setAttribute("dir", d); $("#rtlBtn").textContent = d === "rtl" ? "LTR" : "RTL"; $("#rtlBtn").title = d === "rtl" ? "Switch to LTR" : "Switch to RTL"; try { localStorage.setItem("direction", d); } catch (e) {} }
+        function setTheme(dark) { document.body.classList.toggle("dark-mode", dark); $("#themeBtn").innerHTML = dark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>'; try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {} }
+        $("#rtlBtn").onclick = () => setDir(root.getAttribute("dir") === "rtl" ? "ltr" : "rtl");
+        $("#themeBtn").onclick = () => setTheme(!document.body.classList.contains("dark-mode"));
+        let d0 = "ltr", t0 = false; try { d0 = localStorage.getItem("direction") === "rtl" ? "rtl" : "ltr"; t0 = localStorage.getItem("theme") === "dark"; } catch (e) {}
+        setDir(d0); setTheme(t0);
+
+        /* ---------- logged-in customer ---------- */
+        $("#meAv").textContent = MoveEaseAuth.initials(WHO.name); $("#meName").textContent = WHO.name;
+
+        /* ---------- start ---------- */
+        renderCal(); renderSummary(); renderBookings(); renderOverview(); renderTrack(); renderInventory(); renderPay();
+        go(location.hash.slice(1) || "overview");
+    </script>
+</body>
+</html>

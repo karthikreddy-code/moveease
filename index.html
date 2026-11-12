@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveEase | Home Shifting Services</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="images/Dynamic Moving Truck Emblem1.png">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- NEW: hero fit-to-screen + testimonials + FAQ/CTA styles (must stay after style.css) -->
+    <link rel="stylesheet" href="new-sections.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="#home" class="brand">
+                <div class="brand-icon"><img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase Logo" style="width: 70px; height: 70px;"></div>
+                <div class="brand-text">
+                    <h2><span>MOVE</span>EASE</h2>
+                    <small>PACKING & MOVING SERVICES</small>
+                </div>
+            </a>
+
+            <nav class="navbar" id="navbar">
+                <div class="dropdown" id="homeDropdown">
+        <a href="index.html" class="nav-link active dropdown-toggle" aria-haspopup="true" aria-expanded="false" >
+          Home <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="index.html" class="active">Home – Premium</a>
+          <a href="eindex.html" class="nav-link">Home – Elite</a>
+        </div>
+      </div>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="login.html" class="nav-link">Dashboard</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" id="rtlMode" class="icon-btn direction-btn" aria-label="Toggle text direction" title="Switch to RTL">RTL</button>
+                <button type="button" class="icon-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle dark mode"><i class="bi bi-moon"></i></button>
+                <a href="login.html" class="book-btn">Login</a>
+            </div>
+
+            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- 
+        hero section
+-------------------------------->
+    <section class="hero" id="home">
+        <div class="hero-container">
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <span class="me-section-label">
+                
+               <span></span> Reliable Home Shifting Services
+            </span>
+
+            <h1>
+                Moving Made
+                <span>Easy & Stress-Free</span>
+            </h1>
+
+            <p>
+                From careful packing to safe delivery, MoveEase makes
+                your home or office relocation simple, secure, and hassle-free.
+                The crew packs every room in your home or office from top to bottom.
+                Help is provided only for specific rooms or designated delicate items.
+            </p>
+
+            <div class="hero-buttons"
+            style="margin-top: 50px;">
+                <a href="contact.html" class="hero-btn primary-btn">
+                    Book Your Move
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+
+                <a href="contact.html" class="hero-btn secondary-btn">
+                    Get a Free Quote
+                    <i class="bi bi-chat-dots"></i>
+                </a>
+            </div>
+
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <i class="bi bi-shield-check"></i>
+                    <span>Safe & Secure</span>
+                </div>
+
+                <div class="trust-item">
+                    <i class="bi bi-clock"></i>
+                    <span>On-Time Service</span>
+                </div>
+
+                <div class="trust-item">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Careful Packing</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="hero-visual">
+
+            <img
+                src="images/herobanner1.jpg"
+                alt="MoveEase home relocation truck carrying packed boxes"
+                class="hero-image" style="width: 100%; height: 700px; object-fit: cover;"
+            >
+
+            <div class="hero-floating-card">
+                <div class="floating-icon">
+                    <i class="bi bi-check-lg"></i>
+                </div>
+                <div>
+                    <strong>Moving Made Easy</strong>
+                    <span>Your trusted relocation partner</span>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+<!--  
+            about section
+                            -->
+   <section class="me-about" id="about">
+
+    <div class="me-about-container">
+
+        <!-- LEFT: IMAGE -->
+        <div class="me-about-image">
+
+            <div class="me-image-main">
+                <img
+                    src="images/homesection1.jpg"
+                    alt="Beautiful new home"
+                >
+            </div>
+
+            <div class="me-image-small">
+                <img
+                    src="images/Beautiful home interior.jpg"
+                    alt="Beautiful home interior"
+                >
+            </div>
+
+            <div class="me-image-label">
+                <span class="me-label-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+</svg></span>
+                <div>
+                    <strong>A fresh start</strong>
+                    <small>Made easier with MoveEase</small>
+                </div>
+            </div>
+
+            <div class="me-orange-circle"></div>
+        </div>
+
+
+        <!-- RIGHT: CONTENT -->
+        <div class="me-about-content">
+
+            <span class="me-section-label">
+                <span></span> WHO WE ARE
+            </span>
+
+            <h2>
+                Your Move.<br>
+                Our <span>Responsibility.</span>
+            </h2>
+
+            <p class="me-about-intro">
+                Moving isn't just about shifting belongings.
+                It's about starting a new chapter in life.
+            </p>
+
+            <p class="me-about-text">
+                At MoveEase, we make that journey simple, safe and stress-free.
+                From carefully packing your belongings to delivering them
+                to your new doorstep, we're committed to making every move
+                a smooth experience.
+            </p>
+
+            <div class="me-about-highlights">
+
+                <div class="me-highlight">
+                    <span class="me-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+</svg></span>
+                    <span>Professional packing and handling</span>
+                </div>
+
+                <div class="me-highlight">
+                    <span class="me-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+</svg></span>
+                    <span>Safe and reliable transportation</span>
+                </div>
+
+                <div class="me-highlight">
+                    <span class="me-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+</svg></span>
+                    <span>Convenient and flexible scheduling</span>
+                </div>
+
+                <div class="me-highlight">
+                    <span class="me-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+</svg></span>
+                    <span>Support throughout your move</span>
+                </div>
+
+            </div>
+
+            <div class="me-about-bottom">
+
+                <a href="contact.html" class="me-about-btn">
+                    Let's Plan Your Move
+                    <span>→</span>
+                </a>
+
+                <div class="me-contact-note">
+                    <span class="me-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+</svg></span>
+                    <div>
+                        <small>Have questions?</small>
+                        <strong>Talk to our team</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS STRIP -->
+    <div class="me-about-stats">
+
+        <div class="me-stat">
+            <span class="me-stat-number">01</span>
+            <div>
+                <strong>Easy Booking</strong>
+                <small>Simple moving arrangements</small>
+            </div>
+        </div>
+
+        <div class="me-stat">
+            <span class="me-stat-number">02</span>
+            <div>
+                <strong>Careful Handling</strong>
+                <small>Attention to every item</small>
+            </div>
+        </div>
+
+        <div class="me-stat">
+            <span class="me-stat-number">03</span>
+            <div>
+                <strong>Peace of Mind</strong>
+                <small>Support from start to finish</small>
+            </div>
+        </div>
+
+    </div>
+
+    </section>
+
+    <!--
+    our services section
+    -------------------------------->
+    <section class="me-services" id="services">
+        <div class="me-wrap">
+            <div class="me-head">
+                <span class="me-eyebrow"><span></span> WHAT WE DO</span>
+                <h2>Our <span>Services</span></h2>
+                <p>Everything you need for a smooth move, from packing the first box to unloading at your new doorstep.</p>
+            </div>
+
+            <div class="me-services-grid">
+                <article class="me-service-card">
+                    <div class="me-service-icon"><i class="bi bi-house-door"></i></div>
+                    <h3>Home Shifting</h3>
+                    <p>Complete household relocation for apartments and independent homes, handled with care.</p>
+                    <a href="contact.html" class="me-service-link">Get a quote <i class="bi bi-arrow-right"></i></a>
+                </article>
+
+                <article class="me-service-card">
+                    <div class="me-service-icon"><i class="bi bi-building"></i></div>
+                    <h3>Office Relocation</h3>
+                    <p>Move desks, systems and files with minimal downtime so your team gets back to work fast.</p>
+                    <a href="contact.html" class="me-service-link">Get a quote <i class="bi bi-arrow-right"></i></a>
+                </article>
+
+                <article class="me-service-card">
+                    <div class="me-service-icon"><i class="bi bi-box-seam"></i></div>
+                    <h3>Packing Services</h3>
+                    <p>Quality packing materials and trained packers to protect fragile and valuable items.</p>
+                    <a href="contact.html" class="me-service-link">Get a quote <i class="bi bi-arrow-right"></i></a>
+                </article>
+
+                <article class="me-service-card">
+                    <div class="me-service-icon"><i class="bi bi-boxes"></i></div>
+                    <h3>Loading &amp; Unloading</h3>
+                    <p>Skilled crew to load, secure and unload your belongings safely at both ends.</p>
+                    <a href="contact.html" class="me-service-link">Get a quote <i class="bi bi-arrow-right"></i></a>
+                </article>
+
+                <article class="me-service-card">
+                    <div class="me-service-icon"><i class="bi bi-truck"></i></div>
+                    <h3>Vehicle Transport</h3>
+                    <p>Safe transportation for your car or bike to your new city, on time and secured.</p>
+                    <a href="contact.html" class="me-service-link">Get a quote <i class="bi bi-arrow-right"></i></a>
+                </article>
+
+                <article class="me-service-card">
+                    <div class="me-service-icon"><i class="bi bi-shop"></i></div>
+                    <h3>Storage Services</h3>
+                    <p>Secure short and long term storage when your new place isn't ready yet.</p>
+                    <a href="contact.html" class="me-service-link">Get a quote <i class="bi bi-arrow-right"></i></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    why choose moveease section
+    -------------------------------->
+    <section class="me-why" id="why-us">
+        <div class="me-wrap">
+            <div class="me-head">
+                <span class="me-eyebrow"><span></span> WHY US</span>
+                <h2>Why Choose <span>MoveEase</span></h2>
+                <p>We treat your belongings like our own and keep you informed at every step of the move.</p>
+            </div>
+
+            <div class="me-why-grid">
+                <div class="me-why-card">
+                    <i class="bi bi-people"></i>
+                    <h3>Trained Professionals</h3>
+                    <p>Experienced packers and movers who know how to handle every kind of item.</p>
+                </div>
+
+                <div class="me-why-card">
+                    <i class="bi bi-shield-check"></i>
+                    <h3>Safe &amp; Secure Handling</h3>
+                    <p>Quality packing materials and careful loading to keep your belongings protected.</p>
+                </div>
+
+                <div class="me-why-card">
+                    <i class="bi bi-clock-history"></i>
+                    <h3>On-Time Delivery</h3>
+                    <p>We respect your schedule and aim to reach your new home exactly when promised.</p>
+                </div>
+
+                <div class="me-why-card">
+                    <i class="bi bi-receipt"></i>
+                    <h3>Transparent Pricing</h3>
+                    <p>Clear quotes with no hidden charges, so you know the cost before the move.</p>
+                </div>
+
+                <div class="me-why-card">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Pick a date and time that suits you, including weekends and short-notice moves.</p>
+                </div>
+
+                <div class="me-why-card">
+                    <i class="bi bi-headset"></i>
+                    <h3>Dedicated Support</h3>
+                    <p>A friendly team available before, during and after your move to answer questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    how it works section
+    -------------------------------->
+    <section class="me-process" id="process">
+        <div class="me-wrap">
+            <div class="me-head">
+                <span class="me-eyebrow"><span></span> SIMPLE PROCESS</span>
+                <h2>How It <span>Works</span></h2>
+                <p>Four easy steps take you from first enquiry to settling into your new place.</p>
+            </div>
+
+            <div class="me-steps">
+                <div class="me-step">
+                    <div class="me-step-icon">
+                        <i class="bi bi-chat-dots"></i>
+                        <span class="me-step-num">1</span>
+                    </div>
+                    <h3>Request a Quote</h3>
+                    <p>Tell us about your move and get a free, no-obligation estimate.</p>
+                </div>
+
+                <div class="me-step">
+                    <div class="me-step-icon">
+                        <i class="bi bi-calendar-check"></i>
+                        <span class="me-step-num">2</span>
+                    </div>
+                    <h3>Schedule Your Move</h3>
+                    <p>Choose a date and time that works best for you and confirm your booking.</p>
+                </div>
+
+                <div class="me-step">
+                    <div class="me-step-icon">
+                        <i class="bi bi-box-seam"></i>
+                        <span class="me-step-num">3</span>
+                    </div>
+                    <h3>Pack &amp; Transport</h3>
+                    <p>Our team packs, loads and safely transports your belongings.</p>
+                </div>
+
+                <div class="me-step">
+                    <div class="me-step-icon">
+                        <i class="bi bi-house-check"></i>
+                        <span class="me-step-num">4</span>
+                    </div>
+                    <h3>Deliver &amp; Settle In</h3>
+                    <p>We unload and arrange everything so you can start fresh, stress-free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    NEW: testimonials section (replaces pricing)
+    -------------------------------->
+    <section class="me-testimonials" id="testimonials">
+        <div class="me-wrap">
+            <div class="me-head">
+                <span class="me-eyebrow"><span></span> HAPPY CUSTOMERS</span>
+                <h2>What Our <span>Customers Say</span></h2>
+                <p>Families and businesses trust MoveEase to make their relocation smooth and stress-free.</p>
+            </div>
+
+            <div class="me-testi-grid">
+                <article class="me-testi-card">
+                    <div class="me-testi-quote"><i class="bi bi-quote"></i></div>
+                    <div class="me-testi-stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="me-testi-text">The team packed everything neatly and reached our new flat right on time. Not a single item was damaged. Highly recommended!</p>
+                    <div class="me-testi-user">
+                        <span class="me-testi-avatar">R</span>
+                        <div>
+                            <strong>Ravi Kumar</strong>
+                            <small>Home Shifting, Bengaluru</small>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="me-testi-card">
+                    <div class="me-testi-quote"><i class="bi bi-quote"></i></div>
+                    <div class="me-testi-stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="me-testi-text">We moved our whole office over a weekend and were back to work on Monday morning. Very professional and well organised.</p>
+                    <div class="me-testi-user">
+                        <span class="me-testi-avatar">P</span>
+                        <div>
+                            <strong>Priya Sharma</strong>
+                            <small>Office Relocation, Bengaluru</small>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="me-testi-card">
+                    <div class="me-testi-quote"><i class="bi bi-quote"></i></div>
+                    <div class="me-testi-stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                    </div>
+                    <p class="me-testi-text">Friendly staff, clear communication and careful handling of our furniture and fragile items. The whole move felt effortless.</p>
+                    <div class="me-testi-user">
+                        <span class="me-testi-avatar">A</span>
+                        <div>
+                            <strong>Arjun Reddy</strong>
+                            <small>Intercity Move, Hyderabad</small>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    NEW: FAQ + call-to-action section (replaces contact)
+    -------------------------------->
+    <section class="me-faq" id="faq">
+        <div class="me-wrap">
+            <div class="me-head">
+                <span class="me-eyebrow"><span></span> GOT QUESTIONS?</span>
+                <h2>Frequently Asked <span>Questions</span></h2>
+                <p>Quick answers to the things people ask us most before they move.</p>
+            </div>
+
+            <div class="me-faq-list">
+                <details class="me-faq-item" open>
+                    <summary>How early should I book my move? <i class="bi bi-chevron-down"></i></summary>
+                    <p>We recommend booking at least 5–7 days ahead, especially for weekends and month-end. Short-notice moves are possible depending on availability.</p>
+                </details>
+
+                <details class="me-faq-item">
+                    <summary>Are my belongings safe during the move? <i class="bi bi-chevron-down"></i></summary>
+                    <p>Yes. Our trained crew uses quality packing materials and secures every item carefully while loading, transporting and unloading.</p>
+                </details>
+
+                <details class="me-faq-item">
+                    <summary>How is the moving cost calculated? <i class="bi bi-chevron-down"></i></summary>
+                    <p>The quote depends on distance, volume of goods, floors and any extra services such as dismantling or storage. You get a clear estimate before the move with no hidden charges.</p>
+                </details>
+
+                <details class="me-faq-item">
+                    <summary>Do you provide packing materials? <i class="bi bi-chevron-down"></i></summary>
+                    <p>Yes, we bring boxes, bubble wrap, tape and protective covers, and our packers can pack everything for you.</p>
+                </details>
+
+                <details class="me-faq-item">
+                    <summary>Can you store my belongings if my new home isn't ready? <i class="bi bi-chevron-down"></i></summary>
+                    <p>Absolutely. We offer secure short and long term storage so you can move in whenever you are ready.</p>
+                </details>
+            </div>
+
+            <div class="me-cta">
+                <div>
+                    <h3>Ready to make your move <span>easier?</span></h3>
+                    <p>Get a free, no-obligation quote today and let our team take care of the heavy lifting.</p>
+                </div>
+                <div class="me-cta-actions">
+                    <a href="contact.html" class="me-cta-btn primary">Get a Free Quote <i class="bi bi-arrow-right"></i></a>
+                    <a href="tel:+919876543210" class="me-cta-btn ghost"><i class="bi bi-telephone"></i> +91 98765 43210</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-brand">
+                <a href="#home" class="brand">
+                    <div class="brand-icon"><img src="images/Dynamic Moving Truck Emblem1.png" alt="MoveEase Logo" style="width: 70px; height: 70px;"></div>
+                    <div class="brand-text">
+                        <h2><span>MOVE</span>EASE</h2>
+                        <small>PACKING & MOVING SERVICES</small>
+                    </div>
+                </a>
+                <p>We provide safe, reliable and cost-effective home shifting and packing solutions at your fingertips.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home"> Home</a></li>
+                    <li><a href="#about"> About Us</a></li>
+                    <li><a href="#services"> Services</a></li>
+                    <li><a href="#process"> How It Works</a></li>
+                    <li><a href="#pricing"> Pricing</a></li>
+                    <li><a href="#contact"> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#services"> Home Shifting</a></li>
+                    <li><a href="#services"> Office Relocation</a></li>
+                    <li><a href="#services"> Packing Services</a></li>
+                    <li><a href="#services"> Loading & Unloading</a></li>
+                    <li><a href="#services"> Vehicle Transport</a></li>
+                    <li><a href="#services"> Storage Services</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Customer Support</h3>
+                <ul>
+                    <li><a href="#contact"> FAQs</a></li>
+                    <li><a href="#contact"> Booking Support</a></li>
+                    <li><a href="#contact"> Moving Tips</a></li>
+                    <li><a href="#contact"> Cancellation Policy</a></li>
+                    <li><a href="#contact"> Payment Information</a></li>
+                    <li><a href="#contact"> Book a Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-list">
+                    <li><i class="bi bi-telephone-fill"></i><span>+91 98765 43210</span></li>
+                    <li><i class="bi bi-envelope-fill"></i><span>support@moveease.com</span></li>
+                    <li><i class="bi bi-geo-alt-fill"></i><span>Bengaluru, Karnataka</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+    <p>© 2026 MoveEase. All rights reserved.</p>
+    <p>Terms and Conditions</p>
+  </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
