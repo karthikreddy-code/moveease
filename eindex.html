@@ -285,7 +285,112 @@
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
         }
-    
+
+/* =========================================================
+   DARK MODE: HERO + CTA + WHY CHOOSE US (overlay added)
+========================================================= */
+
+/* ---------- HERO ---------- */
+.hero-grid { z-index: 2; }
+
+/* extra overlay layer (hidden in light mode, visible in dark mode) */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(243,107,33,.22), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+}
+body.dark-mode .hero::after { opacity: 1; }
+
+/* darker gradient over the image in dark mode */
+body.dark-mode .hero {
+    background:
+        linear-gradient(90deg, rgba(2,8,12,.97) 0%, rgba(2,8,12,.88) 50%, rgba(2,8,12,.62) 100%),
+        url("images/hero1.jpg") center / cover no-repeat, #02080c;
+}
+html[dir="rtl"] body.dark-mode .hero {
+    background:
+        linear-gradient(270deg, rgba(2,8,12,.97) 0%, rgba(2,8,12,.88) 50%, rgba(2,8,12,.62) 100%),
+        url("images/hero1.jpg") center / cover no-repeat, #02080c;
+}
+body.dark-mode .hero p { color: #b9c5d0; }
+body.dark-mode .hero .eyebrow,
+body.dark-mode .hero h1 em { color: #ff8a4c; }
+body.dark-mode .hero::before { border-color: rgba(232,184,120,.18); }
+body.dark-mode .btn-line { border-color: rgba(255,255,255,.28); }
+
+/* ---------- CTA SECTION ---------- */
+.me-home-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(243,107,33,.16), transparent 50%),
+        rgba(0,0,0,.28);
+}
+body.dark-mode .me-home-cta::after { opacity: 1; }
+
+body.dark-mode .me-home-cta { background: #050d13; }
+body.dark-mode .me-cta-decoration-one { background: rgba(243,107,33,.12); }
+body.dark-mode .me-cta-decoration-two { border-color: rgba(232,184,120,.15); }
+
+body.dark-mode .me-cta-content h2 { color: #ffffff; }
+body.dark-mode .me-cta-content h2 span { color: #ff8a4c; }
+body.dark-mode .me-cta-content > p { color: #a9b6c1; }
+body.dark-mode .me-cta-trust span { color: #b9c5d0; }
+
+body.dark-mode .me-cta-secondary { border-color: rgba(255,255,255,.22); }
+body.dark-mode .me-cta-primary:hover,
+body.dark-mode .me-cta-secondary:hover { background: var(--gold); color: #07131d; }
+
+/* right side visual */
+body.dark-mode .me-cta-circle {
+    background: #12202b;
+    box-shadow: 0 0 60px rgba(243,107,33,.18);
+}
+body.dark-mode .me-cta-circle::before { border-color: rgba(232,184,120,.3); }
+body.dark-mode .me-cta-floating-card {
+    background: #12202b;
+    border: 1px solid #25353f;
+    box-shadow: 0 12px 35px rgba(0,0,0,.5);
+}
+body.dark-mode .me-cta-floating-card > i { background: rgba(243,107,33,.18); }
+body.dark-mode .me-cta-floating-card strong { color: #ffffff; }
+body.dark-mode .me-cta-floating-card small { color: #a9b6c1; }
+body.dark-mode .me-cta-small-card { box-shadow: 0 12px 30px rgba(0,0,0,.5); }
+
+/* ---------- WHY CHOOSE US ---------- */
+body.dark-mode .me-why { background: #0d1a24; }
+body.dark-mode .me-why-heading h2 { color: #ffffff; }
+body.dark-mode .me-why-heading h2 span { color: #ff8a4c; }
+body.dark-mode .me-why-heading p { color: #a9b6c1; }
+body.dark-mode .me-why-card {
+    background: #12202b;
+    border-color: #25353f;
+}
+body.dark-mode .me-why-card:hover {
+    box-shadow: 0 18px 40px rgba(0,0,0,.5);
+    border-color: rgba(243,107,33,.45);
+}
+body.dark-mode .me-why-icon { background: rgba(243,107,33,.16); }
+body.dark-mode .me-why-card h3 { color: #ffffff; }
+body.dark-mode .me-why-card p { color: #a9b6c1; }
+body.dark-mode .me-why-bottom {
+    background: #050d13;
+    border: 1px solid #25353f;
+}
+body.dark-mode .me-why-btn:hover { background: var(--gold); color: #07131d; }
+
 /* ===== HEADER LIKE STITCHCRAFT: underline nav links, round buttons ===== */
 .nav-link { position: relative; padding: 8px 0; font-weight: 600; }
 .nav-link::after {
@@ -546,6 +651,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
     background: #fff2e9;
     font-family: 'DM Sans', sans-serif;
     overflow: hidden;
+    transition: background .3s ease;
 }
 
 .me-why-container {
@@ -858,6 +964,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
     background: #092638;
     font-family: 'DM Sans', sans-serif;
     isolation: isolate;
+    transition: background .3s ease;
 }
 
 .me-cta-container {

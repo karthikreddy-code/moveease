@@ -55,9 +55,10 @@
             padding:120px 0 110px; 
             color:#fff; 
             overflow:hidden;
+            height: 90vh;
                /* background:linear-gradient(90deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638;*/
          }
-        html[dir="rtl"] .hero { background:linear-gradient(270deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638; }
+        html[dir="rtl"] .hero { background:linear-gradient(270deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/pack1.jpg") center/cover no-repeat,#092638; }
         .ring { position:absolute; border:1px dashed rgba(255,154,92,.45); border-radius:50%; animation:spin 30s linear infinite; }
         .r1 { width:420px; height:420px; top:-150px; inset-inline-end:-100px; } .r2 { width:220px; height:220px; bottom:-80px; inset-inline-start:6%; animation-direction:reverse; }
         .hero .wrap { position:relative; }
@@ -70,7 +71,7 @@
         .hero-trust { display:flex; flex-wrap:wrap; gap:12px 26px; } .trust-item { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; } .trust-item i { color:#ff9a5c; font-size:19px; }
 
         /* 2. Services grid */
-        .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+        .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
         .svc { display:flex; flex-direction:column; padding:34px 30px; background:var(--surface); border:1px solid var(--border); border-radius:14px; transition:.35s; position:relative; overflow:hidden; }
         .svc::before { content:""; position:absolute; top:0; inset-inline:0; height:4px; background:var(--primary); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
         .svc:hover { transform:translateY(-10px); border-color:var(--primary); box-shadow:0 20px 44px var(--shadow); } .svc:hover::before { transform:scaleX(1); }
@@ -263,7 +264,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
 
         /* Pricing: centered, new-home photo, floating price chips */
         .hero.h-pricing { text-align:center; padding:130px 0 120px;
-            background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/Beautiful new home.jpg") center/cover no-repeat,#092638; }
+            background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/pack1.jpg") center/cover no-repeat,#092638; }
         html[dir="rtl"] .hero.h-pricing { background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/Beautiful new home.jpg") center/cover no-repeat,#092638; }
         .h-pricing .crumbs, .h-pricing .hero-buttons { justify-content:center; }
         .h-pricing h1, .h-pricing .lead { margin-inline:auto; }
@@ -295,6 +296,96 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
 
         @media (max-width:1000px) { .hg { grid-template-columns:1fr; } .gstack { display:none; } .hero.h-card { padding:90px 0 120px; } }
         @media (max-width:600px) { .hero.h-pricing { padding:90px 0 80px; } .pchip { min-width:100%; } .gbox { padding:26px 20px; } .hero.h-card { padding:70px 0 100px; } }
+        /* =========================================================
+   DARK MODE: PRICING HERO + CTA (with overlay)
+========================================================= */
+
+/* ---------- HERO ---------- */
+.ring { z-index: 1; }
+.hero .wrap { z-index: 2; }
+
+/* overlay layer (light mode lo hidden, dark mode lo visible) */
+.hero.h-pricing::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(243,107,33,.25), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.50));
+}
+body.dark-mode .hero.h-pricing::after { opacity: 1; }
+
+/* image meeda darker gradient */
+body.dark-mode .hero.h-pricing,
+html[dir="rtl"] body.dark-mode .hero.h-pricing {
+    background:
+        radial-gradient(circle at 50% 115%, rgba(243,107,33,.38), transparent 60%),
+        linear-gradient(rgba(3,10,15,.93), rgba(3,10,15,.96)),
+        url("images/pack1.jpg") center/cover no-repeat, #050d13;
+}
+body.dark-mode .hero .lead { color: #b9c5d0; }
+body.dark-mode .ring { border-color: rgba(255,154,92,.3); }
+
+/* price chips */
+body.dark-mode .pchip {
+    background: rgba(8,18,26,.6);
+    border-color: rgba(232,184,120,.28);
+}
+body.dark-mode .pchip small { color: #a9b6c1; }
+body.dark-mode .pchip b { color: #ff8a4c; }
+
+/* ---------- PRICING CTA (variables) ---------- */
+:root {
+    --pcta-bg: #092638;
+    --pcta-border: transparent;
+    --pcta-shadow: none;
+    --pcta-text: #c5d0d8;
+    --pcta-accent: #f36b21;
+    --pcta-outline: rgba(255,255,255,0.4);
+    --pcta-ring: rgba(243,107,33,0.5);
+    --pcta-circle-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    --pcta-chip-bg: #ffffff;
+    --pcta-chip-text: #092638;
+    --pcta-chip-border: transparent;
+}
+body.dark-mode {
+    --pcta-bg:
+        radial-gradient(circle at 12% 8%, rgba(243,107,33,.38), transparent 52%),
+        radial-gradient(circle at 92% 95%, rgba(232,184,120,.16), transparent 50%),
+        linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.50)),
+        linear-gradient(135deg, #2a1306 0%, #0b1a24 48%, #050d13 100%);
+    --pcta-border: rgba(243,107,33,.45);
+    --pcta-shadow: 0 24px 60px rgba(0,0,0,.65), 0 0 60px rgba(243,107,33,.18);
+    --pcta-text: #b3bfca;
+    --pcta-accent: #ff8a4c;
+    --pcta-outline: rgba(255,255,255,.3);
+    --pcta-ring: rgba(232,184,120,.4);
+    --pcta-circle-shadow: 0 0 60px rgba(243,107,33,.35);
+    --pcta-chip-bg: #12202b;
+    --pcta-chip-text: #ffffff;
+    --pcta-chip-border: #25353f;
+}
+/* ---------- HERO: image visible in dark mode ---------- */
+
+/* overlay: light ga (image kanipinchali) */
+.hero.h-pricing::after {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(243,107,33,.18), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.25));
+}
+
+/* gradient ni thaggincha, image clear ga kanipistundi */
+body.dark-mode .hero.h-pricing,
+html[dir="rtl"] body.dark-mode .hero.h-pricing {
+    background:
+        radial-gradient(circle at 50% 115%, rgba(243,107,33,.30), transparent 60%),
+        linear-gradient(rgba(3,10,15,.55), rgba(3,10,15,.72)),
+        url("images/pack1.jpg") center/cover no-repeat, #050d13;
+}
     </style>
 </head>
 
@@ -355,9 +446,9 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                     <p>These are starting prices for local moves. Your final quote depends on distance, volume and floors.</p>
                 </div>
                 <div class="plans">
-                    <article class="plan rv"><h3>Basic</h3><p class="for">Studio or 1 BHK</p><p class="price">Starting from<b>₹4,999</b></p><ul><li><i class="bi bi-check2"></i> Basic packing materials</li><li><i class="bi bi-check2"></i> Loading &amp; unloading</li><li><i class="bi bi-check2"></i> Local transportation</li><li><i class="bi bi-check2"></i> Phone support</li></ul><a href="contact.html" class="hero-btn outline-btn">Choose Basic</a></article>
-                    <article class="plan rv"><span class="tag">Most Popular</span><h3>Standard</h3><p class="for">2 BHK home</p><p class="price">Starting from<b>₹8,999</b></p><ul><li><i class="bi bi-check2"></i> Premium packing materials</li><li><i class="bi bi-check2"></i> Furniture dismantling &amp; setup</li><li><i class="bi bi-check2"></i> Loading &amp; unloading</li><li><i class="bi bi-check2"></i> Local or intercity transport</li><li><i class="bi bi-check2"></i> Priority support</li></ul><a href="contact.html" class="hero-btn outline-btn">Choose Standard</a></article>
-                    <article class="plan rv"><h3>Premium</h3><p class="for">3 BHK and larger</p><p class="price">Starting from<b>₹14,999</b></p><ul><li><i class="bi bi-check2"></i> Full packing &amp; unpacking</li><li><i class="bi bi-check2"></i> Special item handling</li><li><i class="bi bi-check2"></i> Furniture dismantling &amp; setup</li><li><i class="bi bi-check2"></i> Intercity transport</li><li><i class="bi bi-check2"></i> Dedicated move manager</li></ul><a href="contact.html" class="hero-btn outline-btn">Choose Premium</a></article>
+                    <article class="plan rv" style="border: 1px solid var(--primary);"><h3>Basic</h3><p class="for">Studio or 1 BHK</p><p class="price">Starting from<b>₹4,999</b></p><ul><li><i class="bi bi-check2"></i> Basic packing materials</li><li><i class="bi bi-check2"></i> Loading &amp; unloading</li><li><i class="bi bi-check2"></i> Local transportation</li><li><i class="bi bi-check2"></i> Phone support</li></ul><a href="contact.html" class="hero-btn outline-btn">Choose Basic</a></article>
+                    <article class="plan rv" style="border: 1px solid var(--primary);"><span class="tag">Most Popular</span><h3>Standard</h3><p class="for">2 BHK home</p><p class="price">Starting from<b>₹8,999</b></p><ul><li><i class="bi bi-check2"></i> Premium packing materials</li><li><i class="bi bi-check2"></i> Furniture dismantling &amp; setup</li><li><i class="bi bi-check2"></i> Loading &amp; unloading</li><li><i class="bi bi-check2"></i> Local or intercity transport</li><li><i class="bi bi-check2"></i> Priority support</li></ul><a href="contact.html" class="hero-btn outline-btn">Choose Standard</a></article>
+                    <article class="plan rv" style="border: 1px solid var(--primary);"><h3>Premium</h3><p class="for">3 BHK and larger</p><p class="price">Starting from<b>₹14,999</b></p><ul><li><i class="bi bi-check2"></i> Full packing &amp; unpacking</li><li><i class="bi bi-check2"></i> Special item handling</li><li><i class="bi bi-check2"></i> Furniture dismantling &amp; setup</li><li><i class="bi bi-check2"></i> Intercity transport</li><li><i class="bi bi-check2"></i> Dedicated move manager</li></ul><a href="contact.html" class="hero-btn outline-btn">Choose Premium</a></article>
                 </div>
             </div>
         </section>

@@ -37,7 +37,7 @@
         .header-actions { display:flex; align-items:center; gap:10px; }
         .icon-btn { min-width:42px; height:42px; padding:0 10px; border:1px solid var(--primary); border-radius:10px; background:var(--surface); color:var(--heading); font:700 13px "DM Sans",Arial,sans-serif; cursor:pointer; transition:.3s; }
         .icon-btn:hover { background:var(--primary-soft); }
-        .book-btn { padding:14px 24px; background:var(--primary ); color:var(--btn-text); border-radius:10px; font-size:14px; font-weight:700; white-space:nowrap; transition:.3s; } .book-btn:hover { background:var(--primary); color:#fff; }
+        .book-btn { padding:14px 24px; background:var(--primary ); color:var(--btn-text); border-radius:10px; font-size:14px; font-weight:700; white-space:nowrap; transition:.3s; } .book-btn:hover { background:var(--primary); color:#fff;  border: 1px solid var(--navy);}
         .menu-toggle { display:none; border:none; background:transparent; font-size:28px; color:var(--heading); cursor:pointer; }
 
         /* Buttons + labels */
@@ -182,6 +182,84 @@
             .cover { padding:26px 20px; } .cta-card { padding:34px 24px; } .badge { inset-inline-start:8px; } .fab { width:48px; height:48px; font-size:21px; }
         }
         @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
+        /* =========================================================
+   DARK MODE: SERVICES HERO + CTA (with overlay)
+========================================================= */
+
+/* ---------- HERO ---------- */
+.ring { z-index: 1; }
+.hero .wrap { z-index: 2; }
+
+/* extra overlay layer (light mode lo hidden, dark mode lo visible) */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(243,107,33,.22), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+}
+body.dark-mode .hero::after { opacity: 1; }
+
+/* image meeda darker gradient */
+body.dark-mode .hero {
+    background:
+        linear-gradient(90deg, rgba(3,10,15,.97), rgba(3,10,15,.88) 55%, rgba(3,10,15,.62)),
+        url("images/videoframe_1737.png") center/cover no-repeat, #050d13;
+}
+html[dir="rtl"] body.dark-mode .hero {
+    background:
+        linear-gradient(270deg, rgba(3,10,15,.97), rgba(3,10,15,.88) 55%, rgba(3,10,15,.62)),
+        url("images/videoframe_1737.png") center/cover no-repeat, #050d13;
+}
+body.dark-mode .hero .lead { color: #b9c5d0; }
+body.dark-mode .ring { border-color: rgba(255,154,92,.3); }
+
+/* ---------- CTA SECTION ---------- */
+.me-service-cta { transition: background .4s ease; }
+.me-service-cta-container { transition: background .4s ease, box-shadow .4s ease; }
+
+/* outer strip: white lekunda page dark bg ki match */
+body.dark-mode .me-service-cta { background: var(--bg); }
+
+/* card: dark overlay + orange glow layers */
+body.dark-mode .me-service-cta-container {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(243,107,33,.20), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        #0b1a24;
+    border: 1px solid #25353f;
+    box-shadow: 0 24px 50px rgba(0,0,0,.55);
+}
+body.dark-mode .me-service-cta-container::before { border-color: rgba(243,107,33,.2); }
+body.dark-mode .me-service-cta-container::after  { border-color: rgba(232,184,120,.15); }
+
+/* text */
+body.dark-mode .me-service-cta h2 { color: #ffffff; }
+body.dark-mode .me-service-cta h2 span { color: #ff8a4c; }
+body.dark-mode .me-service-cta-content > p { color: #a9b6c1; }
+
+/* buttons */
+body.dark-mode .me-service-cta-secondary { border-color: rgba(255,255,255,.25); }
+body.dark-mode .me-service-cta-primary:hover,
+body.dark-mode .me-service-cta-secondary:hover { background: #e8b878; color: #07131d; }
+
+/* right visual */
+body.dark-mode .me-service-cta-visual-box {
+    background: #12202b;
+    box-shadow: 0 0 60px rgba(243,107,33,.2);
+}
+body.dark-mode .me-service-cta-floating {
+    background: #12202b;
+    border: 1px solid #25353f;
+    box-shadow: 0 12px 30px rgba(0,0,0,.5);
+}
+body.dark-mode .me-service-cta-floating strong { color: #ffffff; }
+body.dark-mode .me-service-cta-floating small { color: #a9b6c1; }
     
 /* ===== HEADER LIKE STITCHCRAFT: underline nav links, round buttons ===== */
 .nav-link { position: relative; padding: 8px 0; font-weight: 600; }
@@ -201,6 +279,23 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
 
 @media (max-width: 850px) { .nav-link::after { display: none; } }
 @media (max-width: 600px) { .icon-btn { min-width: 34px; height: 36px; } .book-btn { padding: 10px 14px; } }
+/* ---------- HERO: image visible in dark mode ---------- */
+
+/* overlay: light ga (image kanipinchali) */
+.hero.h-pricing::after {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(243,107,33,.18), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.25));
+}
+
+/* gradient ni thaggincha, image clear ga kanipistundi */
+body.dark-mode .hero.h-pricing,
+html[dir="rtl"] body.dark-mode .hero.h-pricing {
+    background:
+        radial-gradient(circle at 50% 115%, rgba(243,107,33,.30), transparent 60%),
+        linear-gradient(rgba(3,10,15,.55), rgba(3,10,15,.72)),
+        url("images/pack1.jpg") center/cover no-repeat, #050d13;
+}
         </style>
 </head>
 
@@ -265,38 +360,38 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                     <article class="svc rv"><i class="bi bi-house-door"></i><h3>Home Shifting</h3><p>Complete household relocation for apartments, independent houses and villas, handled by one dedicated crew.</p><ul><li><i class="bi bi-check2"></i> 1 BHK to villa moves</li><li><i class="bi bi-check2"></i> Furniture dismantling and setup</li><li><i class="bi bi-check2"></i> Local and intercity routes</li></ul>
                         <div>
                         <a href="contact.html" class="more">Get a quote <i class="bi bi-arrow-right"></i></a>
-                       <button class="book-btn" style="margin-left: 60px;"><a href="home-shifting.html" >Learn More</a></button>
+                       <button class="book-btn" style="margin-left: 60px; border: 1px solid black;"><a href="home-shifting.html" >Learn More</a></button>
                         </div>
                     </article>
                     <article class="svc rv"><i class="bi bi-building"></i><h3>Office Relocation</h3><p>Move desks, systems, files and equipment with minimal downtime so your team is back to work quickly.</p><ul><li><i class="bi bi-check2"></i> Weekend and after-hours moves</li><li><i class="bi bi-check2"></i> IT equipment care</li><li><i class="bi bi-check2"></i> Labelled desk-by-desk setup</li></ul>
                         <div>
                         <a href="contact.html" class="more">Get a quote <i class="bi bi-arrow-right"></i></a>
-                        <button class="book-btn" style="margin-left: 60px;"><a href="office-relocation.html">Learn More</a></button>
+                        <button class="book-btn" style="margin-left: 60px; border: 1px solid black;"><a href="office-relocation.html">Learn More</a></button>
                         </div>
                     </article>
                     <article class="svc rv"><i class="bi bi-box-seam"></i><h3>Packing Services</h3><p>Professional packing with quality materials so every item travels safely, from crockery to wardrobes.</p><ul><li><i class="bi bi-check2"></i> Bubble wrap and corner guards</li><li><i class="bi bi-check2"></i> Room-wise labelled boxes</li><li><i class="bi bi-check2"></i> Full unpacking available</li></ul>
                         <div>
                         <a href="contact.html" class="more">Get a quote <i class="bi bi-arrow-right"></i></a>
-                        <button class="book-btn" style="margin-left: 60px;"><a href="packing-services.html">Learn More</a></button>
+                        <button class="book-btn" style="margin-left: 60px; border: 1px solid black;"><a href="packing-services.html">Learn More</a></button>
                         </div>
                     </article>
                     <article class="svc rv"><i class="bi bi-boxes"></i><h3>Loading &amp; Unloading</h3><p>Trained hands lift, secure and place heavy furniture and appliances without scratches or strain.</p><ul><li><i class="bi bi-check2"></i> Safe handling of heavy items</li><li><i class="bi bi-check2"></i> Careful stairs and lift moves</li><li><i class="bi bi-check2"></i> Items placed room by room</li></ul>
                         <div>
                         <a href="contact.html" class="more">Get a quote <i class="bi bi-arrow-right"></i></a>
-                        <button class="book-btn" style="margin-left: 60px;"><a href="loading-unloading.html">Learn More</a></button>
+                        <button class="book-btn" style="margin-left: 60px; border: 1px solid black;"><a href="loading-unloading.html">Learn More</a></button>
                         </div>
                     </article>
                          
                     <article class="svc rv"><i class="bi bi-car-front"></i><h3>Vehicle Transport</h3><p>Door-to-door car and bike transport so your vehicle reaches your new city when you do.</p><ul><li><i class="bi bi-check2"></i> Covered, secured carriers</li><li><i class="bi bi-check2"></i> Pickup and delivery at your door</li><li><i class="bi bi-check2"></i> Condition check at both ends</li></ul>
                         <div>
                         <a href="contact.html" class="more">Get a quote <i class="bi bi-arrow-right"></i></a>
-                        <button class="book-btn" style="margin-left: 60px;"><a href="vehicle-transport.html">Learn More</a></button>
+                        <button class="book-btn" style="margin-left: 60px; border: 1px solid black;"><a href="vehicle-transport.html">Learn More</a></button>
                         </div>
                     </article>
                     <article class="svc rv"><i class="bi bi-building-lock"></i><h3>Storage Services</h3><p>Clean, secure short and long-term storage for when your new place is not ready yet.</p><ul><li><i class="bi bi-check2"></i> Flexible monthly plans</li><li><i class="bi bi-check2"></i> Dry, pest-controlled space</li><li><i class="bi bi-check2"></i> Easy access when you need it</li></ul>
                         <div>
                         <a href="contact.html" class="more">Get a quote <i class="bi bi-arrow-right"></i></a>
-                        <button class="book-btn" style="margin-left: 60px;"><a href="storage-services.html">Learn More</a></button>
+                        <button class="book-btn" style="margin-left: 60px; border: 1px solid black;"><a href="storage-services.html">Learn More</a></button>
                         </div>
                     </article>
                 </div>

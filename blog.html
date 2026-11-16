@@ -233,6 +233,38 @@
             .cover { padding:26px 20px; } .cta-card { padding:34px 24px; } .badge { inset-inline-start:8px; } .fab { width:48px; height:48px; font-size:21px; }
         }
         @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
+        /* ---------- BLOG CTA variables (light) ---------- */
+:root {
+    --bcta-bg: #092638;
+    --bcta-border: transparent;
+    --bcta-shadow: none;
+    --bcta-text: #c5d0d8;
+    --bcta-accent: #f36b21;
+    --bcta-outline: rgba(255,255,255,0.4);
+    --bcta-ring: rgba(255,154,92,0.5);
+    --bcta-circle-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    --bcta-chip-bg: #ffffff;
+    --bcta-chip-text: #092638;
+    --bcta-chip-border: transparent;
+}
+
+/* ---------- BLOG CTA variables (dark) + overlay ---------- */
+body.dark-mode {
+    --bcta-bg:
+        radial-gradient(circle at 15% 10%, rgba(243,107,33,.22), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        #0b1a24;
+    --bcta-border: #25353f;
+    --bcta-shadow: 0 24px 50px rgba(0,0,0,.55);
+    --bcta-text: #a9b6c1;
+    --bcta-accent: #ff8a4c;
+    --bcta-outline: rgba(255,255,255,.25);
+    --bcta-ring: rgba(232,184,120,.35);
+    --bcta-circle-shadow: 0 0 60px rgba(243,107,33,.35);
+    --bcta-chip-bg: #12202b;
+    --bcta-chip-text: #ffffff;
+    --bcta-chip-border: #25353f;
+}
     
 /* ===== HEADER LIKE STITCHCRAFT: underline nav links, round buttons ===== */
 .nav-link { position: relative; padding: 8px 0; font-weight: 600; }
@@ -440,172 +472,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
             </div>
         </section>
 
-        <!-- 6. CTA -->
-        <!-- BLOG CTA SECTION -->
-<section style="
-    padding: 80px 5%;
-    background: var(--bg);
-">
-    <div style="
-        max-width: 1250px;
-        margin: auto;
-        padding: 60px 7%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 40px;
-        flex-wrap: wrap;
-        overflow: hidden;
-        border-radius: 25px;
-        background: #092638;
-        color: #ffffff;
-    ">
-
-        <!-- CTA CONTENT -->
-        <div style="flex: 1; min-width: 280px;">
-
-            <span class="eyebrow">
-                READY FOR A SMOOTHER MOVE?
-            </span>
-
-            <h2 style="
-                max-width: 600px;
-                margin: 0 0 20px;
-                color: #ffffff;
-                font-size: clamp(32px, 4vw, 48px);
-                line-height: 1.2;
-                font-weight: 800;
-            ">
-                Turn Moving Tips Into
-                <span style="color:#f36b21;">A Stress-Free Move.</span>
-            </h2>
-
-            <p style="
-                max-width: 550px;
-                margin-bottom: 28px;
-                color: #c5d0d8;
-                font-size: 15px;
-                line-height: 1.9;
-            ">
-                Enjoyed our moving guides? Let MoveEase take care
-                of your next relocation with professional packing,
-                careful handling and reliable moving support.
-            </p>
-
-            <div style="
-                display: flex;
-                flex-wrap: wrap;
-                gap: 14px;
-            ">
-                <a href="contact.html" style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 15px 22px;
-                    border-radius: 9px;
-                    background: #f36b21;
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-size: 14px;
-                    font-weight: 700;
-                ">
-                    Get a Free Quote
-                    <i class="bi bi-arrow-right"></i>
-                </a>
-
-                <a href="services.html" style="
-                    display: inline-flex;
-                    align-items: center;
-                    padding: 15px 22px;
-                    border: 1px solid rgba(255,255,255,0.4);
-                    border-radius: 9px;
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-size: 14px;
-                    font-weight: 700;
-                ">
-                    Explore Our Services
-                </a>
-            </div>
-        </div>
-
-        <!-- CTA VISUAL -->
-        <div style="
-            flex: 0 1 320px;
-            min-width: 250px;
-            min-height: 280px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        ">
-
-            <div style="
-                position: absolute;
-                width: 250px;
-                height: 250px;
-                border: 2px dashed rgba(255,154,92,0.5);
-                border-radius: 50%;
-            "></div>
-
-            <div style="
-                position: relative;
-                z-index: 1;
-                width: 165px;
-                height: 165px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                background: #f36b21;
-                color: #ffffff;
-                font-size: 75px;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            ">
-                <i class="bi bi-truck-front-fill"></i>
-            </div>
-
-            <div style="
-                position: absolute;
-                top: 20px;
-                right: 0;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: 13px 17px;
-                border-radius: 12px;
-                background: #ffffff;
-                color: #092638;
-                font-size: 13px;
-                font-weight: 700;
-                box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-            ">
-                <i class="bi bi-box-seam" style="color:#f36b21;font-size:21px;"></i>
-                Smart Packing
-            </div>
-
-            <div style="
-                position: absolute;
-                bottom: 20px;
-                left: 0;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: 13px 17px;
-                border-radius: 12px;
-                background: #ffffff;
-                color: #092638;
-                font-size: 13px;
-                font-weight: 700;
-                box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-            ">
-                <i class="bi bi-shield-check" style="color:#f36b21;font-size:21px;"></i>
-                Safe Moving
-            </div>
-
-        </div>
-    </div>
-</section>
+       
     </main>
     <footer class="footer" id="footer">
         <div class="footer-container">

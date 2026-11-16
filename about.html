@@ -507,6 +507,44 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
     color: #092638;
     transform: translateY(-3px);
 }
+/* ---------- DARK MODE: ABOUT CTA (with overlay) ---------- */
+.about-final-cta,
+.about-final-cta-inner {
+    transition: background .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+
+/* outer section: white strip lekunda page dark bg ki match avtundi */
+body.dark-mode .about-final-cta {
+    background: var(--bg);
+}
+
+/* card: dark overlay + orange glow layers */
+body.dark-mode .about-final-cta-inner {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(243,107,33,.20), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        #0b1a24;
+    border: 1px solid #25353f;
+    box-shadow: 0 24px 50px rgba(0,0,0,.55);
+}
+
+/* decorative rings */
+body.dark-mode .about-final-cta-inner::before { border-color: rgba(243,107,33,.16); }
+body.dark-mode .about-final-cta-inner::after  { border-color: rgba(232,184,120,.10); }
+
+/* text */
+body.dark-mode .about-final-cta h2 { color: #ffffff; }
+body.dark-mode .about-final-cta h2 span { color: #ff8a4c; }
+body.dark-mode .about-final-cta-inner > p { color: #a9b6c1; }
+body.dark-mode .about-final-divider { background: rgba(232,184,120,.22); }
+body.dark-mode .about-final-message strong { color: #ffffff; }
+body.dark-mode .about-final-message span { color: #a9b6c1; }
+
+/* button hover */
+body.dark-mode .about-final-button:hover {
+    background: #e8b878;
+    color: #07131d;
+}
 
 /* Responsive */
 

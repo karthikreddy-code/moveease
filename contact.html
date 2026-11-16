@@ -51,8 +51,8 @@
 
         /* 1. Hero with full background image */
         .hero { position:relative; padding:120px 0 110px; color:#fff; overflow:hidden;
-                background:linear-gradient(90deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638; }
-        html[dir="rtl"] .hero { background:linear-gradient(270deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638; }
+                background:linear-gradient(90deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/cont1.jpg") center/cover no-repeat,#092638; }
+        html[dir="rtl"] .hero { background:linear-gradient(270deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/cont1.jpg") center/cover no-repeat,#092638; }
         .ring { position:absolute; border:1px dashed rgba(255,154,92,.45); border-radius:50%; animation:spin 30s linear infinite; }
         .r1 { width:420px; height:420px; top:-150px; inset-inline-end:-100px; } .r2 { width:220px; height:220px; bottom:-80px; inset-inline-start:6%; animation-direction:reverse; }
         .hero .wrap { position:relative; }
@@ -258,8 +258,8 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
 
         /* Pricing: centered, new-home photo, floating price chips */
         .hero.h-pricing { text-align:center; padding:130px 0 120px;
-            background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/Beautiful new home.jpg") center/cover no-repeat,#092638; }
-        html[dir="rtl"] .hero.h-pricing { background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/Beautiful new home.jpg") center/cover no-repeat,#092638; }
+            background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/cont1.jpg") center/cover no-repeat,#092638; }
+        html[dir="rtl"] .hero.h-pricing { background:radial-gradient(circle at 50% 115%,rgba(243,107,33,.5),transparent 60%),linear-gradient(rgba(9,38,56,.88),rgba(9,38,56,.9)),url("images/cont1.jpg") center/cover no-repeat,#092638; }
         .h-pricing .crumbs, .h-pricing .hero-buttons { justify-content:center; }
         .h-pricing h1, .h-pricing .lead { margin-inline:auto; }
         .h-pricing .eyebrow::after { content:""; width:30px; height:2px; background:#ff9a5c; }
@@ -278,7 +278,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
         .gcard small { display:block; font-size:12px; color:#ffc9a3; } .gcard b { font-size:16px; line-height:1.4; }
 
         /* Contact: glass contact card + curved bottom edge */
-        .hero.h-card { padding:120px 0 150px; background:linear-gradient(0deg,rgba(9,38,56,.97) 5%,rgba(9,38,56,.6)),url("images/Beautiful new home.jpg") center 30%/cover no-repeat,#092638; }
+        .hero.h-card { padding:120px 0 150px; background:linear-gradient(0deg,rgba(9,38,56,.97) 5%,rgba(9,38,56,.6)),url("images/cont1.jpg") center 30%/cover no-repeat,#092638; }
         .hero.h-card::after { content:""; position:absolute; bottom:-1px; inset-inline:0; height:70px; background:var(--bg); clip-path:ellipse(58% 100% at 50% 100%); }
         .gbox { padding:34px 30px; border:1px solid rgba(255,255,255,.25); border-radius:20px; background:rgba(255,255,255,.1); backdrop-filter:blur(10px); box-shadow:0 24px 50px rgba(0,0,0,.35); animation:up .9s .3s both; }
         .gbox h3 { font-size:26px; } .gbox > p { color:#c4d0da; margin:4px 0 20px; }
@@ -289,6 +289,78 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
 
         @media (max-width:1000px) { .hg { grid-template-columns:1fr; } .gstack { display:none; } .hero.h-card { padding:90px 0 120px; } }
         @media (max-width:600px) { .hero.h-pricing { padding:90px 0 80px; } .pchip { min-width:100%; } .gbox { padding:26px 20px; } .hero.h-card { padding:70px 0 100px; } }
+        /* =========================================================
+   DARK MODE: CONTACT HERO + CTA (with overlay)
+========================================================= */
+
+/* ---------- HERO ---------- */
+.ring { z-index: 1; }
+.hero .wrap { z-index: 2; }
+.hero.h-card::after { z-index: 3; } /* curved edge paina undali */
+
+/* overlay layer: ::before (because ::after is the curved edge) */
+.hero.h-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(243,107,33,.18), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.25));
+}
+body.dark-mode .hero.h-card::before { opacity: 1; }
+
+/* dark gradient: image kanipinchela */
+body.dark-mode .hero.h-card,
+html[dir="rtl"] body.dark-mode .hero.h-card {
+    background:
+        linear-gradient(0deg, rgba(3,10,15,.88) 5%, rgba(3,10,15,.50)),
+        url("images/cont1.jpg") center 30%/cover no-repeat, #050d13;
+}
+body.dark-mode .hero .lead { color: #b9c5d0; }
+
+/* glass box */
+body.dark-mode .gbox {
+    background: rgba(8,18,26,.55);
+    border-color: rgba(232,184,120,.25);
+    box-shadow: 0 24px 50px rgba(0,0,0,.6);
+}
+body.dark-mode .gbox > p { color: #a9b6c1; }
+
+/* ---------- CONTACT CTA (variables) ---------- */
+:root {
+    --ccta-bg: #092638;
+    --ccta-border: transparent;
+    --ccta-shadow: none;
+    --ccta-text: #c5d0d8;
+    --ccta-accent: #f36b21;
+    --ccta-outline: rgba(255,255,255,0.4);
+    --ccta-ring: rgba(243,107,33,0.5);
+    --ccta-circle-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    --ccta-chip-bg: #ffffff;
+    --ccta-chip-text: #092638;
+    --ccta-chip-border: transparent;
+}
+body.dark-mode {
+    --ccta-bg:
+        radial-gradient(circle at 12% 8%, rgba(243,107,33,.38), transparent 52%),
+        radial-gradient(circle at 92% 95%, rgba(232,184,120,.16), transparent 50%),
+        linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.50)),
+        linear-gradient(135deg, #2a1306 0%, #0b1a24 48%, #050d13 100%);
+    --ccta-border: rgba(243,107,33,.45);
+    --ccta-shadow: 0 24px 60px rgba(0,0,0,.65), 0 0 60px rgba(243,107,33,.18);
+    --ccta-text: #b3bfca;
+    --ccta-accent: #ff8a4c;
+    --ccta-outline: rgba(255,255,255,.3);
+    --ccta-ring: rgba(232,184,120,.4);
+    --ccta-circle-shadow: 0 0 60px rgba(243,107,33,.35);
+    --ccta-chip-bg: #12202b;
+    --ccta-chip-text: #ffffff;
+    --ccta-chip-border: #25353f;
+}
     </style>
 </head>
 
@@ -431,7 +503,9 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
         flex-wrap: wrap;
         gap: 40px;
         border-radius: 25px;
-        background: #092638;
+        background: var(--ccta-bg);
+        border: 1px solid var(--ccta-border);
+        box-shadow: var(--ccta-shadow);
         color: #fff;
         position: relative;
         overflow: hidden;
@@ -458,13 +532,13 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                 font-weight: 800;
             ">
                 Let's Make Your
-                <span style="color:#f36b21;">Next Move Easy.</span>
+                <span style="color: var(--ccta-accent);">Next Move Easy.</span>
             </h2>
 
             <p style="
                 max-width: 550px;
                 margin-bottom: 28px;
-                color: #c5d0d8;
+                color: var(--ccta-text);
                 font-size: 15px;
                 line-height: 1.9;
             ">
@@ -501,7 +575,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                     justify-content: center;
                     gap: 10px;
                     padding: 15px 24px;
-                    border: 1px solid rgba(255,255,255,0.4);
+                    border: 1px solid var(--ccta-outline);
                     border-radius: 9px;
                     color: #ffffff;
                     text-decoration: none;
@@ -519,7 +593,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                 flex-wrap: wrap;
                 gap: 22px;
                 margin-top: 28px;
-                color: #c5d0d8;
+                color: var(--ccta-text);
                 font-size: 13px;
             ">
                 <span>
@@ -549,7 +623,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                 position: absolute;
                 width: 250px;
                 height: 250px;
-                border: 2px dashed rgba(243,107,33,0.5);
+                border: 2px dashed var(--ccta-ring);
                 border-radius: 50%;
             "></div>
 
@@ -563,7 +637,7 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                 background: #f36b21;
                 color: #ffffff;
                 font-size: 72px;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+                box-shadow: var(--ccta-circle-shadow);
                 position: relative;
                 z-index: 1;
             ">
@@ -579,8 +653,9 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                 align-items: center;
                 gap: 10px;
                 border-radius: 12px;
-                background: #ffffff;
-                color: #092638;
+                background: var(--ccta-chip-bg);
+                color: var(--ccta-chip-text);
+                border: 1px solid var(--ccta-chip-border);
                 font-size: 13px;
                 font-weight: 700;
                 box-shadow: 0 12px 30px rgba(0,0,0,0.2);
@@ -598,8 +673,9 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
                 align-items: center;
                 gap: 10px;
                 border-radius: 12px;
-                background: #ffffff;
-                color: #092638;
+                background: var(--ccta-chip-bg);
+                color: var(--ccta-chip-text);
+                border: 1px solid var(--ccta-chip-border);
                 font-size: 13px;
                 font-weight: 700;
                 box-shadow: 0 12px 30px rgba(0,0,0,0.2);

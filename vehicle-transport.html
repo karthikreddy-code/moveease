@@ -52,7 +52,7 @@
         .head p, .lead { color:var(--muted); font-size:16px; line-height:1.8; }
 
         /* 1. Hero with full background image */
-        .hero { position:relative; padding:120px 0 110px; color:#fff; overflow:hidden;
+        .hero { position:relative; padding:120px 0 110px; color:#fff; overflow:hidden; height: 90vh;
                 background:linear-gradient(90deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/Moving\ services\ built\ around\ your\ home.webp") center/cover no-repeat,#092638; }
         html[dir="rtl"] .hero { background:linear-gradient(270deg,rgba(9,38,56,.95),rgba(9,38,56,.74) 55%,rgba(9,38,56,.35)),url("images/heroimg.webp") center/cover no-repeat,#092638; }
         .ring { position:absolute; border:1px dashed rgba(255,154,92,.45); border-radius:50%; animation:spin 30s linear infinite; }
@@ -223,6 +223,91 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
         .faq-grid { margin-bottom:70px; }
         @media (max-width:1000px) { .hg { grid-template-columns:1fr; } .pbox { grid-template-columns:1fr; } .rel { grid-template-columns:repeat(2,1fr); } }
         @media (max-width:600px) { .rel { grid-template-columns:1fr; } .gbox { padding:24px 20px; } }
+        /* =========================================================
+   DARK MODE: PACKING SERVICES HERO + CTA (with overlay)
+========================================================= */
+
+/* ---------- HERO ---------- */
+.ring { z-index: 1; }
+.hero .wrap { z-index: 2; }
+
+/* overlay layer (light mode lo hidden, dark mode lo visible) */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(243,107,33,.22), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+}
+body.dark-mode .hero::after { opacity: 1; }
+
+/* image meeda darker gradient */
+body.dark-mode .hero.h-packing {
+    background:
+        linear-gradient(90deg, rgba(3,10,15,.97), rgba(70,28,6,.72)),
+        url("images/h1.jpg") center/cover no-repeat, #050d13;
+}
+html[dir="rtl"] body.dark-mode .hero.h-packing {
+    background:
+        linear-gradient(270deg, rgba(3,10,15,.97), rgba(70,28,6,.72)),
+        url("images/h1.jpg") center/cover no-repeat, #050d13;
+}
+body.dark-mode .hero .lead { color: #b9c5d0; }
+body.dark-mode .ring { border-color: rgba(255,154,92,.3); }
+
+/* glass box on the right */
+body.dark-mode .gbox {
+    background: rgba(8,18,26,.55);
+    border-color: rgba(232,184,120,.25);
+    box-shadow: 0 24px 50px rgba(0,0,0,.6);
+}
+body.dark-mode .gbox > p { color: #a9b6c1; }
+
+/* ---------- CTA ---------- */
+.cta-card { transition: background .4s ease, box-shadow .4s ease; }
+.cta-card > * { position: relative; z-index: 1; }
+
+/* overlay layer */
+.cta-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(243,107,33,.22), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+}
+body.dark-mode .cta-card::before { opacity: 1; }
+
+body.dark-mode .cta-card {
+    background: #0b1a24;
+    border: 1px solid #25353f;
+    box-shadow: 0 24px 50px rgba(0,0,0,.55);
+}
+body.dark-mode .cta-card::after { background: rgba(243,107,33,.14); }
+
+body.dark-mode .cta-card h2 span,
+body.dark-mode .cta-card .eyebrow { color: #ff8a4c !important; }
+body.dark-mode .cta-card p { color: #a9b6c1; }
+
+body.dark-mode .cta-btns .secondary-btn { border-color: rgba(255,255,255,.28); }
+body.dark-mode .cta-btns .secondary-btn:hover { background: #e8b878; color: #07131d; border-color: #e8b878; }
+
+body.dark-mode .c-item {
+    background: rgba(255,255,255,.03);
+    border-color: rgba(232,184,120,.22);
+}
+body.dark-mode a.c-item:hover { background: rgba(243,107,33,.14); border-color: var(--primary); }
+body.dark-mode .c-item i { background: rgba(243,107,33,.18); color: #ff8a4c; }
+body.dark-mode .c-item small { color: #e8b878; }
     </style>
 </head>
 
@@ -260,7 +345,6 @@ body.dark-mode .icon-btn { background: var(--border); color: var(--heading); }
             <span class="ring r1"></span><span class="ring r2"></span>
             <div class="wrap hg">
                 <div>
-                    <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="services.html">Services</a><span>/</span><b>Vehicle Transport</b></div>
                     <span class="eyebrow">Vehicle transport</span>
                     <h1>Your car and bike, <span>delivered with you</span></h1>
                     <p class="lead">Move your vehicle to your new city safely. We collect it from your door, transport it in a secured carrier and deliver it to your new address, with a condition check at both ends.</p>
